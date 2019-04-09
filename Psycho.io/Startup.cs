@@ -20,11 +20,13 @@ namespace Psycho.io
     public class Startup
     {
         private readonly string ConnectionString;
+        private readonly bool Default;
 
         public Startup(IConfiguration configuration)
         {
+            Default = System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(System.Runtime.InteropServices.OSPlatform.Windows);
             Configuration = configuration;
-            ConnectionString = Configuration.GetConnectionString("DefaultConnection");
+            ConnectionString = Default ? Configuration.GetConnectionString("DefaultConnection") : Configuration.GetConnectionString("SpecificConnection");
         }
 
         public IConfiguration Configuration { get; }
