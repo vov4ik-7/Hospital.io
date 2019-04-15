@@ -7,7 +7,7 @@ namespace Psycho.DAL.Core.Domain
 {
     public enum Gender : byte
     {
-        Male, Female, Other
+        Male = 1, Female = 2, Other = 3
     }
 
     public class User : IdentityUser<int>
@@ -32,6 +32,10 @@ namespace Psycho.DAL.Core.Domain
 
     public class Psychologist : User
     {
+        public string Position { get; set; }
+
+        public DateTime HireDate { get; set; }
+
         public virtual ICollection<WorkSchedule> WorkSchedules { get; set; } = new HashSet<WorkSchedule>();
 
         public virtual ICollection<Appointment> Appointments { get; set; } = new HashSet<Appointment>();

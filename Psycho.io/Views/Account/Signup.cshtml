@@ -1,0 +1,158 @@
+﻿@model Psycho.io.ViewModels.SignupViewModel
+
+@{
+    ViewData["Title"] = "Sign up";
+}
+
+@section csss {
+    <link href="~/css/signup.css" rel="stylesheet">
+}
+
+<!--<h2>Регистрация нового пользователя</h2>
+<form method="post" asp-controller="Account" asp-action="Signup">
+    <div asp-validation-summary="ModelOnly"></div>
+    <div>
+        <label asp-for="Email"></label><br />
+        <input asp-for="Email" />
+        <span asp-validation-for="Email"></span>
+    </div>
+    <div>
+        <label asp-for="FirstName"></label><br />
+        <input asp-for="FirstName" />
+        <span asp-validation-for="FirstName"></span>
+    </div>
+    <div>
+        <label asp-for="LastName"></label><br />
+        <input asp-for="LastName" />
+        <span asp-validation-for="LastName"></span>
+    </div>
+    <div>
+        <label asp-for="Password"></label><br />
+        <input asp-for="Password" />
+        <span asp-validation-for="Password"></span>
+    </div>
+    <div>
+        <label asp-for="ConfirmPassword"></label><br />
+        <input asp-for="ConfirmPassword" />
+        <span asp-validation-for="ConfirmPassword"></span>
+    </div>
+    <div>
+        <input type="submit" value="Signup" />
+    </div>
+</form>-->
+
+<section class="view intro-2" style="background-image: url(../img/signup_background.jpg); background-repeat: no-repeat; background-size: cover; background-position: center center;">
+    <div class="mask">
+        <div class="container d-flex justify-content-center align-items-center">
+            <div class="row flex-center pt-5 mt-3">
+
+                <div style="width:484px;overflow:hidden;">
+
+                    <div style="overflow:auto;max-height:85vh;">
+
+
+                        <!-- Material form register -->
+                        <div class="card wow fadeIn" data-wow-delay="0.3s">
+
+                            <h5 class="card-header info-color white-text text-center py-4">
+                                <strong>Sign up</strong>
+                            </h5>
+
+                            <!--Card content-->
+                            <div class="card-body px-lg-5 pt-0">
+
+                                <!-- Form -->
+                                <form class="text-center" style="color: #757575;" method="post" asp-controller="Account" asp-action="Signup">
+                                    <div asp-validation-summary="ModelOnly"></div>
+                                    <div class="form-row">
+                                        <div class="col">
+                                            <!-- First name -->
+                                            <div class="md-form">
+                                                <input type="text" id="materialRegisterFormFirstName" class="form-control" asp-for="FirstName" required>
+                                                <label for="materialRegisterFormFirstName" asp-for="FirstName">First name</label>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <!-- Last name -->
+                                            <div class="md-form">
+                                                <input type="text" id="materialRegisterFormLastName" class="form-control"asp-for="LastName" required>
+                                                <label for="materialRegisterFormLastName"asp-for="LastName">Last name</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- E-mail -->
+                                    <div class="md-form mt-0">
+                                        <input type="email" id="materialRegisterFormEmail" class="form-control" asp-for="Email" required>
+                                        <label for="materialRegisterFormEmail" asp-for="Email">E-mail</label>
+                                    </div>
+
+                                    <!-- Password -->
+                                    <div class="md-form">
+                                        <input type="password" id="materialRegisterFormPassword" class="form-control" aria-describedby="materialRegisterFormPasswordHelpBlock" asp-for="Password" required>
+                                        <label for="materialRegisterFormPassword" asp-for="Password">Password</label>
+                                        <!--<small id="materialRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
+                                            At least 8 characters and 1 digit
+                                        </small>-->
+                                    </div>
+
+                                    <!-- Phone number -->
+                                    <div class="md-form">
+                                        <input type="tel" id="materialRegisterFormPhone" class="form-control" aria-describedby="materialRegisterFormPhoneHelpBlock" asp-for="Phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
+                                        <label for="materialRegisterFormPhone" asp-for="Phone">Phone number</label>
+                                        <small id="materialRegisterFormPhoneHelpBlock" class="form-text text-muted mb-4">
+                                            Format: 123-456-7890
+                                        </small>
+                                    </div>
+
+                                    <div class="md-form">
+                                        <select class="browser-default custom-select custom-select-md" asp-for="Gender" required>
+                                            <option selected value="">Gender</option>
+                                            <option value="Male">Male</option>
+                                            <option value="Female">Female</option>
+                                            <option value="Other">Other</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-row">
+                                        <div class="col">
+                                            <div class="md-form">
+                                                <input type="number" id="Age" class="form-control" asp-for="Age" min="0" max="100" required>
+                                                <label for="Age" asp-for="Age">Age</label>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="md-form">
+                                                <input type="number" id="Height" class="form-control" asp-for="Height" min="20" max="250" required>
+                                                <label for="Height" asp-for="Height">Height</label>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="md-form">
+                                                <input type="number" id="Weight" class="form-control" asp-for="Weight" min="1" max="300" required>
+                                                <label for="Weight" asp-for="Weight">Weight</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <!-- Sign up button -->
+                                    <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit">Sign up</button>
+
+
+                                </form>
+                                <!-- Form -->
+
+                            </div>
+
+                        </div>
+                        <!-- Material form register -->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+

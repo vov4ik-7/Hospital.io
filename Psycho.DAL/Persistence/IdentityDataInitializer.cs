@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Psycho.DAL.Core.Domain;
@@ -19,9 +20,9 @@ namespace Psycho.DAL.Persistence
             const string GeneralPassword = "123";
             List<User> users = new List<User>();
             users.Add(new User() { UserName = "lysyshyn@gmail.com", FirstName = "Admin", LastName = "Admin", Email = "lysyshyn@gmail.com", EmailConfirmed = true, Blocked = false, RoleId = 1 });
-            users.Add(new Psychologist() { UserName = "komarov@gmail.com", FirstName = "Doctor", LastName = "Komarov", Email = "komarov@gmail.com", EmailConfirmed = true, Blocked = false, RoleId = 2, Gender = Gender.Male });
-            users.Add(new Psychologist() { UserName = "kushnir@gmail.com", FirstName = "Doctor", LastName = "Kushnir", Email = "kushnir@gmail.com", EmailConfirmed = true, Blocked = false, RoleId = 2, Gender = Gender.Female });
-            users.Add(new Psychologist() { UserName = "zavadska@gmail.com", FirstName = "Doctor", LastName = "Zavadska", Email = "zavadska@gmail.com", EmailConfirmed = true, Blocked = false, RoleId = 2, Gender = Gender.Female });
+            users.Add(new Psychologist() { UserName = "komarov@gmail.com", FirstName = "Doctor", LastName = "Komarov", Email = "komarov@gmail.com", EmailConfirmed = true, Blocked = false, RoleId = 2, Gender = Gender.Male, Position = "Psyhologist", HireDate = DateTime.Now });
+            users.Add(new Psychologist() { UserName = "kushnir@gmail.com", FirstName = "Doctor", LastName = "Kushnir", Email = "kushnir@gmail.com", EmailConfirmed = true, Blocked = false, RoleId = 2, Gender = Gender.Female, Position = "Psyhologist", HireDate = DateTime.Now });
+            users.Add(new Psychologist() { UserName = "zavadska@gmail.com", FirstName = "Doctor", LastName = "Zavadska", Email = "zavadska@gmail.com", EmailConfirmed = true, Blocked = false, RoleId = 2, Gender = Gender.Female, Position = "Psyhologist", HireDate = DateTime.Now });
             foreach (var user in users)
             {
                 var userExist = await userManager.FindByEmailAsync(user.Email);

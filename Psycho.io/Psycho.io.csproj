@@ -7,9 +7,147 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Cookies" Version="2.1.2" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Psycho.DAL\Psycho.DAL.csproj" />
+    <ProjectReference Include="..\Psycho.Logic\Psycho.Logic.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ViewModels\" />
+    <Folder Include="Views\Account\" />
+    <Folder Include="Views\Admin\" />
+    <Folder Include="wwwroot\css\admin\" />
+    <Folder Include="wwwroot\js\admin\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="wwwroot\images\idea-2.png" />
+    <Content Remove="wwwroot\images\favicon.png" />
+    <Content Remove="wwwroot\favicon копія.ico" />
+    <Content Remove="wwwroot\android-chrome-192x192.png" />
+    <Content Remove="wwwroot\android-chrome-512x512.png" />
+    <Content Remove="wwwroot\apple-touch-icon.png" />
+    <Content Remove="wwwroot\browserconfig.xml" />
+    <Content Remove="wwwroot\favicon-16x16.png" />
+    <Content Remove="wwwroot\favicon-32x32.png" />
+    <Content Remove="wwwroot\favicon.ico" />
+    <Content Remove="wwwroot\mstile-150x150.png" />
+    <Content Remove="wwwroot\safari-pinned-tab.svg" />
+    <Content Remove="wwwroot\site.webmanifest" />
+    <Content Remove="wwwroot\css\mdb.css" />
+    <Content Remove="wwwroot\lib\popper.min.js" />
+    <Content Remove="wwwroot\js\mdb.js" />
+    <Content Remove="wwwroot\js\mdb.min.js" />
+    <Content Remove="wwwroot\css\bootstrap.css" />
+    <Content Remove="wwwroot\css\bootstrap.min.css" />
+    <Content Remove="wwwroot\js\bootstrap.js" />
+    <Content Remove="wwwroot\js\bootstrap.min.js" />
+    <Content Remove="wwwroot\js\jquery-3.3.1.min.js" />
+    <Content Remove="wwwroot\js\popper.min.js" />
+    <Content Remove="wwwroot\font\.DS_Store" />
+    <Content Remove="wwwroot\font\roboto\Roboto-Bold.eot" />
+    <Content Remove="wwwroot\font\roboto\Roboto-Bold.ttf" />
+    <Content Remove="wwwroot\font\roboto\Roboto-Bold.woff" />
+    <Content Remove="wwwroot\font\roboto\Roboto-Bold.woff2" />
+    <Content Remove="wwwroot\font\roboto\Roboto-Light.eot" />
+    <Content Remove="wwwroot\font\roboto\Roboto-Light.ttf" />
+    <Content Remove="wwwroot\font\roboto\Roboto-Light.woff" />
+    <Content Remove="wwwroot\font\roboto\Roboto-Light.woff2" />
+    <Content Remove="wwwroot\font\roboto\Roboto-Medium.eot" />
+    <Content Remove="wwwroot\font\roboto\Roboto-Medium.ttf" />
+    <Content Remove="wwwroot\font\roboto\Roboto-Medium.woff" />
+    <Content Remove="wwwroot\font\roboto\Roboto-Medium.woff2" />
+    <Content Remove="wwwroot\font\roboto\Roboto-Regular.eot" />
+    <Content Remove="wwwroot\font\roboto\Roboto-Regular.ttf" />
+    <Content Remove="wwwroot\font\roboto\Roboto-Regular.woff" />
+    <Content Remove="wwwroot\font\roboto\Roboto-Regular.woff2" />
+    <Content Remove="wwwroot\font\roboto\Roboto-Thin.eot" />
+    <Content Remove="wwwroot\font\roboto\Roboto-Thin.ttf" />
+    <Content Remove="wwwroot\font\roboto\Roboto-Thin.woff" />
+    <Content Remove="wwwroot\font\roboto\Roboto-Thin.woff2" />
+    <Content Remove="wwwroot\images\svg\arrow_left.svg" />
+    <Content Remove="wwwroot\images\svg\arrow_right.svg" />
+    <Content Remove="wwwroot\js\bootstrap.min.js.map" />
+    <Content Remove="wwwroot\css\bootstrap.min.css.map" />
+    <Content Remove="wwwroot\img\ph_background.png" />
+    <Content Remove="wwwroot\img\Psychology.jpg" />
+    <Content Remove="wwwroot\img\signup_background.png" />
+    <Content Remove="wwwroot\img\home_background.jpg" />
+    <Content Remove="wwwroot\img\signup_background.jpg" />
+    <Content Remove="wwwroot\img\mental.png" />
+    <Content Remove="wwwroot\img\mental-2.png" />
+    <Content Remove="wwwroot\img\mental-3.png" />
+    <Content Remove="wwwroot\img\psycho.png" />
+    <Content Remove="wwwroot\img\image_2019-04-13_18-50-36.png" />
+    <Content Remove="wwwroot\js\datatables.js" />
+    <Content Remove="wwwroot\css\datatables.min.css" />
+    <Content Remove="wwwroot\css\mdb.min.css" />
+    <Content Remove="wwwroot\css\admin\datatables.css" />
+    <Content Remove="wwwroot\css\admin\datatables.min.css" />
+    <Content Remove="wwwroot\js\admin\datatables.js" />
+    <Content Remove="wwwroot\js\admin\datatables.min.js" />
+    <Content Remove="wwwroot\css\admin\mdb.min.css" />
+    <Content Remove="wwwroot\js\admin\mdb.min.js" />
+    <Content Remove="wwwroot\js\admin\datatables-select.min.js" />
+    <Content Remove="wwwroot\css\admin\datatables-select.min.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="wwwroot\android-chrome-192x192.png" />
+    <None Include="wwwroot\android-chrome-512x512.png" />
+    <None Include="wwwroot\apple-touch-icon.png" />
+    <None Include="wwwroot\browserconfig.xml" />
+    <None Include="wwwroot\favicon-16x16.png" />
+    <None Include="wwwroot\favicon-32x32.png" />
+    <None Include="wwwroot\favicon.ico" />
+    <None Include="wwwroot\mstile-150x150.png" />
+    <None Include="wwwroot\safari-pinned-tab.svg" />
+    <None Include="wwwroot\site.webmanifest" />
+    <None Include="wwwroot\css\mdb.css" />
+    <None Include="wwwroot\lib\popper.min.js" />
+    <None Include="wwwroot\js\mdb.js" />
+    <None Include="wwwroot\js\mdb.min.js" />
+    <None Include="wwwroot\css\bootstrap.css" />
+    <None Include="wwwroot\css\bootstrap.min.css" />
+    <None Include="wwwroot\js\bootstrap.js" />
+    <None Include="wwwroot\js\bootstrap.min.js" />
+    <None Include="wwwroot\js\jquery-3.3.1.min.js" />
+    <None Include="wwwroot\js\popper.min.js" />
+    <None Include="wwwroot\font\.DS_Store" />
+    <None Include="wwwroot\font\roboto\Roboto-Bold.eot" />
+    <None Include="wwwroot\font\roboto\Roboto-Bold.ttf" />
+    <None Include="wwwroot\font\roboto\Roboto-Bold.woff" />
+    <None Include="wwwroot\font\roboto\Roboto-Bold.woff2" />
+    <None Include="wwwroot\font\roboto\Roboto-Light.eot" />
+    <None Include="wwwroot\font\roboto\Roboto-Light.ttf" />
+    <None Include="wwwroot\font\roboto\Roboto-Light.woff" />
+    <None Include="wwwroot\font\roboto\Roboto-Light.woff2" />
+    <None Include="wwwroot\font\roboto\Roboto-Medium.eot" />
+    <None Include="wwwroot\font\roboto\Roboto-Medium.ttf" />
+    <None Include="wwwroot\font\roboto\Roboto-Medium.woff" />
+    <None Include="wwwroot\font\roboto\Roboto-Medium.woff2" />
+    <None Include="wwwroot\font\roboto\Roboto-Regular.eot" />
+    <None Include="wwwroot\font\roboto\Roboto-Regular.ttf" />
+    <None Include="wwwroot\font\roboto\Roboto-Regular.woff" />
+    <None Include="wwwroot\font\roboto\Roboto-Regular.woff2" />
+    <None Include="wwwroot\font\roboto\Roboto-Thin.eot" />
+    <None Include="wwwroot\font\roboto\Roboto-Thin.ttf" />
+    <None Include="wwwroot\font\roboto\Roboto-Thin.woff" />
+    <None Include="wwwroot\font\roboto\Roboto-Thin.woff2" />
+    <None Include="wwwroot\img\svg\arrow_left.svg" />
+    <None Include="wwwroot\img\svg\arrow_right.svg" />
+    <None Include="wwwroot\js\bootstrap.min.js.map" />
+    <None Include="wwwroot\css\bootstrap.min.css.map" />
+    <None Include="wwwroot\img\signup_background.jpg" />
+    <None Include="wwwroot\img\image_2019-04-13_18-50-36.png" />
+    <None Include="wwwroot\css\mdb.min.css" />
+    <None Include="wwwroot\css\admin\datatables.css" />
+    <None Include="wwwroot\css\admin\datatables.min.css" />
+    <None Include="wwwroot\js\admin\datatables.js" />
+    <None Include="wwwroot\js\admin\datatables.min.js" />
+    <None Include="wwwroot\css\admin\mdb.min.css" />
+    <None Include="wwwroot\js\admin\mdb.min.js" />
+    <None Include="wwwroot\js\admin\datatables-select.min.js" />
+    <None Include="wwwroot\css\admin\datatables-select.min.css" />
   </ItemGroup>
 </Project>

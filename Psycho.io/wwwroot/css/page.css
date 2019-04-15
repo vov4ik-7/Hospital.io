@@ -1,0 +1,38 @@
+﻿@media (min-width: 1200px) {
+    main {
+        margin-left: 6%;
+        margin-right: 6%;
+    }
+}
+
+@media (min-width: 992px) {
+    main {
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+}
+
+@media (min-width: 600px) {
+    main {
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+}
+
+@media (min-width: 600px) {
+    main {
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+}
+
+@media (max-width: 1440px) {
+    main {
+        padding-left: 0;
+    }
+}
+
+main {
+    padding-top: 5.5rem;
+}
+
