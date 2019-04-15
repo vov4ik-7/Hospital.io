@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
@@ -23,6 +23,7 @@ namespace Psycho.DAL.Persistence
             users.Add(new Psychologist() { UserName = "komarov@gmail.com", FirstName = "Doctor", LastName = "Komarov", Email = "komarov@gmail.com", EmailConfirmed = true, Blocked = false, RoleId = 2, Gender = Gender.Male, Position = "Psyhologist", HireDate = DateTime.Now });
             users.Add(new Psychologist() { UserName = "kushnir@gmail.com", FirstName = "Doctor", LastName = "Kushnir", Email = "kushnir@gmail.com", EmailConfirmed = true, Blocked = false, RoleId = 2, Gender = Gender.Female, Position = "Psyhologist", HireDate = DateTime.Now });
             users.Add(new Psychologist() { UserName = "zavadska@gmail.com", FirstName = "Doctor", LastName = "Zavadska", Email = "zavadska@gmail.com", EmailConfirmed = true, Blocked = false, RoleId = 2, Gender = Gender.Female, Position = "Psyhologist", HireDate = DateTime.Now });
+
             foreach (var user in users)
             {
                 var userExist = await userManager.FindByEmailAsync(user.Email);
