@@ -5,6 +5,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Psycho.io", "Psycho.io\Psyc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Psycho.DAL", "Psycho.DAL\Psycho.DAL.csproj", "{B5474FAA-2F63-461A-B51C-E8E1C19E6E03}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Psycho.Logic", "Psycho.Logic\Psycho.Logic.csproj", "{43392D5D-D4E8-4DA5-BF38-8E69BA3BB1CC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Psycho.DTO", "Psycho.DTO\Psycho.DTO.csproj", "{D5016389-2FE7-49EF-84B0-8B9E3B3F4199}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,5 +23,13 @@ Global
 		{B5474FAA-2F63-461A-B51C-E8E1C19E6E03}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B5474FAA-2F63-461A-B51C-E8E1C19E6E03}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B5474FAA-2F63-461A-B51C-E8E1C19E6E03}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43392D5D-D4E8-4DA5-BF38-8E69BA3BB1CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43392D5D-D4E8-4DA5-BF38-8E69BA3BB1CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43392D5D-D4E8-4DA5-BF38-8E69BA3BB1CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43392D5D-D4E8-4DA5-BF38-8E69BA3BB1CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D5016389-2FE7-49EF-84B0-8B9E3B3F4199}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5016389-2FE7-49EF-84B0-8B9E3B3F4199}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5016389-2FE7-49EF-84B0-8B9E3B3F4199}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5016389-2FE7-49EF-84B0-8B9E3B3F4199}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

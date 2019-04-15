@@ -10,6 +10,9 @@ namespace Psycho.DAL.Persistence
         public PsychoContext() { }
         public PsychoContext(DbContextOptions<PsychoContext> options) : base(options) { }
 
+        public virtual DbSet<Psychologist> Psychologists { get; set; }
+        public virtual DbSet<AuthorizedUser> AuthorizedUsers { get; set; }
+        public virtual DbSet<AnonymousUser> AnonymousUsers { get; set; }
         public virtual DbSet<Appointment> Appointments { get; set; }
         public virtual DbSet<AppointmentResult> AppointmentResults { get; set; }
         public virtual DbSet<Report> Reports { get; set; }

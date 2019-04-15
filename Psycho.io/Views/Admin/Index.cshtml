@@ -1,0 +1,74 @@
+﻿@{
+    Layout = "_AdminPageLayout";
+    ViewData["Title"] = "Admin page";
+}
+
+@using Psycho.DTO.Core
+@using Psycho.DTO.Persistence
+@model PsychologistListDTO
+
+@section csss {
+    <link href="~/css/admin/datatables.min.css" rel="stylesheet">
+    <link href="~/css/page.css" rel="stylesheet">
+}
+
+<main style="min-height: 100vh;">
+    <div class="container-fluid mb-5">
+
+        <!-- Section: Basic examples -->
+        <section>
+            <div class="col-md-12">
+
+                <h5 class="my-4 dark-grey-text font-weight-bold">Admin page</h5>
+
+                <div class="card">
+                    <div class="card-body">
+                        <table id="dtMaterialDesignExample" class="table table-striped" cellspacing="0" width="100%">
+                            <thead>
+                                <tr>
+                                    @foreach(var header in Model.ColumnHeaders){
+                                        <th>@header</th>
+                                    }
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach(var psychologist in Model.PsychologistDTOs){
+                                    <tr>
+                                        @{
+                                            System.Collections.Generic.List<string> list = psychologist.ToList();
+                                        }
+                                        @foreach (var elem in list){
+                                            <td>@elem</td>
+                                        }
+                                            <td>
+                                                @Html.ActionLink("Edit", "Edit", "Admin", new { id = psychologist.Id }, new { @class = "btn btn-outline-default btn-rounded waves-effect" })
+                                                @Html.ActionLink("Delete", "Delete", "Admin", new { id = psychologist.Id }, new { @class = "btn btn-outline-danger btn-rounded waves-effect" })
+
+                                            </td>
+                                    </tr>
+                                }
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    @foreach(var header in Model.ColumnHeaders){
+                                        <th>@header</th>
+                                    }
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </div>
+</main>
+<footer class="page-footer text-center text-md-left stylish-color-dark pt-0">
+    <!-- Copyright-->
+    <div class="footer-copyright py-3 text-center wow fadeIn" data-wow-delay="0.3s">
+        <div class="container-fluid">
+            © 2019 Copyright: <a href="#" target="_blank"> VL </a>
+        </div>
+    </div>
+    <!--/.Copyright -->
+</footer>

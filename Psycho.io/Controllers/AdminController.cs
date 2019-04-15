@@ -1,0 +1,41 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Psycho.DAL.Core.Domain;
+using Psycho.DTO.Persistence;
+using Psycho.Logic.Facade.Interfaces;
+
+// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+
+namespace Psycho.io.Controllers
+{
+    [Authorize(Roles = "Admin")]
+    public class AdminController : PsychoMvcControllerBase
+    {
+        private readonly UserManager<User> _userManager;
+        private readonly RoleManager<Role> _roleManager;
+        private readonly SignInManager<User> _signInManager;
+
+        public AdminController(IPsychoLogic psychoLogic,
+            UserManager<User> userManager,
+            RoleManager<Role> roleManager,
+            SignInManager<User> signInManager)
+            : base(psychoLogic)
+        {
+            this._userManager = userManager;
+            this._roleManager = roleManager;
+            this._signInManager = signInManager;
+        }
+
+        public IActionResult Index()
+        {
+            PsychologistListDTO psychologistListDTO = PsychoLogic.AdminFacade.GetPsychologistListForAdminPage();
+
+            return View(psychologistListDTO);
+        }
+    }
+}

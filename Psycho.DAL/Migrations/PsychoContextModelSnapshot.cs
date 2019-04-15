@@ -335,6 +335,9 @@ namespace Psycho.DAL.Migrations
                 {
                     b.HasBaseType("Psycho.DAL.Core.Domain.User");
 
+                    b.Property<DateTime>("HireDate");
+
+                    b.Property<string>("Position");
 
                     b.ToTable("Psychologist");
 

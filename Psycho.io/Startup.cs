@@ -14,6 +14,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Psycho.Logic.Facade.Interfaces;
+using Psycho.Logic.Facade;
 
 namespace Psycho.io
 {
@@ -41,6 +44,12 @@ namespace Psycho.io
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddHttpContextAccessor();
+
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IPsychoLogic, PsychoLogic>();
+
             services.AddDbContext<PsychoContext>(options =>
                 options.UseSqlServer(ConnectionString));
 
@@ -56,7 +65,11 @@ namespace Psycho.io
                .AddEntityFrameworkStores<PsychoContext>()
                .AddDefaultTokenProviders();
 
-            services.AddSingleton<IUnitOfWork, UnitOfWork>();
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(options =>
+                {
+                    options.LoginPath = new PathString("/Account/Login");
+                });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
