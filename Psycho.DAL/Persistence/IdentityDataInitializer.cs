@@ -20,9 +20,9 @@ namespace Psycho.DAL.Persistence
             const string GeneralPassword = "123";
             List<User> users = new List<User>();
             users.Add(new User() { UserName = "lysyshyn@gmail.com", FirstName = "Admin", LastName = "Admin", Email = "lysyshyn@gmail.com", EmailConfirmed = true, Blocked = false, RoleId = 1 });
-            users.Add(new Psychologist() { UserName = "komarov@gmail.com", FirstName = "Doctor", LastName = "Komarov", Email = "komarov@gmail.com", EmailConfirmed = true, Blocked = false, RoleId = 2, Gender = Gender.Male, Position = "Psyhologist", HireDate = DateTime.Now });
-            users.Add(new Psychologist() { UserName = "kushnir@gmail.com", FirstName = "Doctor", LastName = "Kushnir", Email = "kushnir@gmail.com", EmailConfirmed = true, Blocked = false, RoleId = 2, Gender = Gender.Female, Position = "Psyhologist", HireDate = DateTime.Now });
-            users.Add(new Psychologist() { UserName = "zavadska@gmail.com", FirstName = "Doctor", LastName = "Zavadska", Email = "zavadska@gmail.com", EmailConfirmed = true, Blocked = false, RoleId = 2, Gender = Gender.Female, Position = "Psyhologist", HireDate = DateTime.Now });
+            users.Add(new Psychologist() { UserName = "komarov@gmail.com", FirstName = "Doctor", LastName = "Komarov", Email = "komarov@gmail.com", EmailConfirmed = true, Blocked = false, RoleId = 2, Gender = Gender.Male, Position = "Psyhologist", HireDate = DateTime.Now, PhoneNumber = "097-111-2568", Address = "Lviv, Ukraine, Shevchenka st." });
+            users.Add(new Psychologist() { UserName = "kushnir@gmail.com", FirstName = "Doctor", LastName = "Kushnir", Email = "kushnir@gmail.com", EmailConfirmed = true, Blocked = false, RoleId = 2, Gender = Gender.Female, Position = "Psyhologist", HireDate = DateTime.Now, PhoneNumber = "068-654-9813", Address = "Lviv, Ukraine, Svobody st." });
+            users.Add(new Psychologist() { UserName = "zavadska@gmail.com", FirstName = "Doctor", LastName = "Zavadska", Email = "zavadska@gmail.com", EmailConfirmed = true, Blocked = false, RoleId = 2, Gender = Gender.Female, Position = "Psyhologist", HireDate = DateTime.Now, PhoneNumber = "050-138-0901", Address = "Lviv, Ukraine, Universytetska st." });
 
             foreach (var user in users)
             {

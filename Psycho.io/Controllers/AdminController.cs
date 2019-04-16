@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Psycho.DAL.Core.Domain;
+using Psycho.DTO.Core;
 using Psycho.DTO.Persistence;
 using Psycho.Logic.Facade.Interfaces;
 
@@ -36,6 +37,19 @@ namespace Psycho.io.Controllers
             PsychologistListDTO psychologistListDTO = PsychoLogic.AdminFacade.GetPsychologistListForAdminPage();
 
             return View(psychologistListDTO);
+        }
+
+        [HttpGet]
+        public IActionResult CreatePsychologist(string returnUrl = null)
+        {
+            return PartialView(new CreatePsychologistDTO { ReturnUrl = returnUrl });
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreatePsychologist(CreatePsychologistDTO model)
+        {
+            Tuple<string, string> tuple = await this.PsychoLogic.AdminFacade.CreatePsychologistAsync(model);
+            return Json(new { status = tuple.Item1, description = tuple.Item2 });
         }
     }
 }

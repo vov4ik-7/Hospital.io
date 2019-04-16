@@ -12,6 +12,11 @@
     <link href="~/css/bootstrap.min.css" rel="stylesheet">
     <link href="~/css/mdb.min.css" rel="stylesheet">
 
+    <!--Sign in modal-->
+    <link href="~/css/signin.css" rel="stylesheet">
+    <link href="~/css/toastr.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
     @RenderSection("csss", required: false)
 
 </head>
@@ -81,13 +86,6 @@
     </nav>
     <!--/Navbar-->
 
-    <div class="modal fade" id="elegantModalForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div id="dialogContent" class="modal-dialog" role="document"></div>
-    </div>
-
-    <div class="modal fade" id="darkModalForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div id="dialogContentUp" class="modal-dialog form-dark" role="document"></div>
-    </div>
 
     @RenderBody()
 
@@ -95,11 +93,13 @@
     <script type="text/javascript" src="~/js/popper.min.js"></script>
     <script type="text/javascript" src="~/js/bootstrap.min.js"></script>
 
-    <script type="text/javascript" src="~/js/mdb.min.js"></script>
+    <script type="text/javascript" src="~/js/mdb.js"></script>
     <script type="text/javascript" src="~/js/site.js"></script>
     <script type="text/javascript" src="~/js/sign-in.js"></script>
     <script type="text/javascript" src="~/js/sign-up.js"></script>
     <script type="text/javascript" src="~/js/sign-out.js"></script>
+    <script type="text/javascript" src="~/js/toastr.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
     @RenderSection("scripts", required: false)
 

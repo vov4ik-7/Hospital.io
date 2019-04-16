@@ -26,6 +26,10 @@ namespace Psycho.DTO.Core
 
         public DateTime? HireDate { get; set; }
 
+        public string Password { get; set; }
+
+        public string ReturnUrl { get; set; }
+
         public PsychologistDTO()
         {
         }

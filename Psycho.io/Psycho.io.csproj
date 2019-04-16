@@ -8,6 +8,7 @@
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Cookies" Version="2.1.2" />
+    <PackageReference Include="Microsoft.jQuery.Unobtrusive.Ajax" Version="3.2.6" />
   </ItemGroup>
 
   <ItemGroup>
@@ -35,9 +36,7 @@
     <Content Remove="wwwroot\mstile-150x150.png" />
     <Content Remove="wwwroot\safari-pinned-tab.svg" />
     <Content Remove="wwwroot\site.webmanifest" />
-    <Content Remove="wwwroot\css\mdb.css" />
     <Content Remove="wwwroot\lib\popper.min.js" />
-    <Content Remove="wwwroot\js\mdb.js" />
     <Content Remove="wwwroot\js\mdb.min.js" />
     <Content Remove="wwwroot\css\bootstrap.css" />
     <Content Remove="wwwroot\css\bootstrap.min.css" />
@@ -86,11 +85,17 @@
     <Content Remove="wwwroot\css\admin\datatables.css" />
     <Content Remove="wwwroot\css\admin\datatables.min.css" />
     <Content Remove="wwwroot\js\admin\datatables.js" />
-    <Content Remove="wwwroot\js\admin\datatables.min.js" />
     <Content Remove="wwwroot\css\admin\mdb.min.css" />
-    <Content Remove="wwwroot\js\admin\mdb.min.js" />
-    <Content Remove="wwwroot\js\admin\datatables-select.min.js" />
     <Content Remove="wwwroot\css\admin\datatables-select.min.css" />
+    <Content Remove="wwwroot\js\jquery.unobtrusive-ajax.js" />
+    <Content Remove="wwwroot\js\jquery.unobtrusive-ajax.min.js" />
+    <Content Remove="wwwroot\js\mdb.min1.js" />
+    <Content Remove="wwwroot\js\mdb.js" />
+    <Content Remove="wwwroot\css\toastr.min.css" />
+    <Content Remove="wwwroot\js\toastr.min.js" />
+    <Content Remove="wwwroot\js\toastr.js.map" />
+    <Content Remove="wwwroot\css\mdb.css" />
+    <Content Remove="wwwroot\css\mdb.css" />
   </ItemGroup>
   <ItemGroup>
     <None Include="wwwroot\android-chrome-192x192.png" />
@@ -103,10 +108,7 @@
     <None Include="wwwroot\mstile-150x150.png" />
     <None Include="wwwroot\safari-pinned-tab.svg" />
     <None Include="wwwroot\site.webmanifest" />
-    <None Include="wwwroot\css\mdb.css" />
     <None Include="wwwroot\lib\popper.min.js" />
-    <None Include="wwwroot\js\mdb.js" />
-    <None Include="wwwroot\js\mdb.min.js" />
     <None Include="wwwroot\css\bootstrap.css" />
     <None Include="wwwroot\css\bootstrap.min.css" />
     <None Include="wwwroot\js\bootstrap.js" />
@@ -143,11 +145,14 @@
     <None Include="wwwroot\css\mdb.min.css" />
     <None Include="wwwroot\css\admin\datatables.css" />
     <None Include="wwwroot\css\admin\datatables.min.css" />
-    <None Include="wwwroot\js\admin\datatables.js" />
-    <None Include="wwwroot\js\admin\datatables.min.js" />
     <None Include="wwwroot\css\admin\mdb.min.css" />
-    <None Include="wwwroot\js\admin\mdb.min.js" />
-    <None Include="wwwroot\js\admin\datatables-select.min.js" />
     <None Include="wwwroot\css\admin\datatables-select.min.css" />
+    <None Include="wwwroot\js\jquery.unobtrusive-ajax.js" />
+    <None Include="wwwroot\js\jquery.unobtrusive-ajax.min.js" />
+    <None Include="wwwroot\js\mdb.js" />
+    <None Include="wwwroot\css\toastr.min.css" />
+    <None Include="wwwroot\js\toastr.min.js" />
+    <None Include="wwwroot\js\toastr.js.map" />
+    <None Include="wwwroot\css\mdb.css" />
   </ItemGroup>
 </Project>
