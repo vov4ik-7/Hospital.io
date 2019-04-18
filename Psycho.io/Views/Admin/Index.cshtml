@@ -5,6 +5,7 @@
 
 @using Psycho.DTO.Core
 @using Psycho.DTO.Persistence
+@using System.Web
 @model PsychologistListDTO
 
 @section csss {
@@ -17,6 +18,12 @@
 <div class="modal fade" id="darkModalForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div id="dialogContentUp" class="modal-dialog" role="document"></div>
 </div>
+<div class="modal fade" id="modalFormEditPsychologist" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div id="dialogContentEditPsychologist" class="modal-dialog" role="document"></div>
+</div>
+<div class="modal fade" id="modalFormDeletePsychologist" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div id="dialogContentDeletePsychologist" class="modal-dialog" role="document"></div>
+</div>
 
 <main style="min-height: 100vh;">
     <div class="container-fluid mb-5">
@@ -27,7 +34,7 @@
 
                 <div class="d-flex justify-content-between">
                     <h5 class="my-4 dark-grey-text font-weight-bold">Admin page</h5>
-                    <button id="create-psychologist" asp-controller="Admin" asp-action="Add" class="btn btn-rounded btn-outline-default btn-md">Add psychologist<i class="fas fa-user-plus pl-1"></i></button>
+                    <button id="create-psychologist" class="btn btn-rounded btn-outline-default btn-md">Add psychologist<i class="fas fa-user-plus pl-1"></i></button>
                 </div>
 
                 <div class="card">
@@ -52,11 +59,30 @@
                                         {
                                             <td>@elem</td>
                                         }
-                                        <td>
-                                            @Html.ActionLink("Edit", "Edit", "Admin", new { id = psychologist.Id }, new { @class = "btn btn-outline-default btn-rounded waves-effect" })
-                                            @Html.ActionLink("Delete", "Delete", "Admin", new { id = psychologist.Id }, new { @class = "btn btn-outline-danger btn-rounded waves-effect" })
+                                            <td>
+                                                <!--<button id="create-psychologist" class="btn btn-outline-default btn-rounded waves-effect">Edit</button>
+                                                <button id="delete-psychologist" class="btn btn-outline-danger btn-rounded waves-effect">Delete</button>-->
 
-                                        </td>
+                                                @Html.ActionLink("Edit", "EditPsychologist", "Admin", new { id = psychologist.Id }, new
+                                                {
+                                                    data_ajax = "true",
+                                                    data_ajax_method = "GET",
+                                                    data_ajax_mode = "replace",
+                                                    data_ajax_update = "editUserInfo",
+                                                    data_ajax_success = "EditButtonSuccess",
+                                                    @class = "btn btn-outline-default btn-rounded waves-effect",
+                                                    @id = "edit-psychologist"
+                                                })
+                                                @Html.ActionLink("Delete", "Delete", "Admin", new { id = psychologist.Id }, new {
+                                                    data_ajax = "true",
+                                                    data_ajax_method = "POST",
+                                                    data_ajax_mode = "replace",
+                                                    data_ajax_update = "deleteUserInfo",
+                                                    data_ajax_success = "DeleteButtonSuccess", @class = "btn btn-outline-danger btn-rounded waves-effect" })
+
+                                                @*Ajax.ActionLink("Edit", "Edit", "Admin", new { id = psychologist.Id }, new AjaxOptions() { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, })*@
+
+                                            </td>
                                     </tr>
                                 }
                             </tbody>

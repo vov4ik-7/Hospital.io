@@ -3,6 +3,8 @@ namespace Psycho.DTO.Core
 {
     public class CreatePsychologistDTO
     {
+        public int Id { get; set; }
+
         public string Email { get; set; }
 
         public string FirstName { get; set; }
@@ -17,7 +19,7 @@ namespace Psycho.DTO.Core
 
         public string Position { get; set; }
 
-        public DateTime HireDate { get; set; }
+        public string HireDate { get; set; }
 
         public string Password { get; set; }
 

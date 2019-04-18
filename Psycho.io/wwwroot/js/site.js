@@ -18,5 +18,6 @@ var url = "https://localhost:5001/";
 var urls = {
     signin: url + "Account/Signin",
     signout: url + "Account/Signout",
-    createPsychologist: "Admin/CreatePsychologist"
+    createPsychologist: "Admin/CreatePsychologist",
+    editPsychologist: "Admin/EditPsychologist"
 }

@@ -81,7 +81,6 @@
     <Content Remove="wwwroot\img\image_2019-04-13_18-50-36.png" />
     <Content Remove="wwwroot\js\datatables.js" />
     <Content Remove="wwwroot\css\datatables.min.css" />
-    <Content Remove="wwwroot\css\mdb.min.css" />
     <Content Remove="wwwroot\css\admin\datatables.css" />
     <Content Remove="wwwroot\css\admin\datatables.min.css" />
     <Content Remove="wwwroot\js\admin\datatables.js" />
@@ -94,8 +93,7 @@
     <Content Remove="wwwroot\css\toastr.min.css" />
     <Content Remove="wwwroot\js\toastr.min.js" />
     <Content Remove="wwwroot\js\toastr.js.map" />
-    <Content Remove="wwwroot\css\mdb.css" />
-    <Content Remove="wwwroot\css\mdb.css" />
+    <Content Remove="wwwroot\css\mdb.min.css" />
   </ItemGroup>
   <ItemGroup>
     <None Include="wwwroot\android-chrome-192x192.png" />
@@ -142,7 +140,6 @@
     <None Include="wwwroot\css\bootstrap.min.css.map" />
     <None Include="wwwroot\img\signup_background.jpg" />
     <None Include="wwwroot\img\image_2019-04-13_18-50-36.png" />
-    <None Include="wwwroot\css\mdb.min.css" />
     <None Include="wwwroot\css\admin\datatables.css" />
     <None Include="wwwroot\css\admin\datatables.min.css" />
     <None Include="wwwroot\css\admin\mdb.min.css" />
@@ -153,6 +150,6 @@
     <None Include="wwwroot\css\toastr.min.css" />
     <None Include="wwwroot\js\toastr.min.js" />
     <None Include="wwwroot\js\toastr.js.map" />
-    <None Include="wwwroot\css\mdb.css" />
+    <None Include="wwwroot\css\mdb.min.css" />
   </ItemGroup>
 </Project>

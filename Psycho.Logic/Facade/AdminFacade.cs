@@ -79,6 +79,7 @@ namespace Psycho.Logic.Facade
             if(check == null)
             {
                 Gender? gender = newPsychologist.Gender != String.Empty ? (Gender?)Enum.Parse(typeof(Gender), newPsychologist.Gender) : null;
+                string[] Date = newPsychologist.HireDate.Split('/', StringSplitOptions.RemoveEmptyEntries);
                 User user = new Psychologist()
                 {
                     UserName = newPsychologist.Email,
@@ -92,7 +93,7 @@ namespace Psycho.Logic.Facade
                     Address = newPsychologist.Address,
                     PhoneNumber = newPsychologist.Phone,
                     Position = "Psychologist",
-                    HireDate = newPsychologist.HireDate
+                    HireDate = new DateTime(Int32.Parse(Date[2]), Int32.Parse(Date[0]), Int32.Parse(Date[1]))
                 };
 
                 var result = await _userManager.CreateAsync(user, newPsychologist.Password);
@@ -100,6 +101,69 @@ namespace Psycho.Logic.Facade
                 {
                     status = "success";
                     description = "User created successfully";
+                }
+                else
+                {
+                    status = "error";
+                    description = "Server error.";
+                }
+            }
+            else
+            {
+                status = "error";
+                description = "User with this email already exists.";
+            }
+            return new Tuple<string, string>(status, description);
+        }
+
+        public async Task<CreatePsychologistDTO> GetPsychologistForEditAsync(int id)
+        {
+            Psychologist psychologist = (Psychologist)await _userManager.FindByIdAsync(id.ToString());
+
+            CreatePsychologistDTO forEdit = new CreatePsychologistDTO
+            {
+                Id = psychologist.Id,
+                Email = psychologist.Email,
+                FirstName = psychologist.FirstName,
+                LastName = psychologist.LastName,
+                Address = psychologist.Address,
+                Gender = psychologist.Gender.ToString(),
+                Phone = psychologist.PhoneNumber,
+                Position = psychologist.Position,
+                HireDate = $"{psychologist.HireDate.Month}/{psychologist.HireDate.Day}/{psychologist.HireDate.Year}",
+                Password = ""
+            };
+
+            return forEdit;
+        }
+
+        public async Task<Tuple<string, string>> EditPsychologistAsync(CreatePsychologistDTO psychologistDTO)
+        {
+            string status = String.Empty;
+            string description = String.Empty;
+
+            var check = await this._userManager.FindByEmailAsync(psychologistDTO.Email);
+
+            if (check == null)
+            {
+                Psychologist psychologist = (Psychologist)await this._userManager.FindByIdAsync(psychologistDTO.Id.ToString());
+                psychologist.FirstName = psychologistDTO.FirstName;
+                psychologist.LastName = psychologistDTO.LastName;
+                psychologist.Email = psychologistDTO.Email;
+                psychologist.UserName = psychologistDTO.Email;
+                psychologist.Address = psychologistDTO.Address;
+                psychologist.PhoneNumber = psychologistDTO.Phone;
+
+                if(psychologistDTO.Password != "")
+                {
+
+                }
+
+                var result = await this._userManager.UpdateAsync(psychologist);
+                if (result.Succeeded)
+                {
+                    status = "success";
+                    description = "User updated successfully";
                 }
                 else
                 {
