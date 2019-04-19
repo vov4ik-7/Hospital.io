@@ -65,5 +65,20 @@ namespace Psycho.io.Controllers
             Tuple<string, string> tuple = await this.PsychoLogic.AdminFacade.EditPsychologistAsync(model);
             return Json(new { status = tuple.Item1, description = tuple.Item2 });
         }
+
+
+        [HttpGet]
+        public async Task<IActionResult> DeletePsychologistModal(int id)
+        {
+            DeletePsychologistDTO psychologistDTO = await PsychoLogic.AdminFacade.GetPsychologistForDeleteAsync(id);
+            return PartialView(psychologistDTO);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DeletePsychologist(int id)
+        {
+            Tuple<string, string> tuple = await this.PsychoLogic.AdminFacade.DeletePsychologistAsync(id);
+            return Json(new { status = tuple.Item1, description = tuple.Item2 });
+        }
     }
 }

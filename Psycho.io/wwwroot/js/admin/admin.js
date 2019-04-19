@@ -68,3 +68,17 @@ function SuccessEdit(data) {
         toastr.error(data.description);
     }
 }
+
+function SuccessDelete(data) {
+    $('#modalFormDeletePsychologist').modal('hide');
+
+        if (data.status == "success") {
+            sessionStorage.showMessageAfterPageLoad = true;
+            sessionStorage.userCreationStatus = data.description;
+            location.reload(true);
+        }
+        else if (data.status == "error") {
+            console.log(data.description);
+            toastr.error(data.description);
+        }
+}

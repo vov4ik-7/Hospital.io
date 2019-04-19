@@ -12,5 +12,7 @@ namespace Psycho.Logic.Facade.Interfaces
         Task<Tuple<string, string>> CreatePsychologistAsync(CreatePsychologistDTO newPsychologist);
         Task<CreatePsychologistDTO> GetPsychologistForEditAsync(int id);
         Task<Tuple<string, string>> EditPsychologistAsync(CreatePsychologistDTO psychologistDTO);
+        Task<DeletePsychologistDTO> GetPsychologistForDeleteAsync(int id);
+        Task<Tuple<string, string>> DeletePsychologistAsync(int id);
     }
 }

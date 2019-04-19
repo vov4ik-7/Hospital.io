@@ -73,9 +73,9 @@
                                                     @class = "btn btn-outline-default btn-rounded waves-effect",
                                                     @id = "edit-psychologist"
                                                 })
-                                                @Html.ActionLink("Delete", "Delete", "Admin", new { id = psychologist.Id }, new {
+                                                @Html.ActionLink("Delete", "DeletePsychologistModal", "Admin", new { id = psychologist.Id }, new {
                                                     data_ajax = "true",
-                                                    data_ajax_method = "POST",
+                                                    data_ajax_method = "GET",
                                                     data_ajax_mode = "replace",
                                                     data_ajax_update = "deleteUserInfo",
                                                     data_ajax_success = "DeleteButtonSuccess", @class = "btn btn-outline-danger btn-rounded waves-effect" })

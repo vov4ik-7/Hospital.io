@@ -142,19 +142,20 @@ namespace Psycho.Logic.Facade
             string status = String.Empty;
             string description = String.Empty;
 
+            Psychologist psychologist = (Psychologist)await this._userManager.FindByIdAsync(psychologistDTO.Id.ToString());
             var check = await this._userManager.FindByEmailAsync(psychologistDTO.Email);
 
-            if (check == null)
+            if (check == null || psychologist.Id == check.Id)
             {
-                Psychologist psychologist = (Psychologist)await this._userManager.FindByIdAsync(psychologistDTO.Id.ToString());
                 psychologist.FirstName = psychologistDTO.FirstName;
                 psychologist.LastName = psychologistDTO.LastName;
                 psychologist.Email = psychologistDTO.Email;
                 psychologist.UserName = psychologistDTO.Email;
                 psychologist.Address = psychologistDTO.Address;
                 psychologist.PhoneNumber = psychologistDTO.Phone;
+                psychologist.Gender = psychologistDTO.Gender != String.Empty ? (Gender?)Enum.Parse(typeof(Gender), psychologistDTO.Gender) : null;
 
-                if(psychologistDTO.Password != "")
+                if (psychologistDTO.Password != "")
                 {
 
                 }
@@ -175,6 +176,49 @@ namespace Psycho.Logic.Facade
             {
                 status = "error";
                 description = "User with this email already exists.";
+            }
+            return new Tuple<string, string>(status, description);
+        }
+
+        public async Task<DeletePsychologistDTO> GetPsychologistForDeleteAsync(int id)
+        {
+            Psychologist psychologist = (Psychologist)await _userManager.FindByIdAsync(id.ToString());
+
+            DeletePsychologistDTO forDelete = new DeletePsychologistDTO
+            {
+                Id = psychologist.Id,
+                Name = $"{psychologist.FirstName} {psychologist.LastName}"
+            };
+
+            return forDelete;
+        }
+
+        public async Task<Tuple<string, string>> DeletePsychologistAsync(int id)
+        {
+            string status = String.Empty;
+            string description = String.Empty;
+
+            var check = await this._userManager.FindByIdAsync(id.ToString());
+
+            if (check != null)
+            {
+                var result = await this._userManager.DeleteAsync(check);
+
+                if (result.Succeeded)
+                {
+                    status = "success";
+                    description = "User deleted successfully";
+                }
+                else
+                {
+                    status = "error";
+                    description = "Server error.";
+                }
+            }
+            else
+            {
+                status = "error";
+                description = "There are no such user in database.";
             }
             return new Tuple<string, string>(status, description);
         }

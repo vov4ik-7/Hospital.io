@@ -17,7 +17,7 @@ namespace Psycho.DAL.Persistence
         public static async Task SeedUsers(UserManager<User> userManager)
         {
             IdentityResult userResult;
-            const string GeneralPassword = "123";
+            const string GeneralPassword = "12345678";
             List<User> users = new List<User>();
             users.Add(new User() { UserName = "lysyshyn@gmail.com", FirstName = "Admin", LastName = "Admin", Email = "lysyshyn@gmail.com", EmailConfirmed = true, Blocked = false, RoleId = 1 });
             users.Add(new Psychologist() { UserName = "komarov@gmail.com", FirstName = "Doctor", LastName = "Komarov", Email = "komarov@gmail.com", EmailConfirmed = true, Blocked = false, RoleId = 2, Gender = Gender.Male, Position = "Psyhologist", HireDate = DateTime.Now, PhoneNumber = "097-111-2568", Address = "Lviv, Ukraine, Shevchenka st." });
