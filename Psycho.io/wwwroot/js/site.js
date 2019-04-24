@@ -12,3 +12,13 @@ $('#myModal').on('shown.bs.modal', function () {
 $(document).ready(function () {
     $('.mdb-select').material_select();
 });
+
+var url = "https://localhost:5001/";
+
+var urls = {
+    signin: url + "Account/Signin",
+    signout: url + "Account/Signout",
+    createPsychologist: "Admin/CreatePsychologist",
+    editPsychologist: "Admin/EditPsychologist",
+    deletePsychologist: "Admin/DeletePsychologist"
+}

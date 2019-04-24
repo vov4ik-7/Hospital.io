@@ -1,0 +1,170 @@
+﻿
+@model Psycho.DTO.Core.CreatePsychologistDTO
+
+
+<form asp-controller="Admin" asp-action="EditPsychologist"
+      data-ajax="true"
+      data-ajax-method="POST"
+      data-ajax-mode="replace"
+      data-ajax-update="#editUserInfo"
+      data-ajax-success="SuccessEdit">
+    <div class="col-md-12 mb-4">
+        <!--Content-->
+        <div class="modal-content form-elegant">
+            <!--Header-->
+            <div class="modal-header text-center">
+                <h3 class="modal-title w-100 dark-grey-text font-weight-bold my-3" id="myModalLabel"><strong>Edit psychologist</strong></h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body mx-4">
+                <div class="row">
+
+                    <!-- Grid column -->
+                    <div class="col-lg-4">
+
+                        <div class="md-form form-sm mb-0">
+                            <input type="text" value="Psychologist" id="form12" class="form-control form-control-sm" asp-for="Position" required disabled>
+                            <label for="form12" class="disabled"></label>
+                        </div>
+
+                    </div>
+                    <!-- Grid column -->
+                    <!-- Grid column -->
+                    <div class="col-lg-4">
+
+                        <div class="md-form form-sm mb-0">
+                            <input type="email" id="form3" class="form-control form-control-sm" asp-for="Email" required>
+                            <label for="form3" class="active" asp-for="Email">Email address</label>
+                        </div>
+
+                    </div>
+                    <!-- Grid column -->
+                    <!-- Grid column -->
+                    <div class="col-lg-4">
+
+                        <div class="md-form form-sm mb-0">
+                            <input type="password" id="form4" class="form-control form-control-sm" asp-for="Password" required disabled>
+                            <label for="form4" class="disabled" asp-for="Password">Password</label>
+                        </div>
+
+                    </div>
+                    <!-- Grid column -->
+
+                </div>
+
+
+                <div class="row">
+
+                    <!-- Grid column -->
+                    <div class="col-md-6">
+
+                        <div class="md-form form-sm mb-0">
+                            <input type="text" id="firstName" class="form-control form-control-sm" asp-for="FirstName" required>
+                            <label for="form5" class="active" asp-for="FirstName">First name</label>
+                        </div>
+
+                    </div>
+                    <!-- Grid column -->
+                    <!-- Grid column -->
+                    <div class="col-md-6">
+
+                        <div class="md-form form-sm mb-0">
+                            <input type="text" id="lastName" class="form-control form-control-sm" asp-for="LastName" required>
+                            <label for="lastName" class="active" asp-for="LastName">Last name</label>
+                        </div>
+
+                    </div>
+                    <!-- Grid column -->
+
+                </div>
+                <!-- Grid row -->
+                <!-- Grid row -->
+                <div class="row">
+
+                    <!-- Grid column -->
+                    <div class="col-md-12">
+
+                        <div class="md-form form-sm mb-0">
+                            <input type="text" id="form6" class="form-control form-control-sm" asp-for="Address" required>
+                            <label for="form6" class="active" asp-for="Address">Address</label>
+                        </div>
+
+                    </div>
+                    <!-- Grid column -->
+
+                </div>
+                <!-- Grid row -->
+                <!-- Grid row -->
+                <div class="row">
+
+                    <!-- Grid column -->
+                    <div class="col-lg-4 col-md-12">
+
+                        <div class="md-form form-sm mb-0">
+                            <input type="tel" id="form7" class="form-control form-control-sm" aria-describedby="materialRegisterFormPhoneHelpBlock" asp-for="Phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
+                            <label for="form7" class="active" asp-for="Phone">Phone number</label>
+                            <small id="materialRegisterFormPhoneHelpBlock" class="form-text text-muted mb-4">
+                                Format: 123-456-7890
+                            </small>
+                        </div>
+
+                    </div>
+                    <!-- Grid column -->
+                    <!-- Grid column -->
+                    <div class="col-lg-4 col-md-6">
+
+                        <div class="md-form form-sm mb-0">
+                            <select class="browser-default custom-select custom-select-md" asp-for="Gender" required>
+                                <option value="">Gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+
+                    </div>
+                    <!-- Grid column -->
+                    <!-- Grid column -->
+                    <div class="col-lg-4 col-md-6">
+
+                        <div class="mb-3 md-form">
+                            <!--<input type="datetime" name="date" id="date" class="form-control datepicker" asp-for="HireDate">
+    <label for="date">Hire Date</label>-->
+
+                            @Html.EditorFor(model => model.HireDate, new { htmlAttributes = new { @class = "form-control datepicker", @required = "required", @disabled = "disabled" } })
+                            <label for="HireDate" class="active">Hire Date</label>
+                        </div>
+
+                    </div>
+                    <!-- Grid column -->
+
+                </div>
+
+                <hr />
+
+                <div class="row">
+
+                    <!-- Grid column -->
+                    <div class="col-md-12">
+
+
+                        <div class="text-center mb-3">
+                            <button type="submit" class="btn blue-gradient btn-block btn-rounded z-depth-1a">Update</button>
+                        </div>
+
+                    </div>
+                    <!-- Grid column -->
+
+                </div>
+
+            </div>
+        </div>
+        <!--/.Content-->
+    </div>
+</form>
+
+@section scripts {
+
+}

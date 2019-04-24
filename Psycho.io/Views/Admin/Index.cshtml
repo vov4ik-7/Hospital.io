@@ -5,12 +5,25 @@
 
 @using Psycho.DTO.Core
 @using Psycho.DTO.Persistence
+@using System.Web
 @model PsychologistListDTO
 
 @section csss {
     <link href="~/css/admin/datatables.min.css" rel="stylesheet">
     <link href="~/css/page.css" rel="stylesheet">
+    <link href="~/css/admin/create-psychologist.css" rel="stylesheet">
 }
+
+
+<div class="modal fade" id="darkModalForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div id="dialogContentUp" class="modal-dialog" role="document"></div>
+</div>
+<div class="modal fade" id="modalFormEditPsychologist" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div id="dialogContentEditPsychologist" class="modal-dialog" role="document"></div>
+</div>
+<div class="modal fade" id="modalFormDeletePsychologist" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div id="dialogContentDeletePsychologist" class="modal-dialog" role="document"></div>
+</div>
 
 <main style="min-height: 100vh;">
     <div class="container-fluid mb-5">
@@ -19,30 +32,55 @@
         <section>
             <div class="col-md-12">
 
-                <h5 class="my-4 dark-grey-text font-weight-bold">Admin page</h5>
+                <div class="d-flex justify-content-between">
+                    <h5 class="my-4 dark-grey-text font-weight-bold">Admin page</h5>
+                    <button id="create-psychologist" class="btn btn-rounded btn-outline-default btn-md">Add psychologist<i class="fas fa-user-plus pl-1"></i></button>
+                </div>
 
                 <div class="card">
                     <div class="card-body">
                         <table id="dtMaterialDesignExample" class="table table-striped" cellspacing="0" width="100%">
                             <thead>
                                 <tr>
-                                    @foreach(var header in Model.ColumnHeaders){
+                                    @foreach (var header in Model.ColumnHeaders)
+                                    {
                                         <th>@header</th>
                                     }
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach(var psychologist in Model.PsychologistDTOs){
+                                @foreach (var psychologist in Model.PsychologistDTOs)
+                                {
                                     <tr>
                                         @{
                                             System.Collections.Generic.List<string> list = psychologist.ToList();
                                         }
-                                        @foreach (var elem in list){
+                                        @foreach (var elem in list)
+                                        {
                                             <td>@elem</td>
                                         }
                                             <td>
-                                                @Html.ActionLink("Edit", "Edit", "Admin", new { id = psychologist.Id }, new { @class = "btn btn-outline-default btn-rounded waves-effect" })
-                                                @Html.ActionLink("Delete", "Delete", "Admin", new { id = psychologist.Id }, new { @class = "btn btn-outline-danger btn-rounded waves-effect" })
+                                                <!--<button id="create-psychologist" class="btn btn-outline-default btn-rounded waves-effect">Edit</button>
+                                                <button id="delete-psychologist" class="btn btn-outline-danger btn-rounded waves-effect">Delete</button>-->
+
+                                                @Html.ActionLink("Edit", "EditPsychologist", "Admin", new { id = psychologist.Id }, new
+                                                {
+                                                    data_ajax = "true",
+                                                    data_ajax_method = "GET",
+                                                    data_ajax_mode = "replace",
+                                                    data_ajax_update = "editUserInfo",
+                                                    data_ajax_success = "EditButtonSuccess",
+                                                    @class = "btn btn-outline-default btn-rounded waves-effect",
+                                                    @id = "edit-psychologist"
+                                                })
+                                                @Html.ActionLink("Delete", "DeletePsychologistModal", "Admin", new { id = psychologist.Id }, new {
+                                                    data_ajax = "true",
+                                                    data_ajax_method = "GET",
+                                                    data_ajax_mode = "replace",
+                                                    data_ajax_update = "deleteUserInfo",
+                                                    data_ajax_success = "DeleteButtonSuccess", @class = "btn btn-outline-danger btn-rounded waves-effect" })
+
+                                                @*Ajax.ActionLink("Edit", "Edit", "Admin", new { id = psychologist.Id }, new AjaxOptions() { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, })*@
 
                                             </td>
                                     </tr>
@@ -50,7 +88,8 @@
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    @foreach(var header in Model.ColumnHeaders){
+                                    @foreach (var header in Model.ColumnHeaders)
+                                    {
                                         <th>@header</th>
                                     }
                                 </tr>
@@ -72,3 +111,8 @@
     </div>
     <!--/.Copyright -->
 </footer>
+
+@section scripts {
+    <script type="text/javascript" src="~/js/admin/admin.js"></script>
+    <script type="text/javascript" src="~/js/jquery.unobtrusive-ajax.js"></script>
+}

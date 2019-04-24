@@ -2,7 +2,7 @@
  
     $.ajax({
             type: "POST",
-            url: "https://localhost:5001/Account/Signout",
+            url: urls.signout,
             dataType: 'json',
             crossDomain: true,
             success: function(data){

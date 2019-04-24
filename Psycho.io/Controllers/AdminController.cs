@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Psycho.DAL.Core.Domain;
+using Psycho.DTO.Core;
 using Psycho.DTO.Persistence;
 using Psycho.Logic.Facade.Interfaces;
 
@@ -36,6 +37,48 @@ namespace Psycho.io.Controllers
             PsychologistListDTO psychologistListDTO = PsychoLogic.AdminFacade.GetPsychologistListForAdminPage();
 
             return View(psychologistListDTO);
+        }
+
+        [HttpGet]
+        public IActionResult CreatePsychologist(string returnUrl = null)
+        {
+            return PartialView(new CreatePsychologistDTO { ReturnUrl = returnUrl });
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreatePsychologist(CreatePsychologistDTO model)
+        {
+            Tuple<string, string> tuple = await this.PsychoLogic.AdminFacade.CreatePsychologistAsync(model);
+            return Json(new { status = tuple.Item1, description = tuple.Item2 });
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> EditPsychologist(int id)
+        {
+            CreatePsychologistDTO psychologistDTO = await PsychoLogic.AdminFacade.GetPsychologistForEditAsync(id);
+            return PartialView(psychologistDTO);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EditPsychologist(CreatePsychologistDTO model)
+        {
+            Tuple<string, string> tuple = await this.PsychoLogic.AdminFacade.EditPsychologistAsync(model);
+            return Json(new { status = tuple.Item1, description = tuple.Item2 });
+        }
+
+
+        [HttpGet]
+        public async Task<IActionResult> DeletePsychologistModal(int id)
+        {
+            DeletePsychologistDTO psychologistDTO = await PsychoLogic.AdminFacade.GetPsychologistForDeleteAsync(id);
+            return PartialView(psychologistDTO);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DeletePsychologist(int id)
+        {
+            Tuple<string, string> tuple = await this.PsychoLogic.AdminFacade.DeletePsychologistAsync(id);
+            return Json(new { status = tuple.Item1, description = tuple.Item2 });
         }
     }
 }
