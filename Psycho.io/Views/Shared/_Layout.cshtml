@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -60,7 +61,7 @@
                     @if (User.Identity.IsAuthenticated)
                     {
                         <li class="nav-item">
-                            <a class="nav-link">@User.Identity.Name</a>
+                            <a class="nav-link" asp-action="Profile" asp-controller="User">@User.Identity.Name</a>
                         </li>
                         @if (User.IsInRole("Admin"))
                         {

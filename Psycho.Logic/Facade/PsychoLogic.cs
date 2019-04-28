@@ -14,6 +14,7 @@ namespace Psycho.Logic.Facade
         private readonly SignInManager<User> _signInManager;
         private IAccountFacade _accountFacade;
         private IAdminFacade _adminFacade;
+        private IUserFacade _userFacade;
 
         public PsychoLogic(IUnitOfWork unitOfWork, UserManager<User> userManager, RoleManager<Role> roleManager, SignInManager<User> signInManager)
         {
@@ -76,6 +77,18 @@ namespace Psycho.Logic.Facade
                     this._adminFacade = new AdminFacade(this._unitOfWork, this._userManager, this._roleManager, this._signInManager);
                 }
                 return this._adminFacade;
+            }
+        }
+
+        public IUserFacade UserFacade
+        {
+            get
+            {
+                if(_userFacade == null)
+                {
+                    _userFacade = new UserFacade(_unitOfWork, _userManager);
+                }
+                return _userFacade;
             }
         }
     }

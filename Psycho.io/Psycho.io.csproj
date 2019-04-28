@@ -21,6 +21,7 @@
     <Folder Include="Views\Admin\" />
     <Folder Include="wwwroot\css\admin\" />
     <Folder Include="wwwroot\js\admin\" />
+    <Folder Include="Views\User\" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="wwwroot\images\idea-2.png" />
