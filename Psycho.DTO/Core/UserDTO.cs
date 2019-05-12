@@ -17,7 +17,7 @@ namespace Psycho.DTO.Core
 
         public string Address { get; set; }
 
-        public Gender? Gender { get; set; }
+        public string Gender { get; set; }
 
         public string Password { get; set; }
 

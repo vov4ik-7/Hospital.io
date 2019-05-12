@@ -35,7 +35,7 @@ namespace Psycho.Logic.Facade
                 LastName = user.LastName,
                 Phone = user.PhoneNumber,
                 Address = user.Address,
-                Gender = user.Gender,
+                Gender = user.Gender?.ToString(),
 
                 Position = (user as Psychologist)?.Position,
                 HireDate = (user as Psychologist)?.HireDate,

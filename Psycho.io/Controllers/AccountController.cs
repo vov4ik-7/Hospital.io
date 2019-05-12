@@ -43,12 +43,14 @@ namespace Psycho.io.Controllers
                 User user = new AuthorizedUser() { UserName = model.Email, FirstName = model.FirstName, LastName = model.LastName, Email = model.Email,
                                                    EmailConfirmed = true, Blocked = false,
                                                    RoleId = 3, Gender = gender, Age = model.Age,
-                                                   Height = model.Height, Weight = model.Weight };
+                                                   Height = model.Height, Weight = model.Weight, PhoneNumber = model.Phone };
 
                 var result = await _userManager.CreateAsync(user, model.Password);
+                var add_role = await _userManager.AddToRoleAsync(user, "AuthorizedUser");
+                User signinUser = await _userManager.FindByEmailAsync(model.Email);
                 if (result.Succeeded)
                 {
-                    await _signInManager.SignInAsync(user, false);
+                    await _signInManager.SignInAsync(signinUser, false);
                     return RedirectToAction("Index", "Home");
                 }
                 else

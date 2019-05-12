@@ -23,158 +23,260 @@
                     <!-- Card -->
                     <div class="card card-cascade cascading-admin-card user-card">
 
-                        <!-- Card Data -->
-                        <div class="admin-up d-flex justify-content-start">
-                            <i class="fas fa-users info-color py-4 mr-3 z-depth-2"></i>
-                            <div class="data">
-                                <h5 class="font-weight-bold dark-grey-text">
-                                    Edit Profile - <span class="text-muted">
-                                        Complete your
-                                        profile
-                                    </span>
-                                </h5>
+                        <form asp-controller="User" asp-action="Profile">
+
+                            <input type="hidden" value="@Model.Id" asp-for="Id">
+
+                            <!-- Card Data -->
+                            <div class="admin-up d-flex justify-content-start">
+                                <i class="fas fa-users info-color py-4 mr-3 z-depth-2"></i>
+                                <div class="data">
+                                    <h5 class="font-weight-bold dark-grey-text">
+                                        Edit Profile - <span class="text-muted">
+                                            Complete your
+                                            profile
+                                        </span>
+                                    </h5>
+                                </div>
                             </div>
-                        </div>
-                        <!-- Card Data -->
-                        <!-- Card content -->
-                        <div class="card-body card-body-cascade">
+                            <!-- Card Data -->
+                            <!-- Card content -->
+                            <div class="card-body card-body-cascade">
 
-                            <!-- Grid row -->
-                            <div class="row">
+                                <!-- Grid row -->
+                                <div class="row">
 
-                                <!-- Grid column -->
-                                <div class="col-lg-4">
+                                    <!-- Grid column -->
+                                    <div class="col-lg-4">
 
-                                    <div class="md-form form-sm mb-0">
-                                        <input type="text" id="form12" class="form-control form-control-sm">
-                                        <label for="form12" class="">Username</label>
+                                        <div class="md-form form-sm mb-0">
+                                            <input type="text" id="form12" class="form-control form-control-sm" asp-for="Email" required>
+                                            <label for="form12" class="" asp-for="Email">Email</label>
+                                        </div>
+
                                     </div>
+                                    <!-- Grid column -->
+                                    <!-- Grid column -->
+                                    <div class="col-lg-4">
+
+                                        <div class="md-form form-sm mb-0">
+                                            <input type="password" id="form3" class="form-control form-control-sm" asp-for="OldPassword">
+                                            <label for="form3" class="" asp-for="OldPassword">Old password</label>
+                                        </div>
+
+                                    </div>
+                                    <!-- Grid column -->
+                                    <!-- Grid column -->
+                                    <div class="col-lg-4">
+
+                                        <div class="md-form form-sm mb-0">
+                                            <input type="password" id="form4" class="form-control form-control-sm" asp-for="Password">
+                                            <label for="form4" class="" asp-for="Password">New password</label>
+                                        </div>
+
+                                    </div>
+                                    <!-- Grid column -->
 
                                 </div>
-                                <!-- Grid column -->
-                                <!-- Grid column -->
-                                <div class="col-lg-4">
+                                <!-- Grid row -->
+                                <!-- Grid row -->
+                                <div class="row">
 
-                                    <div class="md-form form-sm mb-0">
-                                        <input type="text" id="form3" class="form-control form-control-sm">
-                                        <label for="form3" class="">Email address</label>
+                                    <!-- Grid column -->
+                                    <div class="col-md-6">
+
+                                        <div class="md-form form-sm mb-0">
+                                            <input type="text" id="form5" class="form-control form-control-sm" asp-for="FirstName" required>
+                                            <label for="form5" class="" asp-for="FirstName">First name</label>
+                                        </div>
+
                                     </div>
+                                    <!-- Grid column -->
+                                    <!-- Grid column -->
+                                    <div class="col-md-6">
+
+                                        <div class="md-form form-sm mb-0">
+                                            <input type="text" id="form5" class="form-control form-control-sm" asp-for="LastName" required>
+                                            <label for="form5" class="" asp-for="LastName">Last name</label>
+                                        </div>
+
+                                    </div>
+                                    <!-- Grid column -->
 
                                 </div>
-                                <!-- Grid column -->
-                                <!-- Grid column -->
-                                <div class="col-lg-4">
+                                <!-- Grid row -->
+                                <!-- Grid row -->
+                                <div class="row">
 
-                                    <div class="md-form form-sm mb-0">
-                                        <input type="text" id="form4" class="form-control form-control-sm" disabled>
-                                        <label for="form4" class="disabled">Company</label>
+                                    <!-- Grid column -->
+                                    <div class="col-md-12">
+
+                                        <div class="md-form form-sm mb-0">
+                                            <input type="text" id="form6" class="form-control form-control-sm" asp-for="Address" required>
+                                            <label for="form6" class="" asp-for="Address">Address</label>
+                                        </div>
+
                                     </div>
+                                    <!-- Grid column -->
 
                                 </div>
-                                <!-- Grid column -->
+                                <!-- Grid row -->
+                                <!-- Grid row -->
+                                <div class="row">
+
+                                    @if (User.IsInRole("Psychologist"))
+                                    {
+                                        <!-- Grid column -->
+                                        <div class="col-lg-4 col-md-12">
+
+                                            <div class="md-form form-sm mb-0">
+                                                <input type="tel" id="phone" class="form-control form-control-sm" aria-describedby="materialRegisterFormPhoneHelpBlock" asp-for="Phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
+                                                <label for="phone" class="" asp-for="Phone">Phone number</label>
+                                                <small id="materialRegisterFormPhoneHelpBlock" class="form-text text-muted mb-4">
+                                                    Format: 123-456-7890
+                                                </small>
+                                            </div>
+
+
+                                        </div>
+                                        <!-- Grid column -->
+                                        <!-- Grid column -->
+                                        <div class="col-lg-4 col-md-6">
+
+                                            <div class="md-form form-sm mb-0">
+                                                <select class="browser-default custom-select custom-select-md" asp-for="Gender" required>
+                                                    <option selected value="">Gender</option>
+                                                    <option value="Male">Male</option>
+                                                    <option value="Female">Female</option>
+                                                    <option value="Other">Other</option>
+                                                </select>
+                                            </div>
+
+                                        </div>
+                                        <!-- Grid column -->
+                                        <!-- Grid column -->
+                                        <div class="col-lg-4 col-md-6">
+
+                                            <div class="md-form form-sm mb-0">
+                                                <input type="text" id="form9" class="form-control form-control-sm" asp-for="HireDate" disabled>
+                                                <label for="form9" class="" asp-for="HireDate">Hire date</label>
+                                            </div>
+
+                                        </div>
+                                        <!-- Grid column -->
+                                    }
+                                    else if (User.IsInRole("AuthorizedUser"))
+                                    {
+                                        <!-- Grid column -->
+                                        <div class="col-lg-6 col-md-12">
+
+                                            <div class="md-form form-sm mb-0">
+                                                <input type="tel" id="phone" class="form-control form-control-sm" aria-describedby="materialRegisterFormPhoneHelpBlock" asp-for="Phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
+                                                <label for="phone" class="" asp-for="Phone">Phone number</label>
+                                                <small id="materialRegisterFormPhoneHelpBlock" class="form-text text-muted mb-4">
+                                                    Format: 123-456-7890
+                                                </small>
+                                            </div>
+
+
+                                        </div>
+                                        <!-- Grid column -->
+                                        <!-- Grid column -->
+                                        <div class="col-lg-6 col-md-12">
+
+                                            <div class="md-form form-sm mb-0">
+                                                <select class="browser-default custom-select custom-select-md" asp-for="Gender" required>
+                                                    <option selected value="">Gender</option>
+                                                    <option value="Male">Male</option>
+                                                    <option value="Female">Female</option>
+                                                    <option value="Other">Other</option>
+                                                </select>
+                                            </div>
+
+                                        </div>
+                                        <!-- Grid column -->
+
+                                    }
+
+
+                                </div>
+                                <!-- Grid row -->
+
+                                <div class="row">
+
+                                    @if (User.IsInRole("Psychologist"))
+                                    {
+                                        <!-- Grid column -->
+                                        <div class="col-lg-12 col-md-12">
+
+                                            <div class="md-form form-sm mb-0">
+                                                <input type="text" id="position" class="form-control form-control-sm" asp-for="Position" disabled>
+                                                <label for="position" class="" asp-for="Position">Position</label>
+                                            </div>
+
+
+                                        </div>
+                                        <!-- Grid column -->
+                                    }
+                                    else if (User.IsInRole("AuthorizedUser"))
+                                    {
+                                        <!-- Grid column -->
+                                        <div class="col-lg-4 col-md-12">
+
+                                            <div class="md-form form-sm mb-0">
+                                                <input type="text" id="age" class="form-control form-control-sm" asp-for="Age" required>
+                                                <label for="age" class="" asp-for="Age">Age</label>
+                                            </div>
+
+
+                                        </div>
+                                        <!-- Grid column -->
+
+                                        <div class="col-lg-4 col-md-6">
+
+                                            <div class="md-form form-sm mb-0">
+                                                <input type="text" id="height" class="form-control form-control-sm" asp-for="Height" required>
+                                                <label for="height" class="" asp-for="Height">Height</label>
+                                            </div>
+
+
+                                        </div>
+
+                                        <!-- Grid column -->
+                                        <div class="col-lg-4 col-md-6">
+
+                                            <div class="md-form form-sm mb-0">
+                                                <input type="text" id="weight" class="form-control form-control-sm" asp-for="Weight" required>
+                                                <label for="weight" class="" asp-for="Weight">Weight</label>
+                                            </div>
+
+                                        </div>
+                                        <!-- Grid column -->
+
+                                    }
+
+                                </div>
+
+                                <hr />
+
+                                <div class="row">
+
+                                    <!-- Grid column -->
+                                    <div class="col-md-12">
+
+                                        <div class="text-center mb-3">
+                                            <button type="submit" class="btn blue-gradient btn-block btn-rounded z-depth-1a">Save</button>
+                                        </div>
+
+                                    </div>
+                                    <!-- Grid column -->
+
+                                </div>
 
                             </div>
-                            <!-- Grid row -->
-                            <!-- Grid row -->
-                            <div class="row">
+                            <!-- Card content -->
 
-                                <!-- Grid column -->
-                                <div class="col-md-6">
-
-                                    <div class="md-form form-sm mb-0">
-                                        <input type="text" id="form5" class="form-control form-control-sm">
-                                        <label for="form5" class="">First name</label>
-                                    </div>
-
-                                </div>
-                                <!-- Grid column -->
-                                <!-- Grid column -->
-                                <div class="col-md-6">
-
-                                    <div class="md-form form-sm mb-0">
-                                        <input type="text" id="form5" class="form-control form-control-sm">
-                                        <label for="form5" class="">Last name</label>
-                                    </div>
-
-                                </div>
-                                <!-- Grid column -->
-
-                            </div>
-                            <!-- Grid row -->
-                            <!-- Grid row -->
-                            <div class="row">
-
-                                <!-- Grid column -->
-                                <div class="col-md-12">
-
-                                    <div class="md-form form-sm mb-0">
-                                        <input type="text" id="form6" class="form-control form-control-sm">
-                                        <label for="form6" class="">Address</label>
-                                    </div>
-
-                                </div>
-                                <!-- Grid column -->
-
-                            </div>
-                            <!-- Grid row -->
-                            <!-- Grid row -->
-                            <div class="row">
-
-                                <!-- Grid column -->
-                                <div class="col-lg-4 col-md-12">
-
-                                    <div class="md-form form-sm mb-0">
-                                        <input type="text" id="form7" class="form-control form-control-sm">
-                                        <label for="form7" class="">City</label>
-                                    </div>
-
-                                </div>
-                                <!-- Grid column -->
-                                <!-- Grid column -->
-                                <div class="col-lg-4 col-md-6">
-
-                                    <div class="md-form form-sm mb-0">
-                                        <input type="text" id="form8" class="form-control form-control-sm">
-                                        <label for="form8" class="">Country</label>
-                                    </div>
-
-                                </div>
-                                <!-- Grid column -->
-                                <!-- Grid column -->
-                                <div class="col-lg-4 col-md-6">
-
-                                    <div class="md-form form-sm mb-0">
-                                        <input type="text" id="form9" class="form-control form-control-sm">
-                                        <label for="form9" class="">Postal Code</label>
-                                    </div>
-
-                                </div>
-                                <!-- Grid column -->
-
-                            </div>
-                            <!-- Grid row -->
-                            <!-- Grid row -->
-                            <div class="row">
-
-                                <!-- Grid column -->
-                                <div class="col-md-12">
-
-                                    <h4 class="text-muted text-left my-4">About me</h4>
-
-                                    <!-- Basic textarea -->
-                                    <div class="md-form mb-0">
-                                        <textarea type="text" id="form10" class="md-textarea form-control" rows="3"></textarea>
-                                        <label for="form10">Basic textarea</label>
-                                    </div>
-
-                                </div>
-                                <!-- Grid column -->
-
-                            </div>
-                            <!-- Grid row -->
-
-                        </div>
-                        <!-- Card content -->
+                        </form>
 
                     </div>
                     <!-- Card -->
@@ -189,23 +291,44 @@
 
                         <!-- Avatar -->
                         <div class="avatar z-depth-1-half mb-4">
-                            <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(10).jpg" class="rounded-circle" alt="First sample avatar image">
+                            @if (User.IsInRole("Psychologist"))
+                            {
+                                <img src="../img/man.png" class="rounded-circle" alt="Avatar image">
+                            }
+                            else if (User.IsInRole("AuthorizedUser"))
+                            {
+                                <img src="../img/user.png" class="rounded-circle" alt="Avatar image">
+                            }
                         </div>
 
                         <div class="card-body pt-0 mt-0">
 
                             <!-- Name -->
-                            <h3 class="mb-3 font-weight-bold"><strong>Anna Deynah</strong></h3>
-                            <h6 class="font-weight-bold cyan-text mb-4">Web Designer</h6>
+                            @{
+                                string name = $"{Model.FirstName} {Model.LastName}";
+                            }
+                            <h3 class="mb-3 font-weight-bold"><strong>@name</strong></h3>
+                            @if (User.IsInRole("Psychologist"))
+                            {
+                                <h6 class="font-weight-bold cyan-text mb-4">Doctor</h6>
+                            }
+                            else if (User.IsInRole("AuthorizedUser"))
+                            {
+                                <h6 class="font-weight-bold cyan-text mb-4">Patient</h6>
+                            }
 
                             <p class="mt-4 text-muted">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                tempor incididunt
-                                ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                                ullamco laboris nisi ut aliquip consequat.
+
                             </p>
 
-                            <a class="btn btn-info btn-rounded"> Follow</a>
+                            @if (User.IsInRole("Psychologist"))
+                            {
+                                <a href="@Url.Action("DashboardPsychologist", "User", null)" class="btn btn-info btn-rounded">Schedule</a>
+                            }
+                            else if (User.IsInRole("AuthorizedUser"))
+                            {
+                                <a href="@Url.Action("DashboardPatient", "User", null)" class="btn btn-info btn-rounded">Schedule</a>
+                            }
 
                         </div>
 
@@ -222,20 +345,5 @@
         <!-- Section: Team v.1 -->
 
     </div>
-
-    <p>lekek</p>
-    <p>lekek</p>
-    <p>lekek</p><p>lekek</p>
-                <p>lekek</p>
-                <p>lekek</p>
-                <p>lekek</p>
-                <p>lekek</p>
-                <p>lekek</p>
-                <p>lekek</p>
-                <p>lekek</p>
-
-                <p>lekek</p>
-                <p>lekek</p>
-                <p>lekek</p>
 
 </main>

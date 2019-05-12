@@ -99,6 +99,7 @@ namespace Psycho.Logic.Facade
                 var result = await _userManager.CreateAsync(user, newPsychologist.Password);
                 if (result.Succeeded)
                 {
+                    var add_role = await _userManager.AddToRoleAsync(user, "Psychologist");
                     status = "success";
                     description = "User created successfully";
                 }

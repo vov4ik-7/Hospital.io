@@ -1,0 +1,160 @@
+﻿@model Psycho.DTO.Core.CreateAppointmentDTO
+
+
+<form asp-controller="User" asp-action="CreateAppointment"
+      data-ajax="true"
+      data-ajax-method="POST"
+      data-ajax-mode="replace"
+      data-ajax-update=""
+      data-ajax-success="SuccessCreateAppointment">
+    <div class="col-md-12 mb-4" style="">
+        <!--Content-->
+        <div class="modal-content form-elegant">
+            <!--Header-->
+            <div class="modal-header text-center">
+                <h3 class="modal-title w-100 dark-grey-text font-weight-bold my-3" id="myModalLabel"><strong>Create appointment</strong></h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body mx-4">
+                <div class="row">
+
+                    <!-- Grid column -->
+                    <div class="col-lg-6">
+
+                        <div class="md-form form-sm mb-0">
+                            <select class="browser-default custom-select custom-select-md" asp-for="PsychologistId" required>
+                                @if(User.IsInRole("Psychologist")){
+                                    <option selected value="@Model.CurrentPsychologist.Id">@{
+                                        string name = $"{Model.CurrentPsychologist.FirstName} {Model.CurrentPsychologist.LastName}";
+                                    }
+                                    @name</option>
+                                }
+                                else if(User.IsInRole("AuthorizedUser")){
+                                    <option selected value="">-Psychologist-</option>
+                                    foreach(var elem in Model.Psychologists){
+                                        <option value="@elem.Id">@{
+                                            string name = $"{elem.FirstName} {elem.LastName}";
+                                        }
+                                        @name</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+
+                    </div>
+                    <!-- Grid column -->
+                    <!-- Grid column -->
+                    <div class="col-lg-6">
+
+                        <div class="md-form form-sm mb-0">
+                            <select class="browser-default custom-select custom-select-md" asp-for="AuthorizedUserId" required>
+                                @if(User.IsInRole("AuthorizedUser")){
+                                    <option selected value="@Model.CurrentAuthorizedUser.Id">@{
+                                        string name = $"{Model.CurrentAuthorizedUser.FirstName} {Model.CurrentAuthorizedUser.LastName}";
+                                    }
+                                    @name</option>
+                                }
+                                else if(User.IsInRole("Psychologist")){
+                                    <option selected value="">-Patient-</option>
+                                    foreach(var elem in Model.AuthorizedUsers){
+                                        <option value="@elem.Id">@{
+                                            string name = $"{elem.FirstName} {elem.LastName}";
+                                            }
+                                            @name</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+
+                    </div>
+                    <!-- Grid column -->
+
+                </div>
+
+
+                <div class="row">
+
+                    <!-- Grid column -->
+                    <div class="col-md-6">
+
+                        <!--<div class="md-form form-sm mb-0" id="sPicker">
+                            <input type="text" id="startPicker" class="form-control form-control-sm" asp-for="StartDateTime" required>
+                            <label for="startPicker" class="" asp-for="StartDateTime">Start Time</label>
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>-->
+
+                        <div class="form-group" style="margin-top: 1.5rem;">
+                            <div class="input-group date" id="sPicker" data-target-input="nearest">
+                                <input type="text" class="form-control datetimepicker-input" data-target="#sPicker" asp-for="StartDateTime" required/>
+                                <div class="input-group-append" data-target="#sPicker" data-toggle="datetimepicker">
+                                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <!-- Grid column -->
+                    <!-- Grid column -->
+                    <div class="col-md-6">
+
+                        <div class="form-group" style="margin-top: 1.5rem;">
+                            <div class="input-group date" id="ePicker" data-target-input="nearest">
+                                <input type="text" class="form-control datetimepicker-input" data-target="#ePicker" asp-for="EndDateTime" required/>
+                                <div class="input-group-append" data-target="#ePicker" data-toggle="datetimepicker">
+                                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- Grid column -->
+
+                </div>
+                <!-- Grid row -->
+
+                <div class="row">
+
+                    <!-- Grid column -->
+                    <div class="col-md-12">
+                    
+                        <!-- Basic textarea -->
+                        <div class="md-form mb-0">
+                            <textarea type="text" id="app_info" class="md-textarea form-control" rows="2" asp-for="Info"></textarea>
+                            <label for="app_info">Additional info</label>
+                        </div>
+
+                    </div>
+                    <!-- Grid column -->
+
+                </div>
+
+                <hr />
+
+                <div class="row">
+
+                    <!-- Grid column -->
+                    <div class="col-md-12">
+
+
+                        <div class="text-center mb-3">
+                            <button type="submit" class="btn blue-gradient btn-block btn-rounded z-depth-1a">Create</button>
+                        </div>
+
+                    </div>
+                    <!-- Grid column -->
+
+                </div>
+
+            </div>
+        </div>
+        <!--/.Content-->
+    </div>
+</form>
+
+@section scripts {
+
+}
