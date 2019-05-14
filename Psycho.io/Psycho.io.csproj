@@ -9,6 +9,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Cookies" Version="2.1.2" />
     <PackageReference Include="Microsoft.jQuery.Unobtrusive.Ajax" Version="3.2.6" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
   </ItemGroup>
 
   <ItemGroup>
@@ -21,6 +22,9 @@
     <Folder Include="Views\Admin\" />
     <Folder Include="wwwroot\css\admin\" />
     <Folder Include="wwwroot\js\admin\" />
+    <Folder Include="Views\User\" />
+    <Folder Include="Controllers\" />
+    <Folder Include="Models\Facebook\" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="wwwroot\images\idea-2.png" />
@@ -94,6 +98,13 @@
     <Content Remove="wwwroot\js\toastr.min.js" />
     <Content Remove="wwwroot\js\toastr.js.map" />
     <Content Remove="wwwroot\css\mdb.min.css" />
+    <Content Remove="wwwroot\img\user.png" />
+    <Content Remove="wwwroot\img\man %281%29.png" />
+    <Content Remove="wwwroot\img\man.png" />
+    <Content Remove="wwwroot\js\moment-with-locales.js" />
+    <Content Remove="wwwroot\js\fullcalendar.js" />
+    <Content Remove="wwwroot\css\fullcalendar.css" />
+    <Content Remove="wwwroot\img\facebook-poster.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="wwwroot\android-chrome-192x192.png" />
@@ -151,5 +162,10 @@
     <None Include="wwwroot\js\toastr.min.js" />
     <None Include="wwwroot\js\toastr.js.map" />
     <None Include="wwwroot\css\mdb.min.css" />
+    <None Include="wwwroot\img\user.png" />
+    <None Include="wwwroot\js\moment-with-locales.js" />
+    <None Include="wwwroot\js\fullcalendar.js" />
+    <None Include="wwwroot\css\fullcalendar.css" />
+    <None Include="wwwroot\img\facebook-poster.png" />
   </ItemGroup>
 </Project>

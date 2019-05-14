@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title></title>
+    </head>
+    <body style="height: 100vh; background-image: url(img/facebook-poster.png); background-repeat: no-repeat; background-size: cover; background-position: center center;">
+        <div id="kek">
+
+        </div>
+
+        <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+        <script type="text/javascript" src="js/popper.min.js"></script>
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
+
+        <script>
+            $(document).ready(function () {
+                /*var para = document.createElement("p");
+                var node = document.createTextNode(window.location.href);
+                para.appendChild(node);
+
+                var element = document.getElementById("kek");
+                element.appendChild(para);
+
+                var urlkek = getParameterByName();
+                console.log(urlkek);
+                if (urlkek == '') {
+                    urlkek = 'blabla';
+                }
+                var para1 = document.createElement("p");
+                var node1 = document.createTextNode(urlkek);
+                para1.appendChild(node1);
+
+                var element = document.getElementById("kek");
+                element.appendChild(para1);*/
+
+
+                var urlkek = getParameterByName();
+
+                window.onunload = refreshParent;
+                function refreshParent() {
+                    window.opener.location.reload();
+                }
+
+                $.post('https://localhost:5001/user/facebook', { accessToken: urlkek }).done(function () {
+                    window.close();
+                });
+
+
+
+                function getParameterByName(name) {
+                    let url = window.location.href;
+                    let key = 'access_token';
+                    let value = '';
+                    let attributeDivider = '&';
+                    let keyValueDivider = '=';
+                    let fullKey = key + keyValueDivider;
+
+                    if (url.includes(fullKey)) {
+                        let attributes = url.split(attributeDivider);
+
+                        var keyValuePair = attributes[0].split(keyValueDivider);
+
+                        if (keyValuePair.length > 1) {
+                            value = keyValuePair[1];
+                        }
+                    }
+
+                    return value;
+                }
+            });
+        </script>
+    </body>
+</html>

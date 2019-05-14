@@ -11,4 +11,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Psycho.DAL\Psycho.DAL.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <None Remove="Core\UserDTO.json" />
+  </ItemGroup>
 </Project>

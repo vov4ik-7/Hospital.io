@@ -20,5 +20,6 @@ var urls = {
     signout: url + "Account/Signout",
     createPsychologist: "Admin/CreatePsychologist",
     editPsychologist: "Admin/EditPsychologist",
-    deletePsychologist: "Admin/DeletePsychologist"
+    deletePsychologist: "Admin/DeletePsychologist",
+    createAppointment: url + "User/CreateAppointment"
 }

@@ -5,5 +5,6 @@ namespace Psycho.Logic.Facade.Interfaces
     {
         IAccountFacade AccountFacade { get; }
         IAdminFacade AdminFacade { get; }
+        IUserFacade UserFacade { get; }
     }
 }

@@ -16,6 +16,11 @@ namespace Psycho.io.Controllers
             return View();
         }
 
+        public IActionResult FacebookAuthKek()
+        {
+            return View();
+        }
+
         public IActionResult About()
         {
             ViewData["Message"] = "Your application description page.";
