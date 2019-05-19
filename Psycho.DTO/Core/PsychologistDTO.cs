@@ -43,5 +43,15 @@ namespace Psycho.DTO.Core
 
             return list;
         }
+
+        public List<string> ToGeneralList()
+        {
+            List<string> list = new List<string>
+            {
+                $"{FirstName} {LastName}", Email, Phone, Position, "Working hours"
+            };
+
+            return list;
+        }
     }
 }

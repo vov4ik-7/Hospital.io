@@ -1,0 +1,174 @@
+﻿@{
+    ViewData["Title"] = "Psychologist";
+}
+
+@using Psycho.DTO.Core
+@using Psycho.DTO.Persistence
+@using System.Web
+@model PsychologistListDTO
+
+@section csss {
+    <link href="~/css/admin/datatables.min.css" rel="stylesheet">
+    <link href="~/css/page.css" rel="stylesheet">
+    <link href="~/css/psychologists-page.css" rel="stylesheet">
+}
+
+
+<div class="modal fade" id="darkModalForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div id="dialogContentUp" class="modal-dialog" role="document"></div>
+</div>
+<div class="modal fade" id="modalFormSchedulePsychologist" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div id="dialogContentSchedulePsychologist" class="modal-dialog" role="document"></div>
+</div>
+<div class="modal fade" id="modalFormSignPsychologist" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div id="dialogContentSignPsychologist" class="modal-dialog" role="document"></div>
+</div>
+<div class="modal fade" id="modalFormViewAllPsychologist" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div id="dialogContentViewAllPsychologist" class="modal-dialog" role="document"></div>
+</div>
+<div class="modal fade" id="modalFormAddReport" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div id="dialogContentAddReport" class="modal-dialog" role="document"></div>
+</div>
+
+<main style="min-height: 100vh;">
+    <div class="container-fluid mb-5">
+
+        <!-- Section: Basic examples -->
+        <section>
+            <div class="col-md-12">
+
+                <div class="d-flex justify-content-between">
+                    <h5 class="my-4 dark-grey-text font-weight-bold">Psychologists</h5>
+                    @*<button id="create-psychologist" class="btn btn-rounded btn-outline-default btn-md">Add psychologist<i class="fas fa-user-plus pl-1"></i></button>*@
+                </div>
+
+                <div class="card">
+                    <div class="card-body">
+                        <table id="dtMaterialDesignExample" class="table table-striped" cellspacing="0" width="100%">
+                            <thead>
+                                <tr>
+                                    @foreach (var header in Model.GeneralColumnHeaders)
+                                    {
+                                        <th>@header</th>
+                                    }
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var psychologist in Model.PsychologistDTOs)
+                                {
+                                    <tr>
+                                        <td>
+                                            <img src="../img/man.png" class="rounded-circle" alt="Avatar image" width="100">
+                                        </td>
+                                        @{
+                                            System.Collections.Generic.List<string> list = psychologist.ToGeneralList();
+                                        }
+                                        @foreach (var elem in list)
+                                        {
+                                            <td>@elem</td>
+                                        }
+
+                                        <td>
+                                            <!--<button id="create-psychologist" class="btn btn-outline-default btn-rounded waves-effect">Edit</button>
+                                            <button id="delete-psychologist" class="btn btn-outline-danger btn-rounded waves-effect">Delete</button>-->
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="col align-self-center">
+                                                        @Html.ActionLink("Schedule", "Schedule", "Psychologist", new { id = psychologist.Id }, new
+                                                        {
+                                                            data_ajax = "true",
+                                                            data_ajax_method = "GET",
+                                                            data_ajax_mode = "replace",
+                                                            data_ajax_update = "",
+                                                            data_ajax_success = "ScheduleButtonSuccess",
+                                                            @class = "btn btn-outline-default btn-rounded waves-effect",
+                                                            @id = "edit-psychologist"
+                                                        })
+                                                    </div>
+                                                </div>
+                                                <div class="row" style="padding-top: 7px">
+                                                    <div class="col align-self-center">
+                                                        @Html.ActionLink("Sign", "CreateAppointment", "Psychologist", new { id = psychologist.Id }, new {
+                                                           data_ajax = "true",
+                                                           data_ajax_method = "GET",
+                                                           data_ajax_mode = "replace",
+                                                           data_ajax_update = "",
+                                                           data_ajax_success = "SignButtonSuccess", @class = "btn btn-outline-secondary btn-rounded waves-effect"
+                                                        })
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            
+
+
+                                            @*Ajax.ActionLink("Edit", "Edit", "Admin", new { id = psychologist.Id }, new AjaxOptions() { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, })*@
+
+                                        </td>
+
+                                        <td>
+                                            <!--<button id="create-psychologist" class="btn btn-outline-default btn-rounded waves-effect">Edit</button>
+                                            <button id="delete-psychologist" class="btn btn-outline-danger btn-rounded waves-effect">Delete</button>-->
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="col align-self-center">
+                                                        @Html.ActionLink("View all", "Reports", "Psychologist", new { id = psychologist.Id }, new
+                                                        {
+                                                            data_ajax = "true",
+                                                            data_ajax_method = "GET",
+                                                            data_ajax_mode = "replace",
+                                                            data_ajax_update = "editUserInfo",
+                                                            data_ajax_success = "ViewAllButtonSuccess",
+                                                            @class = "btn btn-outline-primary btn-rounded waves-effect"
+                                                        })
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col align-self-center" style="padding-top: 7px">
+                                                        @Html.ActionLink("Add", "AddReport", "Psychologist", new { id = psychologist.Id }, new {
+                                                            data_ajax = "true",
+                                                            data_ajax_method = "GET",
+                                                            data_ajax_mode = "replace",
+                                                            data_ajax_update = "deleteUserInfo",
+                                                            data_ajax_success = "AddReportButtonSuccess", @class = "btn btn-outline-danger btn-rounded waves-effect"
+                                                        })
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            @*Ajax.ActionLink("Edit", "Edit", "Admin", new { id = psychologist.Id }, new AjaxOptions() { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, })*@
+
+                                        </td>
+
+                                    </tr>
+                                }
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    @foreach (var header in Model.GeneralColumnHeaders)
+    {
+                                <th>@header</th>
+}
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </div>
+</main>
+<footer class="page-footer text-center text-md-left stylish-color-dark pt-0">
+    <!-- Copyright-->
+    <div class="footer-copyright py-3 text-center wow fadeIn" data-wow-delay="0.3s">
+        <div class="container-fluid">
+            © 2019 Copyright: <a href="#" target="_blank"> VL </a>
+        </div>
+    </div>
+    <!--/.Copyright -->
+</footer>
+
+@section scripts {
+    <script type="text/javascript" src="~/js/psychologists-page.js"></script>
+}

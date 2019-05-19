@@ -1,0 +1,59 @@
+﻿@model Psycho.DTO.Persistence.ReportsDTO
+
+
+<form>
+    <div class="col-md-12 mb-4">
+        <!--Content-->
+        <div class="modal-content form-elegant">
+            <!--Header-->
+            <div class="modal-header text-center">
+                @{
+                    string name = $"{Model.Psychologist.FirstName} {Model.Psychologist.LastName}";
+                }
+                <h3 class="modal-title w-100 dark-grey-text font-weight-bold my-3" id="myModalLabel"><strong>@name reports</strong></h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body mx-4">
+                <div class="row">
+
+                    <div class="col">
+                        @if (Model.Reports.Count == 0)
+                        {
+                            <div class="alert alert-primary" role="alert">
+                                There are no any reports.
+                            </div>
+                        }
+                        else{
+                            <ul class="list-unstyled">
+
+                            @foreach(var elem in Model.Reports){
+                                <li class="media" style="margin-bottom: 7px;">
+                                    <img class="d-flex mr-3 rounded-circle" src="../img/user.png" alt="Profile avatar" width="64">
+                                    <div class="media-body">
+                                        @{
+                                            string userName = $"{elem.AuthorizedUser.FirstName} {elem.AuthorizedUser.LastName}";
+                                        }
+                                        <h5 class="mt-0 mb-1 font-weight-bold">@userName</h5>
+                                        @elem.Message
+                                    </div>
+                                </li>
+                            }
+
+
+                        </ul>
+                        }
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+        <!--/.Content-->
+    </div>
+</form>
+
+@section scripts {
+
+}
