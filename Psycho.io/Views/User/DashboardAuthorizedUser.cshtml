@@ -64,7 +64,7 @@
                             <script>
                                     window.onload = function () {
 
-                                    var p = JSON.parse('@JsonConvert.SerializeObject(Model.appointments)'.replace(/(&quot\;)/g,"\""));
+                                    @*var p = JSON.parse('@JsonConvert.SerializeObject(Model.appointments)'.replace(/(&quot\;)/g,"\""));*@
                                     var q = @Html.Raw(Model.json);
 
                                     $('#calendar').fullCalendar({

@@ -67,7 +67,7 @@ namespace Psycho.Logic.Facade
         public PsychologistListDTO GetPsychologistListForAdminPage()
         {
             List<Psychologist> psychologists = _unitOfWork.Psychologists.GetAll().ToList();
-            PsychologistListDTO psychologistListDTO = psychologistMapper.Map(psychologists);
+            PsychologistListDTO psychologistListDTO = psychologistMapper.Map(psychologists, DateTime.Now.DayOfWeek.ToString());
 
             return psychologistListDTO;
         }
