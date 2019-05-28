@@ -102,15 +102,26 @@ namespace Psycho.io.Controllers
 
             List<Appointment> appointments = _unitOfWork.Psychologists.Get(model.PsychologistId).Appointments.ToList();
 
+            string currDayOfWeek = DateTime.Now.DayOfWeek.ToString();
+            Day day = (Day)Enum.Parse(typeof(Day), currDayOfWeek);
+            var kek = model.CurrentPsychologist.WorkSchedules.Where(s => s.Day == day).FirstOrDefault();
+
             foreach (var elem in appointments)
             {
                 if ((model.StartDateTime >= elem.StartDataTime && model.StartDateTime <= elem.EndDataTime) ||
                     (model.EndDateTime >= elem.StartDataTime && model.EndDateTime <= elem.EndDataTime) ||
                     (elem.StartDataTime >= model.StartDateTime && elem.EndDataTime <= model.EndDateTime))
                 {
-                    _status = "error";
-                    _description = "Psychologist is busy at that time.";
-                    break;
+                    if(kek == null)
+                    {
+                        _status = "error";
+                        _description = "Psychologist is busy at that time.";
+                        break;
+                    }
+                    else
+                    {
+
+                    }
                 }
             }
 

@@ -30,6 +30,10 @@ namespace Psycho.DTO.Core
 
         public string ReturnUrl { get; set; }
 
+        public string StartTimeForToday { get; set; }
+
+        public string EndTimeForToday { get; set; }
+
         public PsychologistDTO()
         {
         }
@@ -48,7 +52,7 @@ namespace Psycho.DTO.Core
         {
             List<string> list = new List<string>
             {
-                $"{FirstName} {LastName}", Email, Phone, Position, "Working hours"
+                $"{FirstName} {LastName}", Email, Phone, Position, $"{StartTimeForToday} : {EndTimeForToday}"
             };
 
             return list;

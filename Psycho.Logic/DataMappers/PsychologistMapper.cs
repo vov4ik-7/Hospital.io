@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Psycho.DAL.Core.Domain;
 using Psycho.DTO.Persistence;
 
@@ -11,12 +12,17 @@ namespace Psycho.Logic.DataMappers
         {
         }
 
-        public PsychologistListDTO Map(List<Psychologist> psychologists)
+        public PsychologistListDTO Map(List<Psychologist> psychologists, string dayOfWeek)
         {
             PsychologistListDTO psychologistListDTO = new PsychologistListDTO();
 
             foreach(var elem in psychologists)
             {
+                Day day = (Day)Enum.Parse(typeof(Day), dayOfWeek);
+                var kek = elem.WorkSchedules.Where(s => s.Day == day).FirstOrDefault();
+                string start = kek != null ? kek.StartTime.ToString() : "";
+                string end = kek != null ? kek.EndTime.ToString() : "";
+
                 psychologistListDTO.PsychologistDTOs.Add(new DTO.Core.PsychologistDTO {
                     Id = elem.Id,
                     Email = elem.Email,
@@ -27,7 +33,9 @@ namespace Psycho.Logic.DataMappers
                     Gender = elem.Gender,
                     Phone = elem.PhoneNumber,
                     Position = elem.Position,
-                    HireDate = elem.HireDate
+                    HireDate = elem.HireDate,
+                    StartTimeForToday = start,
+                    EndTimeForToday = end
                 });
             }
 
