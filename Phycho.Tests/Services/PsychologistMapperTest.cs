@@ -16,10 +16,10 @@ namespace Phycho.Tests.Services
         public void TestPsychologistMapper()
         {
             var mock = new Mock<PsychologistMapper>();
-            mock.Setup(mapper => mapper.Map(GetTestPsychologists())).Returns(GetTestPsychologistListDto());
+            mock.Setup(mapper => mapper.Map(GetTestPsychologists(), "5")).Returns(GetTestPsychologistListDto());
             
             var resultMapper = new PsychologistMapper();
-            var result = resultMapper.Map(GetTestPsychologists());
+            var result = resultMapper.Map(GetTestPsychologists(), "5");
 
             Assert.Equal(result.ColumnHeaders, GetTestPsychologistListDto().ColumnHeaders);
             Assert.Equal(result.PsychologistDTOs.Count, GetTestPsychologistListDto().PsychologistDTOs.Count);
