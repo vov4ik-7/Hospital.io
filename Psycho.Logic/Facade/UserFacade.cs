@@ -18,6 +18,25 @@ namespace Psycho.Logic.Facade
             _userManager = userManager;
         }
 
+        public UserFacade()
+        { }
+
+        public IUnitOfWork UnitOfWork
+        {
+            get
+            {
+                return this._unitOfWork;
+            }
+        }
+
+        public UserManager<User> UserManager
+        {
+            get
+            {
+                return this._userManager;
+            }
+        }
+
         public User GetUser(int id)
         {
             User user = _unitOfWork.Users.Get(id);

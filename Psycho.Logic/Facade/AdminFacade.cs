@@ -29,6 +29,9 @@ namespace Psycho.Logic.Facade
             psychologistMapper = new PsychologistMapper();
         }
 
+        public AdminFacade()
+        { }
+
         public IUnitOfWork UnitOfWork
         {
             get
