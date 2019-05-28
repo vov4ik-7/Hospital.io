@@ -11,7 +11,7 @@ namespace Psycho.Logic.DataMappers
         {
         }
 
-        public PsychologistListDTO Map(List<Psychologist> psychologists)
+        public virtual PsychologistListDTO Map(List<Psychologist> psychologists)
         {
             PsychologistListDTO psychologistListDTO = new PsychologistListDTO();
 
