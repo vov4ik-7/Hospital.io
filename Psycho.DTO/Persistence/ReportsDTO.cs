@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Psycho.DAL.Core.Domain;
+using Psycho.DTO.Core;
 
 namespace Psycho.DTO.Persistence
 {
@@ -8,6 +9,6 @@ namespace Psycho.DTO.Persistence
     {
         public Psychologist Psychologist { get; set; } = new Psychologist();
 
-        public List<Report> Reports { get; set; } = new List<Report>();
+        public List<ReportDTO> Reports { get; set; } = new List<ReportDTO>();
     }
 }

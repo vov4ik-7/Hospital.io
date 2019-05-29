@@ -33,7 +33,7 @@
                                     <img class="d-flex mr-3 rounded-circle" src="../img/user.png" alt="Profile avatar" width="64">
                                     <div class="media-body">
                                         @{
-                                            string userName = $"{elem.AuthorizedUser.FirstName} {elem.AuthorizedUser.LastName}";
+                                            string userName = $"{elem.FirstName} {elem.LastName}";
                                         }
                                         <h5 class="mt-0 mb-1 font-weight-bold">@userName</h5>
                                         @elem.Message

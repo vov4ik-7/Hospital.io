@@ -17,7 +17,7 @@ using Newtonsoft.Json;
 
 namespace Psycho.io.Controllers
 {
-    [Authorize(Roles = "Psychologist,AuthorizedUser")]
+    [Authorize(Roles = "Psychologist,AuthorizedUser,AnonymousUser")]
     public class UserController : PsychoMvcControllerBase
     {
         private UserManager<User> _userManager;
@@ -26,6 +26,51 @@ namespace Psycho.io.Controllers
         public UserController(IUnitOfWork unitOfWork, IPsychoLogic psychoLogic, UserManager<User> userManager) : base(psychoLogic) {
             _userManager = userManager;
             _unitOfWork = unitOfWork;
+        }
+
+        public IActionResult Chat()
+        {
+            List<UserChatDTO> chats = new List<UserChatDTO>();
+
+            var user = GetCurrentUserAsync().Result;
+
+            var listChats = _unitOfWork.Context.Chats.Where(x => x.ReceiverId == user.Id || x.SenderId == user.Id).ToList();
+
+            var listUniq = new List<int>();
+            foreach(var elem in listChats)
+            {
+                if(elem.SenderId != user.Id && !listUniq.Contains(elem.SenderId))
+                {
+                    listUniq.Add(elem.SenderId);
+                }
+                else if (elem.ReceiverId != user.Id && !listUniq.Contains(elem.ReceiverId))
+                {
+                    listUniq.Add(elem.ReceiverId);
+                }
+            }
+
+            foreach(var elem in listUniq)
+            {
+                List<Chat> chat = new List<Chat>();
+
+                foreach(var elem2 in listChats)
+                {
+                    if(elem2.ReceiverId == elem || elem2.SenderId == elem)
+                    {
+                        chat.Add(elem2);
+                    }
+                }
+                chat.Reverse();
+
+                User userSender = _unitOfWork.Users.Get(elem);
+                chats.Add(new UserChatDTO
+                {
+                    chat = chat,
+                    User = userSender
+                });
+            }
+
+            return View(chats);
         }
 
         public async Task<IActionResult> Profile()

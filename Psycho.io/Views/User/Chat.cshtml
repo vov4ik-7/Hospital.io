@@ -1,0 +1,188 @@
+﻿@{
+    ViewData["Title"] = "Chat";
+}
+
+@model System.Collections.Generic.List<Psycho.DTO.Core.UserChatDTO>
+
+@section csss{
+    <link href="~/css/chat.css" rel="stylesheet">
+    <style>
+        .mydisabled {
+            display: none;
+        }
+    </style>
+}
+
+<div class="container" style="margin-top: 100px">
+    <div class="card grey lighten-3 chat-room">
+        <div class="card-body">
+
+            <!-- Grid row -->
+            <div class="row px-lg-2 px-2">
+
+                <!-- Grid column -->
+                <div class="col-md-6 col-xl-4 px-0">
+
+                    <h6 class="font-weight-bold mb-3 text-center text-lg-left">Member</h6>
+                    <div class="white z-depth-1 px-3 pt-3 pb-3">
+                        <ul class="list-unstyled friend-list">
+                            @{
+                                int i = 1;
+                            }
+                            @foreach(var elem in Model){
+                                string psid = i + "un";
+                                <li id="@i" class="lighten-3 p-2">
+                                    <a href="#" class="d-flex justify-content-between">
+                                        @if(User.IsInRole("Psychologist")){
+                                            <img src="../img/user.png" alt="avatar" class="avatar rounded-circle d-flex align-self-center mr-2 z-depth-1">
+                                        }
+                                        else {
+                                            <img src="../img/man.png" alt="avatar" class="avatar rounded-circle d-flex align-self-center mr-2 z-depth-1">
+                                        }
+                                        <div class="text-small mypsycholist" id="@psid">@elem.User.Email</div>
+                                        <div class="chat-footer">
+                                            @*<p class="text-smaller text-muted mb-0">Just now</p>
+                                            <span class="badge badge-danger float-right">1</span>*@
+                                        </div>
+                                        @{
+                                            i++;
+                                        }
+                                    </a>
+                                </li>
+                            }
+                            @*<li class="lighten-3 p-2">
+                                <a href="#" class="d-flex justify-content-between">
+                                    <img src="../img/man.png" alt="avatar" class="avatar rounded-circle d-flex align-self-center mr-2 z-depth-1">
+                                    <div class="text-small" id="receiver">komarov@gmail.com</div>
+                                    <div class="chat-footer">
+                                        <p class="text-smaller text-muted mb-0">Just now</p>
+                                        <span class="badge badge-danger float-right">1</span>
+                                    </div>
+                                </a>
+                            </li>*@
+                        </ul>
+                    </div>
+
+                </div>
+                <!-- Grid column -->
+                <!-- Grid column -->
+                <div class="col-md-6 col-xl-8 pl-md-3 px-lg-auto px-0" style="height: 500px; overflow-y: scroll;">
+
+
+                        <div class="chat-message">
+                            @{
+                                int j = 1;
+                            }
+                            @foreach (var elem in Model)
+                            {
+                                
+                                string lox = $"i{j}";
+                                string c = "mychat" + j;
+                                
+                                <ul id="@lox" class="list-unstyled chat @c">
+                                    @{
+                                        j++;
+                                    }
+                                    @foreach (var elem2 in elem.chat)
+                                    {
+                                        <li class="d-flex justify-content-between mb-4">
+                                            @if (elem2.Sender.RoleId == 2)
+                                            {
+                                                @*<img src="../img/man.png" alt="avatar" class="avatar rounded-circle mr-2 ml-lg-3 ml-0 z-depth-1">*@
+                                                <div class="chat-body white p-3 ml-2 z-depth-1">
+                                                    <div class="header">
+                                                        <strong class="primary-font">@elem2.Sender.Email</strong>
+                                                        @*<small class="pull-right text-muted"><i class="far fa-clock"></i> 12 mins ago</small>*@
+                                                    </div>
+                                                    <hr class="w-100">
+                                                    <p class="mb-0">
+                                                        @elem2.Text
+                                                    </p>
+                                                </div>
+                                            }
+                                            else if(elem2.Sender.RoleId != 2)
+                                            {
+                                                @*<img src="../img/user.png" alt="avatar" class="avatar rounded-circle mr-2 ml-lg-3 ml-0 z-depth-1">*@
+                                                <div class="chat-body white p-3 ml-2 z-depth-1">
+                                                    <div class="header">
+                                                        <strong class="primary-font">@elem2.Sender.Email (Me)</strong>
+                                                        @*<small class="pull-right text-muted"><i class="far fa-clock"></i> 12 mins ago</small>*@
+                                                    </div>
+                                                    <hr class="w-100">
+                                                    <p class="mb-0">
+                                                        @elem2.Text
+                                                    </p>
+                                                </div>
+                                            }
+
+
+                                        </li>
+                                    }
+
+                                </ul>
+                            }
+                            <div>
+                                <div class="white">
+                                    <div class="form-group basic-textarea">
+                                        <textarea class="form-control pl-2 my-0" id="message" rows="3" placeholder="Type your message here..."></textarea>
+                                    </div>
+                                </div>
+                                <button id="sendBtn" type="button" class="btn btn-info btn-rounded btn-sm waves-effect waves-light float-right">Send</button>
+                            </div>
+                        </div>
+                    
+
+                    @*<div class="chat-message">
+
+                        <ul id="itemList" class="list-unstyled chat">
+                            <li class="d-flex justify-content-between mb-4">
+                                <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-6.jpg" alt="avatar" class="avatar rounded-circle mr-2 ml-lg-3 ml-0 z-depth-1">
+                                <div class="chat-body white p-3 ml-2 z-depth-1">
+                                    <div class="header">
+                                        <strong class="primary-font">komarov@gmail.com</strong>
+                                        <small class="pull-right text-muted"><i class="far fa-clock"></i> 12 mins ago</small>
+                                    </div>
+                                    <hr class="w-100">
+                                    <p class="mb-0">
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                                        labore et dolore magna aliqua.
+                                    </p>
+                                </div>
+                            </li>
+                        </ul>
+                        <div>
+                            <div class="white">
+                                <div class="form-group basic-textarea">
+                                    <textarea class="form-control pl-2 my-0" id="message" rows="3" placeholder="Type your message here..."></textarea>
+                                </div>
+                            </div>
+                            <button id="sendBtn" type="button" class="btn btn-info btn-rounded btn-sm waves-effect waves-light float-right">Send</button>
+                        </div>
+                    </div>*@
+
+                </div>
+                <!-- Grid column -->
+
+            </div>
+            <!-- Grid row -->
+
+        </div>
+    </div>
+</div>
+
+@section scripts{
+<script>
+    var ispsycho = '@User.IsInRole("Psychologist")';
+    console.log(ispsycho);
+    $('.mypsycholist').click(function () {
+            var idpsycho = $(this).id;
+            var idchat = 'i' + idpsycho;
+            $('.mychat').addClass('mydisabled');
+            $('#' + idchat).removeClass('mydisabled');
+            username = $(this).textContent;
+            console.log(username);
+        })</script>
+    <script type="text/javascript" src="~/js/signalr.min.js"></script>
+    <script type="text/javascript" src="~/js/forsignalr.js"></script>
+
+}
