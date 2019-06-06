@@ -86,7 +86,8 @@
                                                         })
                                                     </div>
                                                 </div>
-                                                <div class="row" style="padding-top: 7px">
+                                                @if(User.IsInRole("AuthorizedUser")){
+                                                    <div class="row" style="padding-top: 7px">
                                                     <div class="col align-self-center">
                                                         @Html.ActionLink("Sign", "CreateAppointment", "Psychologist", new { id = psychologist.Id }, new {
                                                            data_ajax = "true",
@@ -97,6 +98,11 @@
                                                         })
                                                     </div>
                                                 </div>
+                                                }
+                                                @if(User.IsInRole("AuthorizedUser") || User.IsInRole("AnonymousUser")){
+                                                    <a asp-controller="User" asp-action="Chat" class="btn btn-outline-info btn-rounded waves-effect" style="margin-top: 7px">Chat</a>
+                                                }
+
                                             </div>
 
                                             
@@ -124,7 +130,8 @@
                                                     </div>
                                                 </div>
                                                 <div class="row">
-                                                    <div class="col align-self-center" style="padding-top: 7px">
+                                                    @if(User.IsInRole("AuthorizedUser")){
+                                                        <div class="col align-self-center" style="padding-top: 7px">
                                                         @Html.ActionLink("Add", "AddReport", "Psychologist", new { id = psychologist.Id }, new {
                                                             data_ajax = "true",
                                                             data_ajax_method = "GET",
@@ -133,6 +140,8 @@
                                                             data_ajax_success = "AddReportButtonSuccess", @class = "btn btn-outline-danger btn-rounded waves-effect"
                                                         })
                                                     </div>
+                                                    }
+
                                                 </div>
                                             </div>
 

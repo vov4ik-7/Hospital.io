@@ -13,5 +13,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Remove="Core\UserDTO.json" />
+    <None Remove="Core\UserChatDTO.css" />
+    <None Remove="Persistence\UserChatsDTO.css" />
   </ItemGroup>
 </Project>

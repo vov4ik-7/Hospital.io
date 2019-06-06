@@ -22,6 +22,16 @@ namespace Psycho.Logic.DataMappers
                 var kek = elem.WorkSchedules.Where(s => s.Day == day).FirstOrDefault();
                 string start = kek != null ? kek.StartTime.ToString() : "";
                 string end = kek != null ? kek.EndTime.ToString() : "";
+                if(start != "")
+                {
+                    var startArr = start.Split(':');
+                    start = $"{startArr[0]}.{startArr[1]}";
+                }
+                if(end != "")
+                {
+                    var endArr = end.Split(':');
+                    end = $"{endArr[0]}.{endArr[1]}";
+                }
 
                 psychologistListDTO.PsychologistDTOs.Add(new DTO.Core.PsychologistDTO {
                     Id = elem.Id,

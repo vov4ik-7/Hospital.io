@@ -17,6 +17,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Psycho.Logic.Facade.Interfaces;
 using Psycho.Logic.Facade;
+using Microsoft.AspNetCore.SignalR;
+using Psycho.io.ChatForUser;
 
 namespace Psycho.io
 {
@@ -37,6 +39,8 @@ namespace Psycho.io
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<IUserIdProvider, CustomUserIdProvider>();
+
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
@@ -72,6 +76,8 @@ namespace Psycho.io
                 });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            services.AddSignalR();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -91,6 +97,10 @@ namespace Psycho.io
             app.UseStaticFiles();
             app.UseCookiePolicy();
             app.UseAuthentication();
+            app.UseSignalR(routes =>
+            {
+                routes.MapHub<ChatHub>("/chat");
+            });
             IdentityDataInitializer.SeedData(userManager, roleManager).Wait();
             app.UseMvc(routes =>
             {

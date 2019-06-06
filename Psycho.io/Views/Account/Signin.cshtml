@@ -71,20 +71,19 @@
 
             <div class="row my-3 d-flex justify-content-center">
                 <button onclick="launchFbLogin()" type="button" class="btn btn-white btn-rounded mr-md-3 z-depth-1a"><i class="fab fa-facebook-f text-center"></i></button>
+                <a asp-controller="Account" asp-action="AnonymousSignIn" class="btn btn-white btn-rounded mr-md-3 z-depth-1a"><i class="fas fa-user-secret text-center"></i></a>
                 @*<button type="button" class="btn btn-white btn-rounded mr-md-3 z-depth-1a"><i class="fab fa-twitter"></i></button>*@
                 @*<button type="button" class="btn btn-white btn-rounded z-depth-1a"><i class="fab fa-google-plus-g"></i></button>*@
-                <script>
-                    function launchFbLogin() {
+                <script>function launchFbLogin() {
                         let authWindow = window.open(`https://www.facebook.com/v3.2/dialog/oauth?&response_type=token&display=popup&client_id=319767072025131&display=popup&redirect_uri=${url}facebook-auth.html&scope=email`, null, 'width=600,height=400,top=400,left=400');
                     }
 
                     function sleep(miliseconds) {
-                       var currentTime = new Date().getTime();
+                        var currentTime = new Date().getTime();
 
-                       while (currentTime + miliseconds >= new Date().getTime()) {
-                       }
-                    }
-                </script>
+                        while (currentTime + miliseconds >= new Date().getTime()) {
+                        }
+                    }</script>
             </div>
         </div>
         <!--Footer-->

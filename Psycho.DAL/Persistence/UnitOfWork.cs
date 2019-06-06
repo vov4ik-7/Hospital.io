@@ -23,6 +23,13 @@ namespace Psycho.DAL.Persistence
             WorkSchedules = new WorkScheduleRepository(_context);
         }
 
+        public PsychoContext Context
+        {
+            get
+            {
+                return _context;
+            }
+        }
         public IRoleRepository Roles { get; private set; }
         public IUserRepository Users { get; private set; }
         public IPsychologistRepository Psychologists { get; private set; }

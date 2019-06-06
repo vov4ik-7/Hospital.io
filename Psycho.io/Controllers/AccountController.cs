@@ -74,6 +74,49 @@ namespace Psycho.io.Controllers
             return PartialView(new SigninViewModel { ReturnUrl = returnUrl });
         }
 
+        [HttpGet]
+        public async Task<IActionResult> AnonymousSignIn()
+        {
+            string email = "";
+            string fname = "";
+            string lname = "";
+
+            int i = 1;
+            while (true)
+            {
+                email = $"anonymous{i}@psycho.io";
+                //var res = await _userManager.FindByEmailAsync(email);
+                //if(res == null)
+                {
+                    fname = "Anonymous";
+                    lname = $"#{i}";
+                    break;
+                }
+                i++;
+            }
+
+            User user = new AnonymousUser()
+            {
+                UserName = email,
+                FirstName = fname,
+                LastName = lname,
+                Email = email,
+                EmailConfirmed = true,
+                Blocked = false,
+                RoleId = 4
+            };
+
+            //var result = await _userManager.CreateAsync(user, "psychoiosecyritypass");
+            //var add_role = await _userManager.AddToRoleAsync(user, "AnonymousUser");
+            User signinUser = await _userManager.FindByEmailAsync(email);
+            //if (result.Succeeded)
+            {
+                await _signInManager.SignInAsync(signinUser, true);
+            }
+
+            return RedirectToAction("Index", "Home");
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Signin(SigninViewModel model)

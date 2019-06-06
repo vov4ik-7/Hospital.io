@@ -82,6 +82,9 @@
                                 <a class="nav-link" asp-action="Profile" asp-controller="User">@User.Identity.Name</a>
                             </li>
                             <li class="nav-item">
+                                <a asp-controller="User" asp-action="Chat" class="nav-link"><i class="fas fa-envelope"></i></a>
+                            </li>
+                            <li class="nav-item">
                                 <a asp-controller="User" asp-action="DashboardPsychologist" class="nav-link"><i class="far fa-calendar-alt"></i></a>
                             </li>
                         }
@@ -91,7 +94,18 @@
                                 <a class="nav-link" asp-action="Profile" asp-controller="User">@User.Identity.Name</a>
                             </li>
                             <li class="nav-item">
+                                <a asp-controller="User" asp-action="Chat" class="nav-link"><i class="fas fa-envelope"></i></a>
+                            </li>
+                            <li class="nav-item">
                                 <a asp-controller="User" asp-action="DashboardAuthorizedUser" class="nav-link"><i class="far fa-calendar-alt"></i></a>
+                            </li>
+                        }
+                        else if (User.IsInRole("AnonymousUser")){
+                            <li class="nav-item">
+                                <a class="nav-link">@User.Identity.Name</a>
+                            </li>
+                            <li class="nav-item">
+                                <a asp-controller="User" asp-action="Chat" class="nav-link"><i class="fas fa-envelope"></i></a>
                             </li>
                         }
                         <li class="nav-item">

@@ -104,7 +104,9 @@ namespace Psycho.io.Controllers
 
             string currDayOfWeek = DateTime.Now.DayOfWeek.ToString();
             Day day = (Day)Enum.Parse(typeof(Day), currDayOfWeek);
-            var kek = model.CurrentPsychologist.WorkSchedules.Where(s => s.Day == day).FirstOrDefault();
+            //var kek = model.CurrentPsychologist.WorkSchedules.Where(s => s.Day == day).FirstOrDefault();
+            var kek = _unitOfWork.Psychologists.Get(model.PsychologistId).WorkSchedules.Where(s => s.Day == day).FirstOrDefault();
+
 
             foreach (var elem in appointments)
             {
@@ -112,16 +114,21 @@ namespace Psycho.io.Controllers
                     (model.EndDateTime >= elem.StartDataTime && model.EndDateTime <= elem.EndDataTime) ||
                     (elem.StartDataTime >= model.StartDateTime && elem.EndDataTime <= model.EndDateTime))
                 {
-                    if(kek == null)
-                    {
-                        _status = "error";
-                        _description = "Psychologist is busy at that time.";
-                        break;
-                    }
-                    else
-                    {
+                    _status = "error";
+                    _description = "Psychologist is busy at that time.";
 
-                    }
+                    break;
+                }
+            }
+
+            if (_status != "error")
+            {
+                if (!(model.StartDateTime.Value.Hour >= kek.StartTime.Hours &&
+                        model.StartDateTime.Value.Minute >= kek.StartTime.Minutes &&
+                        model.EndDateTime.Value.Hour < kek.EndTime.Hours))
+                {
+                    _status = "error";
+                    _description = "Psychologist does not work at this time.";
                 }
             }
 
@@ -162,15 +169,28 @@ namespace Psycho.io.Controllers
             reportsDTO.Psychologist = psychologist;
 
             var reportsFromDB = _unitOfWork.Reports.GetAll().Where(r => r.PsychologistId == id).OrderByDescending(r => r.Id).ToList();
-            foreach(var elem in reportsFromDB)
+            List<ReportDTO> reportDTOs = new List<ReportDTO>();
+            /*for (int i = 0; i < reportsFromDB.Count; i++)
             {
-                if(elem.IsAnonymous == true)
+                if(reportsFromDB[i].IsAnonymous)
                 {
-                    elem.AuthorizedUser.FirstName = "Anonymous";
-                    elem.AuthorizedUser.LastName = "";
+                    reportsFromDB[i].AuthorizedUser.FirstName = "Suka" + i;
+                    reportsFromDB[i].AuthorizedUser.LastName = "";
                 }
             }
-            reportsDTO.Reports = reportsFromDB;
+            reportsDTO.Reports = reportsFromDB;*/
+            foreach(var elem in reportsFromDB)
+            {
+                reportDTOs.Add(new ReportDTO
+                {
+                    Message = elem.Message,
+                    IsAnonymous = elem.IsAnonymous,
+                    FirstName = elem.IsAnonymous ? "Anonymous" : elem.AuthorizedUser.FirstName,
+                    LastName = elem.IsAnonymous ? "" : elem.AuthorizedUser.LastName
+                });
+            }
+
+            reportsDTO.Reports = reportDTOs;
 
             return PartialView(reportsDTO);
         }

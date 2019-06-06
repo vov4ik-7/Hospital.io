@@ -10,6 +10,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Cookies" Version="2.1.2" />
     <PackageReference Include="Microsoft.jQuery.Unobtrusive.Ajax" Version="3.2.6" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
+    <PackageReference Include="Microsoft.AspNetCore.SignalR" Version="1.0.2" />
   </ItemGroup>
 
   <ItemGroup>
@@ -26,6 +27,7 @@
     <Folder Include="Controllers\" />
     <Folder Include="Models\Facebook\" />
     <Folder Include="Views\Psychologist\" />
+    <Folder Include="ChatHub\" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="wwwroot\images\idea-2.png" />
@@ -106,6 +108,8 @@
     <Content Remove="wwwroot\js\fullcalendar.js" />
     <Content Remove="wwwroot\css\fullcalendar.css" />
     <Content Remove="wwwroot\img\facebook-poster.png" />
+    <Content Remove="wwwroot\css\chat.css" />
+    <Content Remove="wwwroot\js\signalr.min.js" />
   </ItemGroup>
   <ItemGroup>
     <None Include="wwwroot\android-chrome-192x192.png" />
@@ -168,5 +172,7 @@
     <None Include="wwwroot\js\fullcalendar.js" />
     <None Include="wwwroot\css\fullcalendar.css" />
     <None Include="wwwroot\img\facebook-poster.png" />
+    <None Include="wwwroot\css\chat.css" />
+    <None Include="wwwroot\js\signalr.min.js" />
   </ItemGroup>
 </Project>
