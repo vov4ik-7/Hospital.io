@@ -12,7 +12,7 @@ namespace Psycho.Logic.DataMappers
         {
         }
 
-        public PsychologistListDTO Map(List<Psychologist> psychologists, string dayOfWeek)
+        public virtual PsychologistListDTO Map(List<Psychologist> psychologists, string dayOfWeek)
         {
             PsychologistListDTO psychologistListDTO = new PsychologistListDTO();
 

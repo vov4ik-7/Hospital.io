@@ -1,13 +1,16 @@
-
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Psycho.io", "Psycho.io\Psycho.io.csproj", "{A098DFC8-14B6-4F87-9AE2-7451A23F5779}"
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28922.388
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Psycho.io", "Psycho.io\Psycho.io.csproj", "{A098DFC8-14B6-4F87-9AE2-7451A23F5779}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Psycho.DAL", "Psycho.DAL\Psycho.DAL.csproj", "{B5474FAA-2F63-461A-B51C-E8E1C19E6E03}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Psycho.DAL", "Psycho.DAL\Psycho.DAL.csproj", "{B5474FAA-2F63-461A-B51C-E8E1C19E6E03}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Psycho.Logic", "Psycho.Logic\Psycho.Logic.csproj", "{43392D5D-D4E8-4DA5-BF38-8E69BA3BB1CC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Psycho.Logic", "Psycho.Logic\Psycho.Logic.csproj", "{43392D5D-D4E8-4DA5-BF38-8E69BA3BB1CC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Psycho.DTO", "Psycho.DTO\Psycho.DTO.csproj", "{D5016389-2FE7-49EF-84B0-8B9E3B3F4199}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Psycho.DTO", "Psycho.DTO\Psycho.DTO.csproj", "{D5016389-2FE7-49EF-84B0-8B9E3B3F4199}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Phycho.Tests", "Phycho.Tests\Phycho.Tests.csproj", "{052DC8D4-AB21-44F3-9988-6346BB22C0B2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,5 +34,15 @@ Global
 		{D5016389-2FE7-49EF-84B0-8B9E3B3F4199}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D5016389-2FE7-49EF-84B0-8B9E3B3F4199}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D5016389-2FE7-49EF-84B0-8B9E3B3F4199}.Release|Any CPU.Build.0 = Release|Any CPU
+		{052DC8D4-AB21-44F3-9988-6346BB22C0B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{052DC8D4-AB21-44F3-9988-6346BB22C0B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{052DC8D4-AB21-44F3-9988-6346BB22C0B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{052DC8D4-AB21-44F3-9988-6346BB22C0B2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B188D8D7-8EC6-40B0-B70F-54EBBC6B0244}
 	EndGlobalSection
 EndGlobal

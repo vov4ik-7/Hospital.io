@@ -23,6 +23,9 @@ namespace Psycho.Logic.Facade
             this._signInManager = signInManager;
         }
 
+        public AccountFacade()
+        { }
+
         public IUnitOfWork UnitOfWork
         {
             get
