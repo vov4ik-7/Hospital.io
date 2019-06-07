@@ -168,7 +168,7 @@ namespace Psycho.io.Controllers
             ReportsDTO reportsDTO = new ReportsDTO();
             reportsDTO.Psychologist = psychologist;
 
-            var reportsFromDB = _unitOfWork.Reports.GetAll().Where(r => r.PsychologistId == id).OrderByDescending(r => r.Id).ToList();
+            var reportsFromDB = _unitOfWork.Reports.GetAll().Where(r => r.PsychologistId == id && r.IsVisible == true).OrderByDescending(r => r.Id).ToList();
             List<ReportDTO> reportDTOs = new List<ReportDTO>();
             /*for (int i = 0; i < reportsFromDB.Count; i++)
             {

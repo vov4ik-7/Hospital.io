@@ -10,6 +10,10 @@ namespace Psycho.DAL.Persistence.EntityConfigurations
         {
             builder.HasKey(report => report.Id);
 
+            builder.Property(p => p.IsVisible).HasDefaultValue(false);
+
+            builder.Property(p => p.isOnStack).HasDefaultValue(false);
+
             builder.HasOne(report => report.AuthorizedUser)
                 .WithMany(au => au.Reports)
                 .HasForeignKey(report => report.AuthorizedUserId)

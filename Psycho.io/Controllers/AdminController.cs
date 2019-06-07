@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Psycho.DAL.Core;
 using Psycho.DAL.Core.Domain;
 using Psycho.DTO.Core;
 using Psycho.DTO.Persistence;
@@ -20,13 +21,15 @@ namespace Psycho.io.Controllers
         private readonly UserManager<User> _userManager;
         private readonly RoleManager<Role> _roleManager;
         private readonly SignInManager<User> _signInManager;
+        private IUnitOfWork _unitOfWork;
 
-        public AdminController(IPsychoLogic psychoLogic,
+        public AdminController(IUnitOfWork unitOfWork, IPsychoLogic psychoLogic,
             UserManager<User> userManager,
             RoleManager<Role> roleManager,
             SignInManager<User> signInManager)
             : base(psychoLogic)
         {
+            _unitOfWork = unitOfWork;
             this._userManager = userManager;
             this._roleManager = roleManager;
             this._signInManager = signInManager;
@@ -37,6 +40,28 @@ namespace Psycho.io.Controllers
             PsychologistListDTO psychologistListDTO = PsychoLogic.AdminFacade.GetPsychologistListForAdminPage();
 
             return View(psychologistListDTO);
+        }
+
+        public IActionResult ReportsForReview(int id = 0, bool kek = false)
+        {
+            if(id != 0)
+            {
+                if(kek == true)
+                {
+                    var elem = _unitOfWork.Reports.Get(id);
+                    elem.IsVisible = true;
+                    _unitOfWork.Complete();
+                }
+                else
+                {
+                    var elem = _unitOfWork.Reports.Get(id);
+                    //_unitOfWork.Reports.Remove(elem);
+                    elem.isOnStack = true;
+                    _unitOfWork.Complete();
+                }
+            }
+            ReportsForAdminDTO reports = PsychoLogic.AdminFacade.GetReportsForApprove();
+            return View(reports);
         }
 
         [HttpGet]

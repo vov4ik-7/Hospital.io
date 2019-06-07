@@ -69,6 +69,29 @@ namespace Psycho.Logic.Facade
             return psychologistListDTO;
         }
 
+        public ReportsForAdminDTO GetReportsForApprove()
+        {
+            ReportsForAdminDTO reports = new ReportsForAdminDTO();
+
+            var reportsFromDB = _unitOfWork.Reports.GetAll().Where(r => r.IsVisible == false && r.isOnStack == false).OrderByDescending(r => r.Id).ToList();
+
+            foreach(var elem in reportsFromDB)
+            {
+                reports.reports.Add(new ReportDTO()
+                {
+                    Id = elem.Id,
+                    Message = elem.Message,
+                    IsAnonymous = elem.IsAnonymous,
+                    FirstName = elem.IsAnonymous ? "Anonymous" : elem.AuthorizedUser.FirstName,
+                    LastName = elem.IsAnonymous ? "" : elem.AuthorizedUser.LastName,
+                    Psycho = elem.Psychologist,
+                    User = elem.AuthorizedUser
+                });
+            }
+
+            return reports;
+        }
+
         public async Task<Tuple<string, string>> CreatePsychologistAsync(CreatePsychologistDTO newPsychologist)
         {
             string status = String.Empty;

@@ -14,5 +14,9 @@ namespace Psycho.DAL.Core.Domain
         public virtual AuthorizedUser AuthorizedUser { get; set; }
 
         public bool IsAnonymous { get; set; }
+
+        public bool IsVisible { get; set; }
+
+        public bool isOnStack { get; set; }
     }
 }

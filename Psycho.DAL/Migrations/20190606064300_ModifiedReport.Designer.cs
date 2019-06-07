@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Psycho.DAL.Persistence;
 
 namespace Psycho.DAL.Migrations
 {
     [DbContext(typeof(PsychoContext))]
-    partial class PsychoContextModelSnapshot : ModelSnapshot
+    [Migration("20190606064300_ModifiedReport")]
+    partial class ModifiedReport
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -191,10 +193,6 @@ namespace Psycho.DAL.Migrations
                     b.Property<string>("Message");
 
                     b.Property<int>("PsychologistId");
-
-                    b.Property<bool>("isOnStack")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValue(false);
 
                     b.HasKey("Id");
 
