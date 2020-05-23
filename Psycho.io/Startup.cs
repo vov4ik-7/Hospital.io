@@ -75,7 +75,8 @@ namespace Psycho.io
                     options.LoginPath = new PathString("/Account/Login");
                 });
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc();
+            services.AddRazorPages().AddRazorRuntimeCompilation();
 
             services.AddSignalR();
         }
@@ -93,20 +94,21 @@ namespace Psycho.io
                 app.UseHsts();
             }
 
+            app.UseRouting();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
             app.UseAuthentication();
-            app.UseSignalR(routes =>
+            app.UseAuthorization();
+
+            //IdentityDataInitializer.SeedData(userManager, roleManager).Wait();
+
+            app.UseEndpoints(endpoints =>
             {
-                routes.MapHub<ChatHub>("/chat");
-            });
-            IdentityDataInitializer.SeedData(userManager, roleManager).Wait();
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
+                endpoints.MapHub<ChatHub>("/chat");
+                endpoints.MapControllerRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }

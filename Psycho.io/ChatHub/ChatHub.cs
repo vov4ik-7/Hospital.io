@@ -6,22 +6,17 @@ using Microsoft.AspNetCore.SignalR;
 
 namespace Psycho.io.ChatForUser
 {
-    [Authorize]
-    public class ChatHub : Hub
+    public interface IChatHub
     {
-        public async Task Send(string message, string to)
-        {
-            var userName = Context.User.Identity.Name;
+        Task LiveChatMessageReceived(int fromId, string fromEmail, string message);
+    }
 
-            if (Context.UserIdentifier != to)
-                await Clients.User(Context.UserIdentifier).SendAsync("Receive", message, userName);
-            await Clients.User(to).SendAsync("Receive", message, userName);
-        }
-
-        public override async Task OnConnectedAsync()
+    [Authorize]
+    public class ChatHub : Hub<IChatHub>
+    {
+        public async Task SendLiveChatMessage(string to, string message)
         {
-            await Clients.All.SendAsync("Notify", $"Hello from {Context.UserIdentifier}");
-            await base.OnConnectedAsync();
+            await Clients.User(to).LiveChatMessageReceived(1, Context.UserIdentifier, message);
         }
     }
 }

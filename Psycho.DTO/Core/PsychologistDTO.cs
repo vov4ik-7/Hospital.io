@@ -52,7 +52,7 @@ namespace Psycho.DTO.Core
         {
             List<string> list = new List<string>
             {
-                $"{FirstName} {LastName}", Email, Phone, Position, $"{StartTimeForToday} : {EndTimeForToday}"
+                $"{FirstName} {LastName}", Email, Phone, Position, !string.IsNullOrEmpty(StartTimeForToday) ? $"{StartTimeForToday} : {EndTimeForToday}" : "Day off"
             };
 
             return list;

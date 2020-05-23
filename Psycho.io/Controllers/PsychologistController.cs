@@ -115,7 +115,7 @@ namespace Psycho.io.Controllers
                     (elem.StartDataTime >= model.StartDateTime && elem.EndDataTime <= model.EndDateTime))
                 {
                     _status = "error";
-                    _description = "Psychologist is busy at that time.";
+                    _description = "Doctor is busy at that time.";
 
                     break;
                 }
@@ -123,12 +123,12 @@ namespace Psycho.io.Controllers
 
             if (_status != "error")
             {
-                if (!(model.StartDateTime.Value.Hour >= kek.StartTime.Hours &&
-                        model.StartDateTime.Value.Minute >= kek.StartTime.Minutes &&
-                        model.EndDateTime.Value.Hour < kek.EndTime.Hours))
+                if (!(model.StartDateTime?.Hour >= kek?.StartTime.Hours &&
+                        model.StartDateTime?.Minute >= kek?.StartTime.Minutes &&
+                        model.EndDateTime?.Hour < kek?.EndTime.Hours))
                 {
                     _status = "error";
-                    _description = "Psychologist does not work at this time.";
+                    _description = "Doctor does not work at this time.";
                 }
             }
 

@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>@ViewData["Title"] - Psycho.io</title>
+    <title>@ViewData["Title"] - Hospital.io</title>
 
     @Html.Partial("_Favicons")
 
@@ -44,7 +44,7 @@
                         <a class="nav-link" asp-controller="Home" asp-action="Index">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" asp-controller="Psychologist" asp-action="Index">Psychologists</a>
+                        <a class="nav-link" asp-controller="Psychologist" asp-action="Index">Doctors</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#about" data-offset="100">About</a>
@@ -82,7 +82,7 @@
                                 <a class="nav-link" asp-action="Profile" asp-controller="User">@User.Identity.Name</a>
                             </li>
                             <li class="nav-item">
-                                <a asp-controller="Char" asp-action="ChatPage" class="nav-link"><i class="fas fa-envelope"></i></a>
+                                <a asp-controller="User" asp-action="Chat" class="nav-link"><i class="fas fa-envelope"></i></a>
                             </li>
                             <li class="nav-item">
                                 <a asp-controller="User" asp-action="DashboardPsychologist" class="nav-link"><i class="far fa-calendar-alt"></i></a>
@@ -94,7 +94,7 @@
                                 <a class="nav-link" asp-action="Profile" asp-controller="User">@User.Identity.Name</a>
                             </li>
                             <li class="nav-item">
-                                <a asp-controller="Chat" asp-action="ChatPage" class="nav-link"><i class="fas fa-envelope"></i></a>
+                                <a asp-controller="User" asp-action="Chat" class="nav-link"><i class="fas fa-envelope"></i></a>
                             </li>
                             <li class="nav-item">
                                 <a asp-controller="User" asp-action="DashboardAuthorizedUser" class="nav-link"><i class="far fa-calendar-alt"></i></a>
@@ -105,7 +105,7 @@
                                 <a class="nav-link">@User.Identity.Name</a>
                             </li>
                             <li class="nav-item">
-                                <a asp-controller="Chat" asp-action="ChatPage" class="nav-link"><i class="fas fa-envelope"></i></a>
+                                <a asp-controller="User" asp-action="Chat" class="nav-link"><i class="fas fa-envelope"></i></a>
                             </li>
                         }
                         <li class="nav-item">

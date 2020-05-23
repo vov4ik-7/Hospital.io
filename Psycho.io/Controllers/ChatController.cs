@@ -5,9 +5,11 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using Psycho.DAL.Core;
 using Psycho.DAL.Core.Domain;
 using Psycho.DTO.Core;
+using Psycho.io.ChatForUser;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -18,11 +20,13 @@ namespace Psycho.io.Controllers
     {
         private UserManager<User> _userManager;
         private IUnitOfWork _unitOfWork;
+        private readonly IHubContext<ChatHub, IChatHub> _chatContext;
 
-        public ChatController(IUnitOfWork unitOfWork, UserManager<User> userManager)
+        public ChatController(IHubContext<ChatHub, IChatHub> chatContext, IUnitOfWork unitOfWork, UserManager<User> userManager)
         {
             _userManager = userManager;
             _unitOfWork = unitOfWork;
+            _chatContext = chatContext;
         }
 
         public IActionResult ChatPage()
@@ -68,6 +72,23 @@ namespace Psycho.io.Controllers
             }
 
             return View(chats);
+        }
+
+        public async Task<IActionResult> SendLiveChatMessage(int toUserId, string toUserEmail, string message)
+        {
+            var currUser = await GetCurrentUserAsync();
+            var messageRecord = new Chat
+            {
+                SenderId = currUser.Id,
+                ReceiverId = toUserId,
+                DateTime = DateTime.Now,
+                Text = message
+            };
+
+            await _unitOfWork.Context.Chats.AddAsync(messageRecord);
+            await _unitOfWork.Context.SaveChangesAsync();
+            await _chatContext.Clients.User(toUserEmail).LiveChatMessageReceived(currUser.Id, currUser.Email, message);
+            return Ok();
         }
 
         [HttpGet]

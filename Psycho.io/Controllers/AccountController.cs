@@ -85,8 +85,8 @@ namespace Psycho.io.Controllers
             while (true)
             {
                 email = $"anonymous{i}@psycho.io";
-                //var res = await _userManager.FindByEmailAsync(email);
-                //if(res == null)
+                var res = await _userManager.FindByEmailAsync(email);
+                if(res == null)
                 {
                     fname = "Anonymous";
                     lname = $"#{i}";
@@ -106,10 +106,10 @@ namespace Psycho.io.Controllers
                 RoleId = 4
             };
 
-            //var result = await _userManager.CreateAsync(user, "psychoiosecyritypass");
-            //var add_role = await _userManager.AddToRoleAsync(user, "AnonymousUser");
+            var result = await _userManager.CreateAsync(user, "psychoiosecyritypass");
+            var add_role = await _userManager.AddToRoleAsync(user, "AnonymousUser");
             User signinUser = await _userManager.FindByEmailAsync(email);
-            //if (result.Succeeded)
+            if (result.Succeeded)
             {
                 await _signInManager.SignInAsync(signinUser, true);
             }

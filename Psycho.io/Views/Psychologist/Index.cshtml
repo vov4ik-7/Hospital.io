@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "Psychologist";
+    ViewData["Title"] = "Doctors";
 }
 
 @using Psycho.DTO.Core
@@ -100,7 +100,7 @@
                                                 </div>
                                                 }
                                                 @if(User.IsInRole("AuthorizedUser") || User.IsInRole("AnonymousUser")){
-                                                    <a asp-controller="User" asp-action="Chat" class="btn btn-outline-info btn-rounded waves-effect" style="margin-top: 7px">Chat</a>
+                                                    <a asp-controller="User" asp-action="Chat" asp-route-friendId="@psychologist.Id" class="btn btn-outline-info btn-rounded waves-effect" style="margin-top: 7px">Chat</a>
                                                 }
 
                                             </div>

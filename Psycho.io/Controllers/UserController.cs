@@ -12,6 +12,8 @@ using Psycho.Logic.Facade.Interfaces;
 using Psycho.DAL.Core;
 using Psycho.DTO.Persistence;
 using Newtonsoft.Json;
+using Psycho.io.Models.User;
+using Microsoft.EntityFrameworkCore;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -28,13 +30,13 @@ namespace Psycho.io.Controllers
             _unitOfWork = unitOfWork;
         }
 
-        public IActionResult Chat()
+        public async Task<IActionResult> ChatAsync(int? friendId = null)
         {
             List<UserChatDTO> chats = new List<UserChatDTO>();
 
             var user = GetCurrentUserAsync().Result;
 
-            var listChats = _unitOfWork.Context.Chats.Where(x => x.ReceiverId == user.Id || x.SenderId == user.Id).ToList();
+            var listChats = await _unitOfWork.Context.Chats.Where(x => x.ReceiverId == user.Id || x.SenderId == user.Id).ToListAsync();
 
             var listUniq = new List<int>();
             foreach(var elem in listChats)
@@ -49,20 +51,19 @@ namespace Psycho.io.Controllers
                 }
             }
 
-            foreach(var elem in listUniq)
+            foreach(var friendsId in listUniq)
             {
                 List<Chat> chat = new List<Chat>();
 
-                foreach(var elem2 in listChats)
+                foreach(var message in listChats)
                 {
-                    if(elem2.ReceiverId == elem || elem2.SenderId == elem)
+                    if(message.ReceiverId == friendsId || message.SenderId == friendsId)
                     {
-                        chat.Add(elem2);
+                        chat.Add(message);
                     }
                 }
-                chat.Reverse();
 
-                User userSender = _unitOfWork.Users.Get(elem);
+                User userSender = _unitOfWork.Users.Get(friendsId);
                 chats.Add(new UserChatDTO
                 {
                     chat = chat,
@@ -70,10 +71,27 @@ namespace Psycho.io.Controllers
                 });
             }
 
-            return View(chats);
+            var onChatWithOpen = friendId.HasValue
+                ? await _unitOfWork.Context.Psychologists.FirstOrDefaultAsync(p => p.Id == friendId.Value)
+                : null;
+            var chatViewModel = new ChatViewModel
+            {
+                OnChatWithOpen = onChatWithOpen,
+                Chats = chats
+            };
+
+            return View(chatViewModel);
         }
 
         public async Task<IActionResult> Profile()
+        {
+            var user = await GetCurrentUserAsync();
+            var userId = user.Id;
+            UserDTO userDTO = PsychoLogic.UserFacade.GetUserDTO(userId);
+            return View(userDTO);
+        }
+
+        public async Task<IActionResult> Edit(UserDTO model)
         {
             var user = await GetCurrentUserAsync();
             var userId = user.Id;
@@ -155,7 +173,7 @@ namespace Psycho.io.Controllers
                     (elem.StartDataTime >= model.StartDateTime && elem.EndDataTime <= model.EndDateTime))
                 {
                     _status = "error";
-                    _description = "Psychologist is busy at that time.";
+                    _description = "Doctor is busy at that time.";
                     break;
                 }
             }

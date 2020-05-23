@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
 using Psycho.DAL.Core;
 using Psycho.DAL.Core.Domain;
 using Psycho.Logic.Facade.Interfaces;

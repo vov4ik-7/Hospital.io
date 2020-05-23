@@ -2,51 +2,68 @@
     ViewData["Title"] = "Chat";
 }
 
-@model System.Collections.Generic.List<Psycho.DTO.Core.UserChatDTO>
+@model Psycho.io.Models.User.ChatViewModel
 
 @section csss{
     <link href="~/css/chat.css" rel="stylesheet">
     <style>
-        .mydisabled {
+        .display-none {
             display: none;
+        }
+        .center {
+            margin: 0;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
         }
     </style>
 }
 
+@{
+    var user = new
+    {
+        Name = User.Identity.Name,
+        IsDoctor = User.IsInRole("Psychologist")
+    };
+}
+<div id="chatUtils"
+     class="display-none"
+     send-message-url="@Url.Action("SendLiveChatMessage", "Chat")">
+</div>
+
 <div class="container" style="margin-top: 100px">
     <div class="card grey lighten-3 chat-room">
         <div class="card-body">
-
-            <!-- Grid row -->
-            <div class="row px-lg-2 px-2">
-
-                <!-- Grid column -->
+            <div class="row px-lg-2 px-2" style="height: 600px;">
                 <div class="col-md-6 col-xl-4 px-0">
-
-                    <h6 class="font-weight-bold mb-3 text-center text-lg-left">Member</h6>
-                    <div class="white z-depth-1 px-3 pt-3 pb-3">
+                    <h6 class="font-weight-bold mb-3 text-center text-lg-left">Members</h6>
+                    <div class="white z-depth-1 px-3 pt-3 pb-3" style="height: 95%; overflow: auto;">
                         <ul class="list-unstyled friend-list">
-                            @{
-                                int i = 1;
+                            @if (Model.Chats.Count == 0)
+                            {
+                                <li class="alert alert-info text-center no-active-chat-yet" role="alert">
+                                    You have no active chats yet.
+                                </li>
                             }
-                            @foreach(var elem in Model){
-                                string psid = i + "un";
-                                <li id="@i" class="lighten-3 p-2">
-                                    <a href="#" class="d-flex justify-content-between">
-                                        @if(User.IsInRole("Psychologist")){
+                            @foreach (var elem in Model.Chats)
+                            {
+                                <li id="@string.Format("user-{0}", elem.User.Id)" class="lighten-3 p-2">
+                                    <a href="#" onclick="openChat('@elem.User.Id')" class="d-flex justify-content-between">
+                                        @if (User.IsInRole("Psychologist"))
+                                        {
                                             <img src="../img/user.png" alt="avatar" class="avatar rounded-circle d-flex align-self-center mr-2 z-depth-1">
                                         }
-                                        else {
+                                        else
+                                        {
                                             <img src="../img/man.png" alt="avatar" class="avatar rounded-circle d-flex align-self-center mr-2 z-depth-1">
                                         }
-                                        <div class="text-small mypsycholist" id="@psid">@elem.User.Email</div>
+                                        <div class="text-small">@elem.User.Email</div>
                                         <div class="chat-footer">
                                             @*<p class="text-smaller text-muted mb-0">Just now</p>
                                             <span class="badge badge-danger float-right">1</span>*@
                                         </div>
-                                        @{
-                                            i++;
-                                        }
                                     </a>
                                 </li>
                             }
@@ -62,127 +79,73 @@
                             </li>*@
                         </ul>
                     </div>
-
                 </div>
-                <!-- Grid column -->
-                <!-- Grid column -->
-                <div class="col-md-6 col-xl-8 pl-md-3 px-lg-auto px-0" style="height: 500px; overflow-y: scroll;">
-
-
-                        <div class="chat-message">
-                            @{
-                                int j = 1;
-                            }
-                            @foreach (var elem in Model)
-                            {
-                                
-                                string lox = $"i{j}";
-                                string c = "mychat" + j;
-                                
-                                <ul id="@lox" class="list-unstyled chat @c">
-                                    @{
-                                        j++;
-                                    }
-                                    @foreach (var elem2 in elem.chat)
+                <div class="col-md-6 col-xl-8 pl-md-3 px-lg-auto px-0 main-chat-container">
+                    <div class="chat-message chat-content center">
+                        <div class="alert alert-success text-center" role="alert">
+                            Please select a chat to start messaging
+                        </div>
+                    </div>
+                    @foreach (var elem in Model.Chats)
+                    {
+                        <div id="@string.Format("chat-{0}", elem.User.Id)" class="chat-content display-none">
+                            <div id="@string.Format("chat-scroll-{0}", elem.User.Id)" class="chat-message" style="height: 460px; overflow: auto;">
+                                <ul id="@string.Format("chat-messages-{0}", elem.User.Id)" class="list-unstyled chat">
+                                    @foreach (var message in elem.chat)
                                     {
                                         <li class="d-flex justify-content-between mb-4">
-                                            @if (elem2.Sender.RoleId == 2)
-                                            {
-                                                @*<img src="../img/man.png" alt="avatar" class="avatar rounded-circle mr-2 ml-lg-3 ml-0 z-depth-1">*@
-                                                <div class="chat-body white p-3 ml-2 z-depth-1">
-                                                    <div class="header">
-                                                        <strong class="primary-font">@elem2.Sender.Email</strong>
-                                                        @*<small class="pull-right text-muted"><i class="far fa-clock"></i> 12 mins ago</small>*@
-                                                    </div>
-                                                    <hr class="w-100">
-                                                    <p class="mb-0">
-                                                        @elem2.Text
-                                                    </p>
+                                            @{ var messageSenderName = message.Sender.Email == user.Name ? "Me" : message.Sender.Email; }
+                                            @*<img src="../img/man.png" alt="avatar" class="avatar rounded-circle mr-2 ml-lg-3 ml-0 z-depth-1">*@
+                                            <div class="chat-body white p-3 ml-2 z-depth-1">
+                                                <div class="header">
+                                                    <strong class="primary-font">@messageSenderName</strong>
+                                                    @*<small class="pull-right text-muted"><i class="far fa-clock"></i> 12 mins ago</small>*@
                                                 </div>
-                                            }
-                                            else if(elem2.Sender.RoleId != 2)
+                                                <hr class="w-100">
+                                                <p class="mb-0">
+                                                    @message.Text
+                                                </p>
+                                            </div>
+                                            @*else if (false)
                                             {
-                                                @*<img src="../img/user.png" alt="avatar" class="avatar rounded-circle mr-2 ml-lg-3 ml-0 z-depth-1">*@
+                                                <img src="../img/user.png" alt="avatar" class="avatar rounded-circle mr-2 ml-lg-3 ml-0 z-depth-1">
                                                 <div class="chat-body white p-3 ml-2 z-depth-1">
                                                     <div class="header">
                                                         <strong class="primary-font">@elem2.Sender.Email (Me)</strong>
-                                                        @*<small class="pull-right text-muted"><i class="far fa-clock"></i> 12 mins ago</small>*@
+                                                        <small class="pull-right text-muted"><i class="far fa-clock"></i> 12 mins ago</small>
                                                     </div>
                                                     <hr class="w-100">
                                                     <p class="mb-0">
                                                         @elem2.Text
                                                     </p>
                                                 </div>
-                                            }
-
-
+                                            }*@
                                         </li>
                                     }
-
                                 </ul>
-                            }
+                            </div>
                             <div>
                                 <div class="white">
                                     <div class="form-group basic-textarea">
-                                        <textarea class="form-control pl-2 my-0" id="message" rows="3" placeholder="Type your message here..."></textarea>
+                                        <textarea class="form-control pl-2 my-0" id="@string.Format("message-{0}", elem.User.Id)" rows="3" placeholder="Type your message here..."></textarea>
                                     </div>
                                 </div>
-                                <button id="sendBtn" type="button" class="btn btn-info btn-rounded btn-sm waves-effect waves-light float-right">Send</button>
+                                <button onclick="sendMessageButtonClick('@elem.User.Id', '@elem.User.Email')" type="button" class="btn btn-info btn-rounded btn-sm waves-effect waves-light float-right">Send</button>
                             </div>
                         </div>
-                    
-
-                    @*<div class="chat-message">
-
-                        <ul id="itemList" class="list-unstyled chat">
-                            <li class="d-flex justify-content-between mb-4">
-                                <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-6.jpg" alt="avatar" class="avatar rounded-circle mr-2 ml-lg-3 ml-0 z-depth-1">
-                                <div class="chat-body white p-3 ml-2 z-depth-1">
-                                    <div class="header">
-                                        <strong class="primary-font">komarov@gmail.com</strong>
-                                        <small class="pull-right text-muted"><i class="far fa-clock"></i> 12 mins ago</small>
-                                    </div>
-                                    <hr class="w-100">
-                                    <p class="mb-0">
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                                        labore et dolore magna aliqua.
-                                    </p>
-                                </div>
-                            </li>
-                        </ul>
-                        <div>
-                            <div class="white">
-                                <div class="form-group basic-textarea">
-                                    <textarea class="form-control pl-2 my-0" id="message" rows="3" placeholder="Type your message here..."></textarea>
-                                </div>
-                            </div>
-                            <button id="sendBtn" type="button" class="btn btn-info btn-rounded btn-sm waves-effect waves-light float-right">Send</button>
-                        </div>
-                    </div>*@
-
+                    }
                 </div>
-                <!-- Grid column -->
-
             </div>
-            <!-- Grid row -->
-
         </div>
     </div>
 </div>
 
 @section scripts{
-<script>
-    var ispsycho = '@User.IsInRole("Psychologist")';
-    console.log(ispsycho);
-    $('.mypsycholist').click(function () {
-            var idpsycho = $(this).id;
-            var idchat = 'i' + idpsycho;
-            $('.mychat').addClass('mydisabled');
-            $('#' + idchat).removeClass('mydisabled');
-            username = $(this).textContent;
-            console.log(username);
-        })</script>
-    <script type="text/javascript" src="~/js/signalr.min.js"></script>
-    <script type="text/javascript" src="~/js/forsignalr.js"></script>
-
+<script type="text/javascript" src="~/js/signalr.min.js"></script>
+<script type="text/javascript" src="~/js/forsignalr.js"></script>
+<script type="text/javascript">
+    var friendId = "@Html.Raw(Model.OnChatWithOpen?.Id)";
+    var friendEmail = "@Html.Raw(Model.OnChatWithOpen?.Email)";
+    openChatOrAddIfNotExists(friendId, friendEmail);
+</script>
 }

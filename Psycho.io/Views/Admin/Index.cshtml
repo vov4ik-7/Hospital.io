@@ -34,7 +34,7 @@
 
                 <div class="d-flex justify-content-between">
                     <h5 class="my-4 dark-grey-text font-weight-bold">Admin page</h5>
-                    <a class="btn btn-rounded btn-outline-default btn-md" asp-controller="Admin" asp-action="ReportsForReview">Reports for review</a>
+                    <button class="btn btn-rounded btn-outline-default btn-md" onclick="location.href='@Url.Action("ReportsForReview", "Admin")'">Reports for review</button>
                     <button id="create-psychologist" class="btn btn-rounded btn-outline-default btn-md">Add psychologist<i class="fas fa-user-plus pl-1"></i></button>
                 </div>
 
