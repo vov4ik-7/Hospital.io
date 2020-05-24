@@ -42,3 +42,74 @@ function SuccessCreateAppointment(data) {
         toastr.error(data.description);
     }
 }
+
+function OnCalendarEventOpen(event) {
+    $.ajax({
+        url: $('#doctorUtils').attr('show-app-info-url'),
+        data: { appointmentId: event.id },
+        method: "GET",
+        success: function (data) {
+            $('#showAppDialog').html(data);
+            $('#showAppResult').modal('show');
+        }
+    });
+}
+
+function AddAnalysisPopupSuccess(data) {
+    $('#addAnalysisDialog').html(data);
+    $('#addAnalysisResult').modal('show');
+    $('#onSubmitAddAnalisys').click(onSubmitAddAnalysis);
+}
+
+function onSubmitAddAnalysis(event) {
+    event.preventDefault();
+    if (!$('#addAnalysisForm')[0].checkValidity()) {
+        return;
+    }
+
+    var data = $('#addAnalysisForm').serializeArray();
+    var file = $('#analysisFile')[0].files[0];
+    var formData = new FormData();
+    $.each(data, (i, v) => formData.append(v.name, v.value));
+    formData.append("File", file);
+    $.ajax({
+        method: "POST",
+        url: $('#doctorUtils').attr('show-add-analysis-popup-url'),
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: SuccessAddAnalysis
+    });
+}
+
+function SuccessAddAnalysis(data) {
+    $('#addAnalysisResult').modal('hide');
+    addAnalysisRow(data);
+}
+
+function addAnalysisRow(newAnalysis) {
+    var row = `<tr id="analysis-${newAnalysis.id}">` +
+        `<td>${newAnalysis.name}</td>` +
+        `<td>${newAnalysis.analysisResult}</td>` +
+        `<td>${newAnalysis.doctorConclusion}</td>` +
+        `<td><a onclick="downloadAnalysis('${newAnalysis.id}')" class="btn btn-info btn-rounded btn-sm my-0">Download</a></td>` +
+        `<td><a onclick="removeAnalysis('${newAnalysis.id}')" class="far fa-trash-alt fa-lg"></a></td>` +
+        '</tr>';
+
+    $("#analyses-content").append(row);
+}
+
+function removeAnalysis(analysisId) {
+    $.ajax({
+        method: "POST",
+        url: $('#doctorUtils').attr('remove-analysis-url'),
+        data: { analysisId: analysisId },
+        success: function (data) {
+            $(`#analysis-${data}`).remove();
+        }
+    });
+}
+
+function downloadAnalysis(analysisId) {
+    window.location = $('#doctorUtils').attr('download-analysis-url') + `?analysisId=${analysisId}`;
+}

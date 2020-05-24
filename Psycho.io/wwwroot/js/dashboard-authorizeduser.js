@@ -43,3 +43,19 @@ function SuccessCreateAppointment(data) {
         toastr.error(data.description);
     }
 }
+
+function OnCalendarEventOpen(event) {
+    $.ajax({
+        url: $('#authUserUtils').attr('show-app-info-url'),
+        data: { appointmentId: event.id },
+        method: "GET",
+        success: function (data) {
+            $('#showAppDialog').html(data);
+            $('#showAppResult').modal('show');
+        }
+    });
+}
+
+function downloadAnalysis(analysisId) {
+    window.location = $('#authUserUtils').attr('download-analysis-url') + `?analysisId=${analysisId}`;
+}

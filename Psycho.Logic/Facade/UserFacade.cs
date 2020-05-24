@@ -28,7 +28,7 @@ namespace Psycho.Logic.Facade
         public UserDTO GetUserDTO(int id)
         {
             User user = this.GetUser(id);
-            var workSchedule = (user as Psychologist).WorkSchedules.ToList();
+            var workSchedule = (user as Psychologist)?.WorkSchedules.ToList();
             UserDTO userDTO = new UserDTO
             {
                 Id = user.Id,
@@ -46,20 +46,20 @@ namespace Psycho.Logic.Facade
                 Height = (user as AuthorizedUser)?.Height,
                 Weight = (user as AuthorizedUser)?.Weight,
 
-                MondayStart = workSchedule.FirstOrDefault(s => s.Day == Day.Monday)?.StartTime,
-                MondayEnd = workSchedule.FirstOrDefault(s => s.Day == Day.Monday)?.EndTime,
-                TuesdayStart = workSchedule.FirstOrDefault(s => s.Day == Day.Tuesday)?.StartTime,
-                TuesdayEnd = workSchedule.FirstOrDefault(s => s.Day == Day.Tuesday)?.EndTime,
-                WednesdayStart = workSchedule.FirstOrDefault(s => s.Day == Day.Wednesday)?.StartTime,
-                WednesdayEnd = workSchedule.FirstOrDefault(s => s.Day == Day.Wednesday)?.EndTime,
-                ThursdayStart = workSchedule.FirstOrDefault(s => s.Day == Day.Thursday)?.StartTime,
-                ThursdayEnd = workSchedule.FirstOrDefault(s => s.Day == Day.Thursday)?.EndTime,
-                FridayStart = workSchedule.FirstOrDefault(s => s.Day == Day.Friday)?.StartTime,
-                FridayEnd = workSchedule.FirstOrDefault(s => s.Day == Day.Friday)?.EndTime,
-                SaturdayStart = workSchedule.FirstOrDefault(s => s.Day == Day.Saturday)?.StartTime,
-                SaturdayEnd = workSchedule.FirstOrDefault(s => s.Day == Day.Saturday)?.EndTime,
-                SundayStart = workSchedule.FirstOrDefault(s => s.Day == Day.Sunday)?.StartTime,
-                SundayEnd = workSchedule.FirstOrDefault(s => s.Day == Day.Sunday)?.EndTime,
+                MondayStart = workSchedule?.FirstOrDefault(s => s.Day == Day.Monday)?.StartTime,
+                MondayEnd = workSchedule?.FirstOrDefault(s => s.Day == Day.Monday)?.EndTime,
+                TuesdayStart = workSchedule?.FirstOrDefault(s => s.Day == Day.Tuesday)?.StartTime,
+                TuesdayEnd = workSchedule?.FirstOrDefault(s => s.Day == Day.Tuesday)?.EndTime,
+                WednesdayStart = workSchedule?.FirstOrDefault(s => s.Day == Day.Wednesday)?.StartTime,
+                WednesdayEnd = workSchedule?.FirstOrDefault(s => s.Day == Day.Wednesday)?.EndTime,
+                ThursdayStart = workSchedule?.FirstOrDefault(s => s.Day == Day.Thursday)?.StartTime,
+                ThursdayEnd = workSchedule?.FirstOrDefault(s => s.Day == Day.Thursday)?.EndTime,
+                FridayStart = workSchedule?.FirstOrDefault(s => s.Day == Day.Friday)?.StartTime,
+                FridayEnd = workSchedule?.FirstOrDefault(s => s.Day == Day.Friday)?.EndTime,
+                SaturdayStart = workSchedule?.FirstOrDefault(s => s.Day == Day.Saturday)?.StartTime,
+                SaturdayEnd = workSchedule?.FirstOrDefault(s => s.Day == Day.Saturday)?.EndTime,
+                SundayStart = workSchedule?.FirstOrDefault(s => s.Day == Day.Sunday)?.StartTime,
+                SundayEnd = workSchedule?.FirstOrDefault(s => s.Day == Day.Sunday)?.EndTime,
             };
 
             return userDTO;

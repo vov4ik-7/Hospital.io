@@ -1,0 +1,158 @@
+﻿@model Psycho.io.Models.User.FullAppointmentResultViewModel
+
+<style>
+    p {
+        margin-bottom: 5px !important;
+        margin-block-start: 0px !important;
+        margin-block-end: 0px !important;
+    }
+</style>
+
+<form id="appointmentForm">
+    <div class="col-md-12 mb-4">
+        <div class="modal-content form-elegant">
+            <div class="modal-header text-center">
+                <h3 class="modal-title w-100 dark-grey-text font-weight-bold" id="myModalLabel"><strong>Appointment</strong></h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body mx-4">
+                <div class="row">
+                    <div class="col-md-4 mb-4">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p class="text-right">Patient:</p>
+                            </div>
+                            <div class="col-md-6">
+                                <p>@string.Format("{0} {1}", Model.Patient.FirstName, Model.Patient.LastName)</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p class="text-right">Age:</p>
+                            </div>
+                            <div class="col-md-6">
+                                <p>@Model.Patient.Age</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p class="text-right">Gender:</p>
+                            </div>
+                            <div class="col-md-6">
+                                <p>@Model.Patient.Gender.ToString()</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p class="text-right">Address:</p>
+                            </div>
+                            <div class="col-md-6">
+                                <p>@Model.Patient.Address</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 offset-md-3 mb-4">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p class="text-right">Doctor:</p>
+                            </div>
+                            <div class="col-md-6">
+                                <p>@string.Format("{0} {1}", Model.Doctor.FirstName, Model.Doctor.LastName)</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p class="text-right">Date:</p>
+                            </div>
+                            <div class="col-md-6">
+                                <p>@string.Format("{0}/{1}/{2}", Model.Date?.Month, Model.Date?.Day, Model.Date?.Year)</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p class="text-right">Status:</p>
+                            </div>
+                            <div class="col-md-6">
+                                @switch (Model.Status)
+                                {
+                                    case "Finished":
+                                        <span class="badge badge-danger">@Model.Status</span>
+                                        break;
+                                    case "Planned":
+                                        <span class="badge badge-secondary">@Model.Status</span>
+                                        break;
+                                    default:
+                                        <span class="badge badge-success">@Model.Status</span>
+                                        break;
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                @if (Model.Status != "Planned")
+                {
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h5>Analyzes</h5>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div id="table" class="table-editable">
+                                <span class="table-add float-right mr-2">
+                                    @Html.ActionLink("Add", "AddAnalysisPopup", "User", new { appointmentId = Model.Id }, new
+                                    {
+                                        data_ajax = "true",
+                                        data_ajax_method = "GET",
+                                        data_ajax_mode = "replace",
+                                        data_ajax_update = "",
+                                        data_ajax_success = "AddAnalysisPopupSuccess",
+                                        @class = "btn btn-info btn-rounded btn-sm"
+                                    })
+                                    @*<a href="" class="btn btn-info btn-rounded btn-sm">
+                                        Add<i class="fas fa-plus-square ml-1"></i>
+                                    </a>*@
+                                </span>
+                                <table class="table table-bordered table-responsive-md table-striped text-center">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">Name</th>
+                                            <th class="text-center">Result</th>
+                                            <th class="text-center">Doctor conclusion</th>
+                                            <th class="text-center">File</th>
+                                            <th class="text-center">Remove</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="analyses-content">
+                                        @foreach (var analysis in Model.Analyses)
+                                        {
+                                            <tr id="@string.Format("analysis-{0}", analysis.Id)">
+                                                <td>@analysis.Name</td>
+                                                <td>@analysis.AnalysisResult</td>
+                                                <td>@analysis.DoctorConclusion</td>
+                                                <td>
+                                                    <a onclick="downloadAnalysis('@analysis.Id')" class="btn btn-info btn-rounded btn-sm my-0">Download</a>
+                                                </td>
+                                                <td>
+                                                    <a onclick="removeAnalysis('@analysis.Id')" class="far fa-trash-alt fa-lg"></a>
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+                <hr />
+
+            </div>
+        </div>
+    </div>
+</form>

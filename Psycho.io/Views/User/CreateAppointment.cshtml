@@ -32,7 +32,7 @@
                                     @name</option>
                                 }
                                 else if(User.IsInRole("AuthorizedUser")){
-                                    <option selected value="">-Psychologist-</option>
+                                    <option selected value="">-Doctors-</option>
                                     foreach(var elem in Model.Psychologists){
                                         <option value="@elem.Id">@{
                                             string name = $"{elem.FirstName} {elem.LastName}";

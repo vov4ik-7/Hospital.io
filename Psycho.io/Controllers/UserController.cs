@@ -14,6 +14,8 @@ using Psycho.DTO.Persistence;
 using Newtonsoft.Json;
 using Psycho.io.Models.User;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Hosting;
+using System.IO;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -24,10 +26,15 @@ namespace Psycho.io.Controllers
     {
         private UserManager<User> _userManager;
         private IUnitOfWork _unitOfWork;
+        private IWebHostEnvironment _appEnvironment;
 
-        public UserController(IUnitOfWork unitOfWork, IPsychoLogic psychoLogic, UserManager<User> userManager) : base(psychoLogic) {
+        public UserController(IUnitOfWork unitOfWork,
+            IPsychoLogic psychoLogic,
+            UserManager<User> userManager,
+            IWebHostEnvironment appEnvironment) : base(psychoLogic) {
             _userManager = userManager;
             _unitOfWork = unitOfWork;
+            _appEnvironment = appEnvironment;
         }
 
         public async Task<IActionResult> ChatAsync(int? friendId = null)
@@ -245,6 +252,125 @@ namespace Psycho.io.Controllers
             //model.appointments = list.ToArray();
 
             return View(model);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> ShowAppointmentResultForDoctorInfo(int appointmentId)
+        {
+            var appointment = await _unitOfWork.Context.Appointments.FirstOrDefaultAsync(a => a.Id == appointmentId);
+            var viewModel = new FullAppointmentResultViewModel
+            {
+                Id = appointmentId,
+                Patient = appointment.AuthorizedUser,
+                Doctor = appointment.Psychologist,
+                Date = appointment.StartDataTime
+            };
+
+            var analyses = await _unitOfWork.Context.Analyses.Where(a => a.AppointmentId == appointmentId).ToListAsync();
+            viewModel.Analyses = new List<AnalysisViewModel>();
+            foreach (var analysis in analyses)
+            {
+                viewModel.Analyses.Add(new AnalysisViewModel
+                {
+                    Id = analysis.Id,
+                    Name = analysis.Name,
+                    AnalysisResult = analysis.AnalysisResult,
+                    DoctorConclusion = analysis.DoctorConclusion
+                });
+            }
+
+            var now = DateTime.Now;
+            viewModel.Status = now > appointment?.EndDataTime
+                ? "Finished"
+                : now < appointment?.StartDataTime
+                    ? "Planned"
+                    : "Сontinues";
+
+            return PartialView(viewModel);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> ShowAppointmentResultForPatientInfo(int appointmentId)
+        {
+            var appointment = await _unitOfWork.Context.Appointments.FirstOrDefaultAsync(a => a.Id == appointmentId);
+            var viewModel = new FullAppointmentResultViewModel
+            {
+                Id = appointmentId,
+                Patient = appointment.AuthorizedUser,
+                Doctor = appointment.Psychologist,
+                Date = appointment.StartDataTime
+            };
+
+            var analyses = await _unitOfWork.Context.Analyses.Where(a => a.AppointmentId == appointmentId).ToListAsync();
+            viewModel.Analyses = new List<AnalysisViewModel>();
+            foreach(var analysis in analyses)
+            {
+                viewModel.Analyses.Add(new AnalysisViewModel
+                {
+                    Id = analysis.Id,
+                    Name = analysis.Name,
+                    AnalysisResult = analysis.AnalysisResult,
+                    DoctorConclusion = analysis.DoctorConclusion
+                });
+            }
+
+            var now = DateTime.Now;
+            viewModel.Status = now > appointment?.EndDataTime
+                ? "Finished"
+                : now < appointment?.StartDataTime
+                    ? "Planned"
+                    : "Сontinues";
+
+            return PartialView(viewModel);
+        }
+
+        [HttpGet]
+        public IActionResult AddAnalysisPopup(int appointmentId)
+        {
+            var viewModel = new AnalysisViewModel { AppointmentId = appointmentId };
+            return PartialView(viewModel);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddAnalysis(AnalysisViewModel model)
+        {
+            var analysis = new Analysis
+            {
+                Name = model.Name,
+                AppointmentId = model.AppointmentId,
+                AnalysisResult = model.AnalysisResult,
+                DoctorConclusion = model.DoctorConclusion
+            };
+
+            byte[] fileData = null;
+            using (var binaryReader = new BinaryReader(model.File.OpenReadStream()))
+            {
+                fileData = binaryReader.ReadBytes((int)model.File.Length);
+            }
+
+            analysis.File = fileData;
+            _unitOfWork.Context.Analyses.Add(analysis);
+            await _unitOfWork.Context.SaveChangesAsync();
+
+            model.File = null;
+            model.Id = analysis.Id;
+
+            return Ok(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> RemoveAnalysis(int analysisId)
+        {
+            _unitOfWork.Context.Analyses.Remove(new Analysis { Id = analysisId });
+            await _unitOfWork.Context.SaveChangesAsync();
+            return Ok(analysisId);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> DownloadAnalysis(int analysisId)
+        {
+            var analysis = await _unitOfWork.Context.Analyses.FirstOrDefaultAsync(a => a.Id == analysisId);
+            return File(analysis.File, "application/pdf", $"analysis-{analysis.Id}.pdf");
         }
 
         [HttpGet]

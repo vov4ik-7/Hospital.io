@@ -1,0 +1,69 @@
+﻿@model Psycho.io.Models.User.AnalysisViewModel
+
+
+<form id="addAnalysisForm">
+
+    <div class="col-md-12 mb-4">
+        <div class="modal-content form-elegant">
+            <div class="modal-header text-center">
+                <h3 class="modal-title w-100 dark-grey-text font-weight-bold" id="myModalLabel"><strong>Add analysis</strong></h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body mx-4">
+                <div class="row">
+                    <input asp-for="AppointmentId" hidden />
+                    <div class="col-md-12">
+                        <div class="md-form mb-0">
+                            <input type="text" id="analysisName" class="form-control" asp-for="Name" required>
+                            <label for="analysisName" class="" asp-for="Name">Name</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="md-form">
+                            <textarea id="analysisResult" class="md-textarea form-control" rows="3" asp-for="AnalysisResult" required></textarea>
+                            <label for="analysisResult" asp-for="AnalysisResult">Analysis result</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="md-form">
+                            <textarea id="doctorConclusion" class="md-textarea form-control" rows="3" asp-for="DoctorConclusion" required></textarea>
+                            <label for="doctorConclusion" asp-for="DoctorConclusion">Doctor conclusion</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="md-form">
+                            <div class="file-field">
+                                <div class="btn btn-primary btn-sm float-left">
+                                    <span>Choose file</span>
+                                    <input type="file" id="analysisFile" asp-for="File" accept="application/pdf" required>
+                                </div>
+                                <div class="file-path-wrapper">
+                                    <input class="file-path validate" type="text" placeholder="Upload your file">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <hr />
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="text-center mb-3">
+                            <button id="onSubmitAddAnalisys" type="submit" class="btn blue-gradient btn-block btn-rounded z-depth-1a">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</form>

@@ -18,6 +18,7 @@ namespace Psycho.DAL.Persistence
         public virtual DbSet<Report> Reports { get; set; }
         public virtual DbSet<WorkSchedule> WorkSchedules { get; set; }
         public virtual DbSet<Chat> Chats { get; set; }
+        public virtual DbSet<Analysis> Analyses { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -35,6 +36,7 @@ namespace Psycho.DAL.Persistence
             builder.ApplyConfiguration(new ReportConfiguration());
             builder.ApplyConfiguration(new ChatConfiguration());
             builder.ApplyConfiguration(new WorkScheduleConfiguration());
+            builder.ApplyConfiguration(new AnalysisConfiguration());
         }
     }
 }

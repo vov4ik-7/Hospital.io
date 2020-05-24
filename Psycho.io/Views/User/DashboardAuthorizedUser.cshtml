@@ -12,11 +12,17 @@
     <link href="~/css/profile.css" rel="stylesheet">
 }
 
+<div id="authUserUtils"
+     class="display-none"
+     show-app-info-url="@Url.Action("ShowAppointmentResultForPatientInfo", "User")"
+     download-analysis-url="@Url.Action("DownloadAnalysis", "User")">
+</div>
+
 <div class="modal fade" id="createAppModalForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div id="createAppDialog" class="modal-dialog modal-lg" role="document"></div>
 </div>
 <div class="modal fade" id="showAppResult" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div id="showAppDialog" class="modal-dialog modal-lg" role="document"></div>
+    <div id="showAppDialog" class="modal-dialog modal-lg" role="document" style="max-width: 1100px;"></div>
 </div>
 
 <main>
@@ -84,7 +90,10 @@
                                         },
 
                                         events: q,
-                                        timeFormat: 'H:mm'
+                                        timeFormat: 'H:mm',
+                                        eventClick: function (info) {
+                                            OnCalendarEventOpen(info);
+                                        }
                                     });
                                 }</script>
                         </div>
