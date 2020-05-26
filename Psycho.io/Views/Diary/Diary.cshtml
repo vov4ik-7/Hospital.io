@@ -1,0 +1,164 @@
+﻿@model Psycho.io.Models.Diary.DiaryViewModel
+
+<link href="~/css/diary/diary.css" rel="stylesheet">
+
+<div class="row text-center">
+    <div class="col-md-9 mb-4">
+        <div class="card card-cascade cascading-admin-card user-card">
+            <div class="admin-up d-flex justify-content-start">
+                <i class="fas fa-running light-green py-4 mr-3 z-depth-2"></i>
+                <div class="data">
+                    <h5 class="font-weight-bold dark-grey-text">
+                        Lifestyle
+                    </h5>
+                </div>
+            </div>
+            <div class="card-body card-body-cascade">
+                <div id="lifestyle-container" class="col-md-12 mb-5 d-flex flex-wrap justify-content-between">
+                    @foreach (var defaultLifestyle in Model.DefaultLifestyles)
+                    {
+                        @if (defaultLifestyle.Popover)
+                        {
+                            <div data-toggle="tooltip" title="@defaultLifestyle.LifestyleDescription" class="m-4">
+                                <a data-toggle="modal" data-target="#@string.Format("{0}-modal", defaultLifestyle.LifestyleId)">
+                                    <img id="@defaultLifestyle.LifestyleId" src="@string.Format("../img/diary/lifestyle/lifestyle-{0}.png", defaultLifestyle.LifestyleId)" class="md-avatar rounded-circle size-2" alt="image">
+                                </a>
+                            </div>
+
+                            <div class="modal fade" id="@string.Format("{0}-modal", defaultLifestyle.LifestyleId)" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                                 aria-hidden="true">
+                                <div class="modal-dialog modal-sm" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title w-100">@defaultLifestyle.LifestyleDescription</h4>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <input id="@string.Format("{0}-input", defaultLifestyle.LifestyleId)" class="form-control" type="number"/>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-light btn-sm" data-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-primary btn-sm" onclick="savePopupClick('@defaultLifestyle.LifestyleId')">Save</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div data-toggle="tooltip" title="@defaultLifestyle.LifestyleDescription" class="m-4 simple-lifestyle-pick">
+                                <a>
+                                    <img id="@defaultLifestyle.LifestyleId" src="@string.Format("../img/diary/lifestyle/lifestyle-{0}.png", defaultLifestyle.LifestyleId)" class="md-avatar rounded-circle size-2" alt="image">
+                                </a>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+
+        <div class="card card-cascade cascading-admin-card user-card">
+            <div class="admin-up d-flex justify-content-start">
+                <i class="fas fa-thermometer-half light-blue lighten-2 py-4 mr-3 z-depth-2"></i>
+                <div class="data">
+                    <h5 class="font-weight-bold dark-grey-text">
+                        Symptoms
+                    </h5>
+                </div>
+            </div>
+            <div class="card-body card-body-cascade">
+                <div id="symptoms-container" class="col-md-12 mb-5 d-flex flex-wrap justify-content-between">
+                    @foreach (var defaultSymptom in Model.DefaultSymptoms)
+                    {
+                        <div data-toggle="tooltip" title="@defaultSymptom.SymptomDescription" class="m-4">
+                            <a>
+                                <img id="@defaultSymptom.SymptomId" src="@string.Format("../img/diary/symptoms/symptom-{0}.png", defaultSymptom.SymptomId)" class="md-avatar rounded-circle size-2" alt="image">
+                            </a>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <div class="card card-cascade cascading-admin-card user-card">
+            <div class="admin-up d-flex justify-content-start">
+                <i class="far fa-laugh-wink amber lighten-1 py-4 mr-3 z-depth-2"></i>
+                <div class="data">
+                    <h5 class="font-weight-bold dark-grey-text">
+                        Mood
+                    </h5>
+                </div>
+            </div>
+            <div class="card-body card-body-cascade">
+                <div id="mood-container" class="col-md-12 mb-5 d-flex flex-wrap justify-content-between">
+                    @foreach(var defaultMood in Model.DefaultMoods)
+                    {
+                        <div data-toggle="tooltip" title="@defaultMood.MoodDescription" class="m-4">
+                            <a>
+                                <img id="@defaultMood.MoodId" src="@string.Format("../img/diary/mood/mood-{0}.png", defaultMood.MoodId)" class="md-avatar rounded-circle size-2" alt="image">
+                            </a>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 mb-4">
+        <div style="margin-top: 100px;">
+            <div class="col-md-10 offset-md-1">
+                <div id="miniCalendar" data-language='en' class=""></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $('#miniCalendar').datepicker({
+        inline: true,
+        todayButton: new Date(),
+        maxDate: new Date(),
+        onSelect: function (formattedDate, date, inst) {
+            debugger;
+        }
+    });
+
+    $('[data-toggle="tooltip"]').tooltip()
+
+    $(document).on("click", "#lifestyle-container .simple-lifestyle-pick img", function () {
+        if ($(this).hasClass("selected-lifestyle")) {
+            $(this).removeClass("selected-lifestyle");
+        } else {
+            $(this).addClass("selected-lifestyle");
+        }
+    });
+
+    $(document).on("click", "#symptoms-container img", function () {
+        if ($(this).hasClass("selected-symptom")) {
+            $(this).removeClass("selected-symptom");
+        } else {
+            $(this).addClass("selected-symptom");
+        }
+    });
+
+    $(document).on("click", "#mood-container img", function () {
+        if ($(this).hasClass("selected-mood")) {
+            $(this).removeClass("selected-mood");
+        } else {
+            $(this).addClass("selected-mood");
+        }
+        //$(this).css("border", "5px solid orange");
+        //$("img").not($(this)).css("border", "none");
+    });
+
+    function savePopupClick(lifeStyleId) {
+        var input = $(`#${lifeStyleId}-input`).val();
+        if (input) {
+            $(`#${lifeStyleId}`).addClass("selected-lifestyle");
+        } else {
+            $(`#${lifeStyleId}`).removeClass("selected-lifestyle");
+        }
+        $(`#${lifeStyleId}-modal`).modal('hide');
+    }
+</script>

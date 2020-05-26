@@ -99,8 +99,12 @@
                             <li class="nav-item">
                                 <a asp-controller="User" asp-action="DashboardAuthorizedUser" class="nav-link"><i class="far fa-calendar-alt"></i></a>
                             </li>
+                            <li class="nav-item">
+                                <a asp-controller="Diary" asp-action="HealthDiary" class="nav-link"><i class="fas fa-book-medical"></i></a>
+                            </li>
                         }
-                        else if (User.IsInRole("AnonymousUser")){
+                        else if (User.IsInRole("AnonymousUser"))
+                        {
                             <li class="nav-item">
                                 <a class="nav-link">@User.Identity.Name</a>
                             </li>

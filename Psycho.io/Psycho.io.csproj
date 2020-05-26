@@ -26,6 +26,16 @@
     <Folder Include="Views\Psychologist\" />
     <Folder Include="ChatHub\" />
     <Folder Include="Models\User\" />
+    <Folder Include="wwwroot\js\utils\" />
+    <Folder Include="wwwroot\css\utils\" />
+    <Folder Include="Views\Diary\" />
+    <Folder Include="wwwroot\img\diary\" />
+    <Folder Include="wwwroot\img\diary\mood\" />
+    <Folder Include="wwwroot\css\diary\" />
+    <Folder Include="Constants\" />
+    <Folder Include="Models\Diary\" />
+    <Folder Include="wwwroot\img\diary\symptoms\" />
+    <Folder Include="wwwroot\img\diary\lifestyle\" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="wwwroot\images\idea-2.png" />

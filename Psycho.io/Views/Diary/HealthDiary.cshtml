@@ -1,0 +1,85 @@
+﻿@{
+    ViewData["Title"] = "Health Diary";
+}
+
+@section csss{
+    <link href="~/css/profile.css" rel="stylesheet">
+    <link href="~/css/utils/datepicker.css" rel="stylesheet" type="text/css">
+    <style>
+        .dislay-none {
+            display: none;
+        }
+    </style>
+}
+
+<div id="healthDiaryUtils"
+     class="display-none"
+     show-app-info-url="@Url.Action("ShowAppointmentResultForPatientInfo", "User")"
+     download-analysis-url="@Url.Action("DownloadAnalysis", "User")">
+</div>
+
+<div class="modal fade" id="createAppModalForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div id="createAppDialog" class="modal-dialog modal-lg" role="document"></div>
+</div>
+<div class="modal fade" id="showAppResult" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div id="showAppDialog" class="modal-dialog modal-lg" role="document" style="max-width: 1100px;"></div>
+</div>
+
+<main>
+    <div class="container-fluid">
+        <section class="section team-section">
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="nav md-tabs nav-justified">
+                        <li class="nav-item waves-effect waves-light">
+                            <a class="nav-link active nav-btn" data-toggle="tab" href="#" role="tab"
+                               data-url="@Url.Action("Diary", "Diary")"
+                               data-content-id="healthDiaryTab"
+                               id="healthDiaryNav">Health Diary</a>
+                        </li>
+                        <li class="nav-item waves-effect waves-light">
+                            <a class="nav-link nav-btn" data-toggle="tab" href="#" role="tab"
+                               data-url="@Url.Action("Statistics", "Diary")"
+                               data-content-id="statisticsTab"
+                               id="statisticsNav">Statistics</a>
+                        </li>
+                    </ul>
+
+                    <div class="tab-content card">
+                        <div id="healthDiaryTab" class="tab-with-content dislay-none"></div>
+                        <div id="statisticsTab" class="tab-with-content dislay-none"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</main>
+
+@section scripts{
+    <script type="text/javascript" src="~/js/utils/datepicker.js"></script>
+    <script type="text/javascript" src="~/js/utils/datepicker.en.js"></script>
+    <script>
+        function loadPage(tabSelector, url) {
+            $(".tab-with-content").addClass("dislay-none");
+            $.ajax({
+                url: url,
+                method: "GET",
+                success: function (res) {
+                    $(tabSelector).html(res);
+                    $(tabSelector).removeClass("dislay-none");
+                }
+            });
+        }
+
+        $(".nav-btn").click(function (elem) {
+            var elemSelector = "#" + $(elem.currentTarget).attr('data-content-id');;
+            var dataUrl = $(elem.currentTarget).attr('data-url');
+            loadPage(elemSelector, dataUrl);
+        });
+
+        var initContentSelector = "#" + $("#healthDiaryNav").attr("data-content-id");
+        var initUrl = $("#healthDiaryNav").attr("data-url");
+        loadPage(initContentSelector, initUrl);
+        
+    </script>
+}
