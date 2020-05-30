@@ -2,6 +2,15 @@
 
 <link href="~/css/diary/diary.css" rel="stylesheet">
 
+<div id="diaryUtils"
+     class="display-none"
+     add-diary-record-url="@Url.Action("AddDiaryRecord", "Diary")"
+     remove-diary-record-url="@Url.Action("RemoveDiaryRecord", "Diary")"
+     add-or-update-body-indicator-url="@Url.Action("AddOrUpdateBodyIndicator", "Diary")"
+     remove-body-indicator-url="@Url.Action("RemoveBodyIndicator", "Diary")"
+     change-diary-day-url="@Url.Action("ChangeDiaryDay", "Diary")">
+</div>
+
 <div class="row text-center">
     <div class="col-md-9 mb-4">
         <div class="card card-cascade cascading-admin-card user-card">
@@ -19,9 +28,24 @@
                     {
                         @if (defaultLifestyle.Popover)
                         {
+                            var unit = defaultLifestyle.LifestyleId == "drink-water"
+                                ? "L"
+                                : defaultLifestyle.LifestyleId == "weight"
+                                    ? "kg"
+                                    : defaultLifestyle.LifestyleId == "sleep"
+                                        ? "h"
+                                        : "°C";
+                            var selectedLifestyle = "";
+                            var inputedValue = 0m;
+                            var record = Model.UserBodyIndicators.FirstOrDefault(r => r.Indicator == defaultLifestyle.LifestyleId);
+                            if (record != null)
+                            {
+                                selectedLifestyle = "selected-lifestyle";
+                                inputedValue = record.Value;
+                            }
                             <div data-toggle="tooltip" title="@defaultLifestyle.LifestyleDescription" class="m-4">
                                 <a data-toggle="modal" data-target="#@string.Format("{0}-modal", defaultLifestyle.LifestyleId)">
-                                    <img id="@defaultLifestyle.LifestyleId" src="@string.Format("../img/diary/lifestyle/lifestyle-{0}.png", defaultLifestyle.LifestyleId)" class="md-avatar rounded-circle size-2" alt="image">
+                                    <img id="@defaultLifestyle.LifestyleId" src="@string.Format("../img/diary/lifestyle/lifestyle-{0}.png", defaultLifestyle.LifestyleId)" class="md-avatar rounded-circle size-2 @selectedLifestyle" alt="image">
                                 </a>
                             </div>
 
@@ -36,7 +60,12 @@
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                            <input id="@string.Format("{0}-input", defaultLifestyle.LifestyleId)" class="form-control" type="number"/>
+                                            <div class="input-group mb-3">
+                                                <input id="@string.Format("{0}-input", defaultLifestyle.LifestyleId)" class="form-control lifestyle-input" type="number" value="@inputedValue" placeholder="" aria-label="" aria-describedby="@string.Format("{0}-addon", defaultLifestyle.LifestyleId)">
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text" id="@string.Format("{0}-addon", defaultLifestyle.LifestyleId)">@unit</span>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-light btn-sm" data-dismiss="modal">Close</button>
@@ -48,9 +77,10 @@
                         }
                         else
                         {
+                            var selectedLifestyle = Model.UserLifestyles.Contains(defaultLifestyle.LifestyleId) ? "selected-lifestyle" : "";
                             <div data-toggle="tooltip" title="@defaultLifestyle.LifestyleDescription" class="m-4 simple-lifestyle-pick">
                                 <a>
-                                    <img id="@defaultLifestyle.LifestyleId" src="@string.Format("../img/diary/lifestyle/lifestyle-{0}.png", defaultLifestyle.LifestyleId)" class="md-avatar rounded-circle size-2" alt="image">
+                                    <img id="@defaultLifestyle.LifestyleId" src="@string.Format("../img/diary/lifestyle/lifestyle-{0}.png", defaultLifestyle.LifestyleId)" class="md-avatar rounded-circle size-2 @selectedLifestyle" alt="image">
                                 </a>
                             </div>
                         }
@@ -72,9 +102,10 @@
                 <div id="symptoms-container" class="col-md-12 mb-5 d-flex flex-wrap justify-content-between">
                     @foreach (var defaultSymptom in Model.DefaultSymptoms)
                     {
+                        var selectedSymptom = @Model.UserSymptoms.Contains(defaultSymptom.SymptomId) ? "selected-symptom" : "";
                         <div data-toggle="tooltip" title="@defaultSymptom.SymptomDescription" class="m-4">
                             <a>
-                                <img id="@defaultSymptom.SymptomId" src="@string.Format("../img/diary/symptoms/symptom-{0}.png", defaultSymptom.SymptomId)" class="md-avatar rounded-circle size-2" alt="image">
+                                <img id="@defaultSymptom.SymptomId" src="@string.Format("../img/diary/symptoms/symptom-{0}.png", defaultSymptom.SymptomId)" class="md-avatar rounded-circle size-2 @selectedSymptom" alt="image">
                             </a>
                         </div>
                     }
@@ -95,9 +126,10 @@
                 <div id="mood-container" class="col-md-12 mb-5 d-flex flex-wrap justify-content-between">
                     @foreach(var defaultMood in Model.DefaultMoods)
                     {
+                        var selectedMood = Model.UserMoods.Contains(defaultMood.MoodId) ? "selected-mood" : "";
                         <div data-toggle="tooltip" title="@defaultMood.MoodDescription" class="m-4">
                             <a>
-                                <img id="@defaultMood.MoodId" src="@string.Format("../img/diary/mood/mood-{0}.png", defaultMood.MoodId)" class="md-avatar rounded-circle size-2" alt="image">
+                                <img id="@defaultMood.MoodId" src="@string.Format("../img/diary/mood/mood-{0}.png", defaultMood.MoodId)" class="md-avatar rounded-circle size-2 @selectedMood" alt="image">
                             </a>
                         </div>
                     }
@@ -115,12 +147,15 @@
 </div>
 
 <script>
+    var globalCurrentDate = new Date();
+
     $('#miniCalendar').datepicker({
         inline: true,
         todayButton: new Date(),
         maxDate: new Date(),
         onSelect: function (formattedDate, date, inst) {
-            debugger;
+            globalCurrentDate = date;
+            changeDiaryDay(date);
         }
     });
 
@@ -129,36 +164,97 @@
     $(document).on("click", "#lifestyle-container .simple-lifestyle-pick img", function () {
         if ($(this).hasClass("selected-lifestyle")) {
             $(this).removeClass("selected-lifestyle");
+            removeDiaryRecord($(this).attr('id'), 'lifestyle', globalCurrentDate);
         } else {
             $(this).addClass("selected-lifestyle");
+            addDiaryRecord($(this).attr('id'), 'lifestyle', globalCurrentDate);
         }
     });
 
     $(document).on("click", "#symptoms-container img", function () {
         if ($(this).hasClass("selected-symptom")) {
             $(this).removeClass("selected-symptom");
+            removeDiaryRecord($(this).attr('id'), 'symptom', globalCurrentDate);
         } else {
             $(this).addClass("selected-symptom");
+            addDiaryRecord($(this).attr('id'), 'symptom', globalCurrentDate);
         }
     });
 
     $(document).on("click", "#mood-container img", function () {
         if ($(this).hasClass("selected-mood")) {
             $(this).removeClass("selected-mood");
+            removeDiaryRecord($(this).attr('id'), 'mood', globalCurrentDate);
         } else {
             $(this).addClass("selected-mood");
+            addDiaryRecord($(this).attr('id'), 'mood', globalCurrentDate);
         }
-        //$(this).css("border", "5px solid orange");
-        //$("img").not($(this)).css("border", "none");
     });
 
     function savePopupClick(lifeStyleId) {
         var input = $(`#${lifeStyleId}-input`).val();
         if (input) {
             $(`#${lifeStyleId}`).addClass("selected-lifestyle");
+            addOrUplateBodyIndicator(input, lifeStyleId, globalCurrentDate);
         } else {
             $(`#${lifeStyleId}`).removeClass("selected-lifestyle");
+            removeBodyIndicator(lifeStyleId, globalCurrentDate);
         }
         $(`#${lifeStyleId}-modal`).modal('hide');
+    }
+
+    function addDiaryRecord(value, blockName, date) {
+        $.ajax({
+            url: $("#diaryUtils").attr("add-diary-record-url"),
+            method: "POST",
+            data: {value: value,blockName: blockName,date: date.toDateString()
+            }
+        });
+    }
+
+    function removeDiaryRecord(value, blockName, date) {
+        $.ajax({
+            url: $("#diaryUtils").attr("remove-diary-record-url"),
+            method: "POST",
+            data: {value: value,blockName: blockName,date: date.toDateString()}
+        });
+    }
+
+    function addOrUplateBodyIndicator(value, indicator, date) {
+        $.ajax({
+            url: $("#diaryUtils").attr("add-or-update-body-indicator-url"),
+            method: "POST",
+            data: { value: value, indicator: indicator, date: date.toDateString() }
+        });
+    }
+
+    function removeBodyIndicator(indicator, date) {
+        $.ajax({
+            url: $("#diaryUtils").attr("remove-body-indicator-url"),
+            method: "POST",
+            data: { indicator: indicator, date: date.toDateString() }
+        });
+    }
+
+    function changeDiaryDay(date) {
+        $.ajax({
+            url: $("#diaryUtils").attr("change-diary-day-url"),
+            method: "POST",
+            data: { date: date.toDateString() },
+            success: function (data) {
+                $("#lifestyle-container img").removeClass("selected-lifestyle");
+                $(".lifestyle-input").val(0);
+                $("#symptoms-container img").removeClass("selected-symptom");
+                $("#mood-container img").removeClass("selected-mood");
+
+                $.each(data.userLifestyles, (index, value) => $(`#${value}`).addClass("selected-lifestyle"));
+                $.each(data.bodyIndicators, (index, obj) => {
+                    $(`#${obj.indicator}-input`).val(obj.value);
+                    $(`#${obj.indicator}`).addClass("selected-lifestyle")
+                });
+                $.each(data.userSymptoms, (index, value) => $(`#${value}`).addClass("selected-symptom"));
+                $.each(data.userMoods, (index, value) => $(`#${value}`).addClass("selected-mood"));
+            }
+        });
     }
 </script>

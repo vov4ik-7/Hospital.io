@@ -1,1 +1,345 @@
-﻿LolLol
+﻿@using Newtonsoft.Json;
+@model Psycho.io.Models.Diary.StatisticsViewModel
+
+<div id="statisticUtils"
+     class="display-none"
+     change-water-graph-range-url="@Url.Action("ChangeWaterGraphRange", "Diary")"
+     change-weight-graph-range-url="@Url.Action("ChangeWeightGraphRange", "Diary")"
+     change-sleep-graph-range-url="@Url.Action("ChangeSleepGraphRange", "Diary")"
+     change-temperature-graph-range-url="@Url.Action("ChangeTemperatureGraphRange", "Diary")">
+</div>
+
+<div class="row text-center">
+    <div class="col-md-6 mb-4">
+        <div class="card card-cascade cascading-admin-card user-card">
+            <div class="admin-up d-flex justify-content-start">
+                <i class="fas fa-glass-whiskey light-green py-4 mr-3 z-depth-2"></i>
+                <div class="data">
+                    <h5 class="font-weight-bold dark-grey-text">
+                        Water
+                    </h5>
+                    <div class="input-group mb-3" style="position: absolute; right: 10px; top: 10px; max-width:250px;">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="water-addon"><i class="fas fa-calendar-week fa-xs" style="padding: 0; color: black; font-size: 1rem;"></i></span>
+                        </div>
+                        <input id="water-datepicker" type="text" class="form-control" placeholder="Select date range..." aria-label="Select date range..." aria-describedby="water-addon">
+                    </div>
+                </div>
+            </div>
+            <div class="card-body card-body-cascade">
+                <div id="waterChart"></div>
+            </div>
+        </div>
+
+        <div class="card card-cascade cascading-admin-card user-card">
+            <div class="admin-up d-flex justify-content-start">
+                <i class="fas fa-bed light-green py-4 mr-3 z-depth-2"></i>
+                <div class="data">
+                    <h5 class="font-weight-bold dark-grey-text">
+                        Sleep
+                    </h5>
+                    <div class="input-group mb-3" style="position: absolute; right: 10px; top: 10px; max-width:250px;">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="sleep-addon"><i class="fas fa-calendar-week fa-xs" style="padding: 0; color: black; font-size: 1rem;"></i></span>
+                        </div>
+                        <input id="sleep-datepicker" type="text" class="form-control" placeholder="Select date range..." aria-label="Select date range..." aria-describedby="sleep-addon">
+                    </div>
+                </div>
+            </div>
+            <div class="card-body card-body-cascade">
+                <div id="sleepChart"></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 mb-4">
+        <div class="card card-cascade cascading-admin-card user-card">
+            <div class="admin-up d-flex justify-content-start">
+                <i class="fas fa-weight light-green py-4 mr-3 z-depth-2"></i>
+                <div class="data">
+                    <h5 class="font-weight-bold dark-grey-text">
+                        Weight
+                    </h5>
+                    <div class="input-group mb-3" style="position: absolute; right: 10px; top: 10px; max-width:250px;">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="weight-addon"><i class="fas fa-calendar-week fa-xs" style="padding: 0; color: black; font-size: 1rem;"></i></span>
+                        </div>
+                        <input id="weight-datepicker" type="text" class="form-control" placeholder="Select date range..." aria-label="Select date range..." aria-describedby="weight-addon">
+                    </div>
+                </div>
+            </div>
+            <div class="card-body card-body-cascade">
+                <div id="weightChart"></div>
+            </div>
+        </div>
+
+        <div class="card card-cascade cascading-admin-card user-card">
+            <div class="admin-up d-flex justify-content-start">
+                <i class="fas fa-thermometer-half light-green py-4 mr-3 z-depth-2"></i>
+                <div class="data">
+                    <h5 class="font-weight-bold dark-grey-text">
+                        Temperature
+                    </h5>
+                    <div class="input-group mb-3" style="position: absolute; right: 10px; top: 10px; max-width:250px;">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="temperature-addon"><i class="fas fa-calendar-week fa-xs" style="padding: 0; color: black; font-size: 1rem;"></i></span>
+                        </div>
+                        <input id="temperature-datepicker" type="text" class="form-control" placeholder="Select date range..." aria-label="Select date range..." aria-describedby="temperature-addon">
+                    </div>
+                </div>
+            </div>
+            <div class="card-body card-body-cascade">
+                <div id="temperatureChart"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var waterOptions = {
+        chart: {
+            type: 'area',
+            height: 450,
+            width: "100%",
+            toolbar: {
+                tools: {
+                    download: false,
+                    selection: true,
+                    zoom: false,
+                    zoomin: false,
+                    zoomout: false,
+                    pan: false,
+                    reset: false,
+                    customIcons: []
+                }
+            },
+        },
+        series: [{
+            name: 'Water (L)',
+            data: @Html.Raw(JsonConvert.SerializeObject(Model.WaterGraph.SeriesData))
+        }],
+        xaxis: {
+            type: 'datetime',
+            categories: @Html.Raw(JsonConvert.SerializeObject(Model.WaterGraph.XaxisCategories))
+            //categories: ["5/21/2020", "5/22/2020", "5/23/2020", "5/24/2020", "5/25/2020", "5/26/2020", "5/27/2020", "5/28/2020", "5/29/2020"]
+        },
+        stroke: {
+            curve: 'smooth',
+        }
+    };
+    var weightOptions = {
+        chart: {
+            type: 'area',
+            height: 450,
+            width: "100%",
+            toolbar: {
+                tools: {
+                    download: false,
+                    selection: true,
+                    zoom: false,
+                    zoomin: false,
+                    zoomout: false,
+                    pan: false,
+                    reset: false,
+                    customIcons: []
+                }
+            },
+        },
+        series: [{
+            name: 'Weight (kg)',
+            data: @Html.Raw(JsonConvert.SerializeObject(Model.WeightGraph.SeriesData))
+        }],
+        xaxis: {
+            type: 'datetime',
+            categories: @Html.Raw(JsonConvert.SerializeObject(Model.WeightGraph.XaxisCategories))
+        },
+        stroke: {
+            curve: 'smooth',
+        }
+    };
+    var sleepOptions = {
+        chart: {
+            type: 'area',
+            height: 450,
+            width: "100%",
+            toolbar: {
+                tools: {
+                    download: false,
+                    selection: true,
+                    zoom: false,
+                    zoomin: false,
+                    zoomout: false,
+                    pan: false,
+                    reset: false,
+                    customIcons: []
+                }
+            },
+        },
+        series: [{
+            name: 'Sleep (h)',
+            data: @Html.Raw(JsonConvert.SerializeObject(Model.SleepGraph.SeriesData))
+        }],
+        xaxis: {
+            type: 'datetime',
+            categories: @Html.Raw(JsonConvert.SerializeObject(Model.SleepGraph.XaxisCategories))
+        },
+        stroke: {
+            curve: 'smooth',
+        }
+    };
+    var temperatureOptions = {
+        chart: {
+            type: 'area',
+            height: 450,
+            width: "100%",
+            toolbar: {
+                tools: {
+                    download: false,
+                    selection: true,
+                    zoom: false,
+                    zoomin: false,
+                    zoomout: false,
+                    pan: false,
+                    reset: false,
+                    customIcons: []
+                }
+            },
+        },
+        series: [{
+            name: 'Temperature (°C)',
+            data: @Html.Raw(JsonConvert.SerializeObject(Model.TemperatureGraph.SeriesData))
+        }],
+        xaxis: {
+            type: 'datetime',
+            categories: @Html.Raw(JsonConvert.SerializeObject(Model.TemperatureGraph.XaxisCategories))
+        },
+        stroke: {
+            curve: 'smooth',
+        }
+    };
+
+    var waterChart = new ApexCharts(document.querySelector("#waterChart"), waterOptions);
+    waterChart.render();
+    var weightChart = new ApexCharts(document.querySelector("#weightChart"), weightOptions);
+    weightChart.render();
+    var sleepChart = new ApexCharts(document.querySelector("#sleepChart"), sleepOptions);
+    sleepChart.render();
+    var temperatureChart = new ApexCharts(document.querySelector("#temperatureChart"), temperatureOptions);
+    temperatureChart.render();
+
+    $('#water-datepicker').datepicker({
+        range: true,
+        multipleDatesSeparator: " - ",
+        language: 'en',
+        onSelect: function (formattedDate, date, inst) {
+            if (formattedDate.includes(" - ")) {
+                var dates = formattedDate.split(" - ");
+                $.ajax({
+                    url: $("#statisticUtils").attr("change-water-graph-range-url"),
+                    method: "GET",
+                    data: { start: dates[0], end: dates[1] },
+                    success: function (data) {
+                        waterChart.destroy();
+
+                        /*var result = [];
+                        data.seriesData.forEach((key, i) => result.push({ "x": data.seriesData[i], "y": data.xaxisCategories[i] }));
+                        waterOptions.xaxis.categories = [];
+                        waterOptions.series = [{
+                            name: 'Water (L)',
+                            data: result
+                        }];
+                        /*waterChart.updateSeries([{
+                            name: 'Water (L)',
+                            data: result
+                        }]);*/
+                        
+                        waterOptions.series = [{
+                            name: 'Water (L)',
+                            data: data.seriesData
+                        }];
+                        waterOptions.xaxis.categories = data.xaxisCategories;
+                        waterChart = new ApexCharts(document.querySelector("#waterChart"), waterOptions);
+                        waterChart.render();
+                    }
+                });
+            }
+        }
+    });
+
+    $('#sleep-datepicker').datepicker({
+        range: true,
+        multipleDatesSeparator: " - ",
+        language: 'en',
+        onSelect: function (formattedDate, date, inst) {
+            if (formattedDate.includes(" - ")) {
+                var dates = formattedDate.split(" - ");
+                $.ajax({
+                    url: $("#statisticUtils").attr("change-sleep-graph-range-url"),
+                    method: "GET",
+                    data: { start: dates[0], end: dates[1] },
+                    success: function (data) {
+                        sleepChart.destroy();
+                        sleepOptions.series = [{
+                            name: 'Sleep (h)',
+                            data: data.seriesData
+                        }];
+                        sleepOptions.xaxis.categories = data.xaxisCategories;
+                        sleepChart = new ApexCharts(document.querySelector("#sleepChart"), sleepOptions);
+                        sleepChart.render();
+                    }
+                });
+            }
+        }
+    });
+
+    $('#weight-datepicker').datepicker({
+        range: true,
+        multipleDatesSeparator: " - ",
+        language: 'en',
+        onSelect: function (formattedDate, date, inst) {
+            if (formattedDate.includes(" - ")) {
+                var dates = formattedDate.split(" - ");
+                $.ajax({
+                    url: $("#statisticUtils").attr("change-weight-graph-range-url"),
+                    method: "GET",
+                    data: { start: dates[0], end: dates[1] },
+                    success: function (data) {
+                        weightChart.destroy();
+                        weightOptions.series = [{
+                            name: 'Weight (kg)',
+                            data: data.seriesData
+                        }];
+                        weightOptions.xaxis.categories = data.xaxisCategories;
+                        weightChart = new ApexCharts(document.querySelector("#weightChart"), weightOptions);
+                        weightChart.render();
+                    }
+                });
+            }
+        }
+    });
+
+    $('#temperature-datepicker').datepicker({
+        range: true,
+        multipleDatesSeparator: " - ",
+        language: 'en',
+        onSelect: function (formattedDate, date, inst) {
+            if (formattedDate.includes(" - ")) {
+                var dates = formattedDate.split(" - ");
+                $.ajax({
+                    url: $("#statisticUtils").attr("change-temperature-graph-range-url"),
+                    method: "GET",
+                    data: { start: dates[0], end: dates[1] },
+                    success: function (data) {
+                        temperatureChart.destroy();
+                        temperatureOptions.series = [{
+                            name: 'Temperature (°C)',
+                            data: data.seriesData
+                        }];
+                        temperatureOptions.xaxis.categories = data.xaxisCategories;
+                        temperatureChart = new ApexCharts(document.querySelector("#temperatureChart"), temperatureOptions);
+                        temperatureChart.render();
+                    }
+                });
+            }
+        }
+    });
+</script>
