@@ -18,5 +18,7 @@ namespace Psycho.DAL.Core.Domain
         public string AdditionalInfo { get; set; }
 
         public virtual AppointmentResult Result { get; set; }
+
+        public bool Finished { get; set; }
     }
 }

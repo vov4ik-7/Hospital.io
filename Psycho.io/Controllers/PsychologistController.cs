@@ -10,6 +10,7 @@ using Psycho.DAL.Core;
 using Psycho.DAL.Core.Domain;
 using Psycho.DTO.Core;
 using Psycho.DTO.Persistence;
+using Psycho.io.Models.Doctor;
 using Psycho.Logic.Facade.Interfaces;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -34,8 +35,18 @@ namespace Psycho.io.Controllers
         public IActionResult Index()
         {
             PsychologistListDTO psychologistListDTO = PsychoLogic.AdminFacade.GetPsychologistListForAdminPage();
+            var doctors = new PsychologistListDTO
+            {
+                PsychologistDTOs = psychologistListDTO.PsychologistDTOs//.Take(10).ToList()
+            };
 
-            return View(psychologistListDTO);
+            var viewModel = new DoctorsViewModel
+            {
+                Doctors = doctors,
+                NumberOfPages = (int)Math.Ceiling((double)doctors.PsychologistDTOs.Count / 10)
+            };
+
+            return View(viewModel);
         }
 
         [HttpGet]
@@ -140,7 +151,8 @@ namespace Psycho.io.Controllers
                     AuthorizedUserId = model.AuthorizedUserId,
                     StartDataTime = model.StartDateTime,
                     EndDataTime = model.EndDateTime,
-                    AdditionalInfo = model.Info
+                    AdditionalInfo = model.Info,
+                    Finished = false
                 };
 
                 _unitOfWork.Appointments.Add(appointment);

@@ -193,7 +193,8 @@ namespace Psycho.io.Controllers
                     AuthorizedUserId = model.AuthorizedUserId,
                     StartDataTime = model.StartDateTime,
                     EndDataTime = model.EndDateTime,
-                    AdditionalInfo = model.Info
+                    AdditionalInfo = model.Info,
+                    Finished = false
                 };
 
                 _unitOfWork.Appointments.Add(appointment);
@@ -286,6 +287,11 @@ namespace Psycho.io.Controllers
                     ? "Planned"
                     : "Сontinues";
 
+            if(viewModel.Status == "Finished" && !appointment.Finished)
+            {
+                viewModel.Status = "Pending";
+            }
+
             return PartialView(viewModel);
         }
 
@@ -320,6 +326,11 @@ namespace Psycho.io.Controllers
                 : now < appointment?.StartDataTime
                     ? "Planned"
                     : "Сontinues";
+
+            if (viewModel.Status == "Finished" && !appointment.Finished)
+            {
+                viewModel.Status = "Pending";
+            }
 
             return PartialView(viewModel);
         }
@@ -371,6 +382,49 @@ namespace Psycho.io.Controllers
         {
             var analysis = await _unitOfWork.Context.Analyses.FirstOrDefaultAsync(a => a.Id == analysisId);
             return File(analysis.File, "application/pdf", $"analysis-{analysis.Id}.pdf");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> FinishAppointmentPopup(int appointmentId)
+        {
+            var services = await _unitOfWork.Context.Services.AsNoTracking().ToListAsync();
+            var viewModel = new FinishAppointmentViewModel
+            {
+                AppointmentId = appointmentId,
+                Services = services
+            };
+
+            return PartialView(viewModel);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> FinishAppointment(int appointmentId, List<int> selectedServiceIds)
+        {
+            var appointment = await _unitOfWork.Context.Appointments.FirstOrDefaultAsync(a => a.Id == appointmentId);
+            if(appointment != null)
+            {
+                appointment.Finished = true;
+
+                var result = new AppointmentResult
+                {
+                    AppointmentId = appointment.Id,
+                    ServicesJson = JsonConvert.SerializeObject(selectedServiceIds)
+                };
+
+                _unitOfWork.Context.AppointmentResults.Add(result);
+                await _unitOfWork.Context.SaveChangesAsync();
+
+                var processingRecord = new OrderProcessingRecord
+                {
+                    AppointmentResultId = result.Id,
+                    Status = "New"
+                };
+
+                _unitOfWork.Context.OrderProcessingRecords.Add(processingRecord);
+                await _unitOfWork.Context.SaveChangesAsync();
+            }
+            
+            return Ok();
         }
 
         [HttpGet]

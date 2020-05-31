@@ -115,7 +115,7 @@ namespace Psycho.Logic.Facade
                     Gender = gender,
                     Address = newPsychologist.Address,
                     PhoneNumber = newPsychologist.Phone,
-                    Position = "Psychologist",
+                    Position = newPsychologist.Position,
                     HireDate = new DateTime(Int32.Parse(Date[2]), Int32.Parse(Date[0]), Int32.Parse(Date[1]))
                 };
 
@@ -175,6 +175,7 @@ namespace Psycho.Logic.Facade
                 psychologist.LastName = psychologistDTO.LastName;
                 psychologist.Email = psychologistDTO.Email;
                 psychologist.UserName = psychologistDTO.Email;
+                psychologist.Position = psychologistDTO.Position;
                 psychologist.Address = psychologistDTO.Address;
                 psychologist.PhoneNumber = psychologistDTO.Phone;
                 psychologist.Gender = psychologistDTO.Gender != String.Empty ? (Gender?)Enum.Parse(typeof(Gender), psychologistDTO.Gender) : null;

@@ -61,6 +61,11 @@ function AddAnalysisPopupSuccess(data) {
     $('#onSubmitAddAnalisys').click(onSubmitAddAnalysis);
 }
 
+function FinishAppointmentPopupSuccess(data) {
+    $('#finishAppointmentDialog').html(data);
+    $('#finishAppointmentResult').modal('show');
+}
+
 function onSubmitAddAnalysis(event) {
     event.preventDefault();
     if (!$('#addAnalysisForm')[0].checkValidity()) {
@@ -112,4 +117,24 @@ function removeAnalysis(analysisId) {
 
 function downloadAnalysis(analysisId) {
     window.location = $('#doctorUtils').attr('download-analysis-url') + `?analysisId=${analysisId}`;
+}
+
+function finishAppointment() {
+    var selectedServiceIds = [];
+    var selectedServicesJquery = $("#selectedServices").children();
+    $.each(selectedServicesJquery, function (index, elem) {
+        selectedServiceIds.push(parseInt($(elem).attr("service-id")));
+    });
+
+    var appointmentId = parseInt($("#finishAppointmentId").val());
+    $.ajax({
+        method: "POST",
+        url: $('#doctorUtils').attr('finish-appointment-url'),
+        data: { appointmentId, selectedServiceIds },
+        success: function () {
+            $('#finishAppointmentResult').modal('hide');
+            $('#appointmentStatusContainer').empty();
+            $('#appointmentStatusContainer').html('<span class="badge badge-danger">Finished</span>');
+        }
+    });
 }

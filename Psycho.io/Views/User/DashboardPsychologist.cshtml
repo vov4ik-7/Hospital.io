@@ -17,7 +17,8 @@
      show-app-info-url="@Url.Action("ShowAppointmentResultForDoctorInfo", "User")"
      show-add-analysis-popup-url="@Url.Action("AddAnalysis", "User")"
      remove-analysis-url="@Url.Action("RemoveAnalysis", "User")"
-     download-analysis-url="@Url.Action("DownloadAnalysis", "User")">
+     download-analysis-url="@Url.Action("DownloadAnalysis", "User")"
+     finish-appointment-url="@Url.Action("FinishAppointment", "User")">
 </div>
 
 <div class="modal fade" id="createAppModalForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -28,6 +29,9 @@
 </div>
 <div class="modal fade" id="addAnalysisResult" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div id="addAnalysisDialog" class="modal-dialog modal-lg" role="document" style="max-width: 500px;"></div>
+</div>
+<div class="modal fade" id="finishAppointmentResult" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div id="finishAppointmentDialog" class="modal-dialog modal-lg" role="document" style="max-width: 500px;"></div>
 </div>
 
 <main>

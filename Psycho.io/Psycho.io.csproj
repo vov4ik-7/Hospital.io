@@ -36,6 +36,7 @@
     <Folder Include="Models\Diary\" />
     <Folder Include="wwwroot\img\diary\symptoms\" />
     <Folder Include="wwwroot\img\diary\lifestyle\" />
+    <Folder Include="Models\Doctor\" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="wwwroot\images\idea-2.png" />

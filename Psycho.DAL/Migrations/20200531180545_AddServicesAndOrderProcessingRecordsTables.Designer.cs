@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Psycho.DAL.Persistence;
 
 namespace Psycho.DAL.Migrations
 {
     [DbContext(typeof(PsychoContext))]
-    partial class PsychoContextModelSnapshot : ModelSnapshot
+    [Migration("20200531180545_AddServicesAndOrderProcessingRecordsTables")]
+    partial class AddServicesAndOrderProcessingRecordsTables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -191,11 +193,14 @@ namespace Psycho.DAL.Migrations
                     b.Property<int>("AppointmentId")
                         .HasColumnType("int");
 
+                    b.Property<string>("DoctorConclusion")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool?>("IsHealth")
+                        .HasColumnType("bit");
+
                     b.Property<int?>("NextAppointmentId")
                         .HasColumnType("int");
-
-                    b.Property<string>("ServicesJson")
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 

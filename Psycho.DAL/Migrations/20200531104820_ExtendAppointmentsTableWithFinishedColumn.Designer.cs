@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Psycho.DAL.Persistence;
 
 namespace Psycho.DAL.Migrations
 {
     [DbContext(typeof(PsychoContext))]
-    partial class PsychoContextModelSnapshot : ModelSnapshot
+    [Migration("20200531104820_ExtendAppointmentsTableWithFinishedColumn")]
+    partial class ExtendAppointmentsTableWithFinishedColumn
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -191,11 +193,14 @@ namespace Psycho.DAL.Migrations
                     b.Property<int>("AppointmentId")
                         .HasColumnType("int");
 
+                    b.Property<string>("DoctorConclusion")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool?>("IsHealth")
+                        .HasColumnType("bit");
+
                     b.Property<int?>("NextAppointmentId")
                         .HasColumnType("int");
-
-                    b.Property<string>("ServicesJson")
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -283,24 +288,6 @@ namespace Psycho.DAL.Migrations
                     b.ToTable("HealthDiary");
                 });
 
-            modelBuilder.Entity("Psycho.DAL.Core.Domain.OrderProcessingRecord", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("AppointmentResultId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Status")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("OrderProcessingRecords");
-                });
-
             modelBuilder.Entity("Psycho.DAL.Core.Domain.Report", b =>
                 {
                     b.Property<int>("Id")
@@ -366,24 +353,6 @@ namespace Psycho.DAL.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles");
-                });
-
-            modelBuilder.Entity("Psycho.DAL.Core.Domain.Service", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Services");
                 });
 
             modelBuilder.Entity("Psycho.DAL.Core.Domain.User", b =>

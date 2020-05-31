@@ -21,6 +21,8 @@ namespace Psycho.DAL.Persistence
         public virtual DbSet<Analysis> Analyses { get; set; }
         public virtual DbSet<HealthDiary> HealthDiary { get; set; }
         public virtual DbSet<BodyIndicator> BodyIndicators { get; set; }
+        public virtual DbSet<Service> Services { get; set; }
+        public virtual DbSet<OrderProcessingRecord> OrderProcessingRecords { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -41,6 +43,8 @@ namespace Psycho.DAL.Persistence
             builder.ApplyConfiguration(new AnalysisConfiguration());
             builder.ApplyConfiguration(new HealthDiaryConfiguration());
             builder.ApplyConfiguration(new BodyIndicatorsConfiguration());
+            builder.ApplyConfiguration(new ServiceConfiguration());
+            builder.ApplyConfiguration(new OrderProcessingRecordConfiguration());
         }
     }
 }

@@ -56,30 +56,33 @@
 
                     <div class="col-md-4 offset-md-3 mb-4">
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-5">
                                 <p class="text-right">Doctor:</p>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-7">
                                 <p>@string.Format("{0} {1}", Model.Doctor.FirstName, Model.Doctor.LastName)</p>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-5">
                                 <p class="text-right">Date:</p>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-7">
                                 <p>@string.Format("{0}/{1}/{2}", Model.Date?.Month, Model.Date?.Day, Model.Date?.Year)</p>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-5">
                                 <p class="text-right">Status:</p>
                             </div>
-                            <div class="col-md-6">
+                            <div id="appointmentStatusContainer" class="col-md-7">
                                 @switch (Model.Status)
                                 {
                                     case "Finished":
                                         <span class="badge badge-danger">@Model.Status</span>
+                                        break;
+                                    case "Pending":
+                                        <span class="badge badge-warning">@Model.Status</span>
                                         break;
                                     case "Planned":
                                         <span class="badge badge-secondary">@Model.Status</span>
@@ -87,6 +90,18 @@
                                     default:
                                         <span class="badge badge-success">@Model.Status</span>
                                         break;
+                                }
+                                @if (Model.Status == "Pending")
+                                {
+                                    @Html.ActionLink("Finish", "FinishAppointmentPopup", "User", new { appointmentId = Model.Id }, new
+                                    {
+                                        data_ajax = "true",
+                                        data_ajax_method = "GET",
+                                        data_ajax_mode = "replace",
+                                        data_ajax_update = "",
+                                        data_ajax_success = "FinishAppointmentPopupSuccess",
+                                        @class = "btn btn-info btn-rounded btn-sm"
+                                    })
                                 }
                             </div>
                         </div>
@@ -115,8 +130,8 @@
                                         @class = "btn btn-info btn-rounded btn-sm"
                                     })
                                     @*<a href="" class="btn btn-info btn-rounded btn-sm">
-                                        Add<i class="fas fa-plus-square ml-1"></i>
-                                    </a>*@
+                                Add<i class="fas fa-plus-square ml-1"></i>
+                            </a>*@
                                 </span>
                                 <table class="table table-bordered table-responsive-md table-striped text-center">
                                     <thead>
