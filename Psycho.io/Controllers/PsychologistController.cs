@@ -17,7 +17,7 @@ using Psycho.Logic.Facade.Interfaces;
 
 namespace Psycho.io.Controllers
 {
-    [AllowAnonymous]
+    [Authorize]
     public class PsychologistController : PsychoMvcControllerBase
     {
         private readonly UserManager<User> _userManager;
@@ -32,6 +32,7 @@ namespace Psycho.io.Controllers
         }
 
         // GET: /<controller>/
+        [AllowAnonymous]
         public IActionResult Index()
         {
             PsychologistListDTO psychologistListDTO = PsychoLogic.AdminFacade.GetPsychologistListForAdminPage();
@@ -50,6 +51,7 @@ namespace Psycho.io.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult Schedule(int id)
         {
             Psychologist psychologist = _unitOfWork.Psychologists.Get(id);
@@ -174,6 +176,7 @@ namespace Psycho.io.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult Reports(int id)
         {
             var psychologist = _unitOfWork.Psychologists.Get(id);
@@ -221,7 +224,7 @@ namespace Psycho.io.Controllers
             createReportDTO.AuthorizedUserName = $"{authorizedUser.FirstName} {authorizedUser.LastName}";
             createReportDTO.IsChecked = false;
 
-            return PartialView(createReportDTO);
+            return View(createReportDTO);
         }
 
         [HttpPost]

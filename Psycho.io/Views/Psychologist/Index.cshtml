@@ -120,7 +120,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="row">
-                                                    @if (User.IsInRole("AuthorizedUser"))
+                                                    @if (false/*User.IsInRole("AuthorizedUser")*/)
                                                     {
                                                         <div class="col align-self-center" style="padding-top: 7px">
                                                             @Html.ActionLink("Add", "AddReport", "Psychologist", new { id = psychologist.Id }, new
