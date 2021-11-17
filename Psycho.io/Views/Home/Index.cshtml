@@ -1,9 +1,10 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
+    var backgroundImgPath = "../img/home_background.jpg";
 }
     <header>
     <!--Intro Section-->
-    <section class="view intro-2" style="background-image: url(../img/home_background.jpg); background-repeat: no-repeat; background-size: cover; background-position: center center;">
+    <section class="view intro-2" style="background-image: url('@backgroundImgPath'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
       <div class="mask">
         <div class="container h-100 d-flex justify-content-center align-items-center">
           <div class="row flex-center pt-5 mt-3">
@@ -135,11 +136,11 @@
           <div class="col-md-4 mb-4 wow fadeIn" data-wow-delay="0.4s">
             <div class="card hoverable">
               <i class="fas fa-heart blue-text mt-3 fa-3x my-4"></i>
-              <h5 class="font-weight-bold mb-4"">Experience</h5>
-                            <p class=" grey-text
+              <h5 class="font-weight-bold mb-4">Experience</h5>
+                            <p class="fa-3x mb-4 grey-text
                 font-small mx-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit maiores nam,
                 aperiam
-                minima assumenda deleniti hic.</p fa-3x mb-4>
+                minima assumenda deleniti hic.</p>
             </div>
           </div>
           <!--/First column-->
@@ -160,7 +161,7 @@
           <div class="col-md-4 mb-1 wow fadeIn" data-wow-delay="0.4s">
             <div class="card hoverable">
               <i class="fas fa-briefcase-medical blue-text mt-3 fa-3x my-4"></i>
-              <h5 class="font-weight-bold mb-4"">Qualifications</h5>
+              <h5 class="font-weight-bold mb-4">Qualifications</h5>
                             <p class=" grey-text
                 font-small mx-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit maiores nam,
                 aperiam

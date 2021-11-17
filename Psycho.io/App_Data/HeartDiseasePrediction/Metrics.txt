@@ -1,0 +1,273 @@
+> DateTime: 04/16/2021 15:49:09
+  Accuracy:          94.74 %
+  Auc:               95.24 %
+  Auprc:             94.55 %
+  F1Score:           92.31 %
+  LogLoss:           0.35
+  LogLossReduction:  0.63
+  PositivePrecision: 1
+  PositiveRecall:    0.86
+  NegativePrecision: 0.92
+  NegativeRecall:    1
+
+
+
+
+
+
+
+
+
+
+> DateTime: 04/16/2021 16:21:48
+  Accuracy:          94.74 %
+  Auc:               95.24 %
+  Auprc:             94.55 %
+  F1Score:           92.31 %
+  LogLoss:           0.35
+  LogLossReduction:  0.63
+  PositivePrecision: 1
+  PositiveRecall:    0.86
+  NegativePrecision: 0.92
+  NegativeRecall:    1
+
+
+
+> DateTime: 04/16/2021 16:25:02
+  Accuracy:          94.74 %
+  Auc:               95.24 %
+  Auprc:             94.55 %
+  F1Score:           92.31 %
+  LogLoss:           0.35
+  LogLossReduction:  0.63
+  PositivePrecision: 1
+  PositiveRecall:    0.86
+  NegativePrecision: 0.92
+  NegativeRecall:    1
+
+
+
+> DateTime: 04/16/2021 17:00:11
+  Accuracy:          94.74 %
+  Auc:               95.24 %
+  Auprc:             94.55 %
+  F1Score:           92.31 %
+  LogLoss:           0.35
+  LogLossReduction:  0.63
+  PositivePrecision: 1
+  PositiveRecall:    0.86
+  NegativePrecision: 0.92
+  NegativeRecall:    1
+
+
+
+> DateTime: 04/16/2021 17:02:33
+  Accuracy:          94.74 %
+  Auc:               95.24 %
+  Auprc:             94.55 %
+  F1Score:           92.31 %
+  LogLoss:           0.35
+  LogLossReduction:  0.63
+  PositivePrecision: 1
+  PositiveRecall:    0.86
+  NegativePrecision: 0.92
+  NegativeRecall:    1
+
+
+
+> DateTime: 04/16/2021 17:14:07
+  Accuracy:          94.74 %
+  Auc:               95.24 %
+  Auprc:             94.55 %
+  F1Score:           92.31 %
+  LogLoss:           0.35
+  LogLossReduction:  0.63
+  PositivePrecision: 1
+  PositiveRecall:    0.86
+  NegativePrecision: 0.92
+  NegativeRecall:    1
+
+
+
+> DateTime: 04/17/2021 03:14:36
+  Accuracy:          94.74 %
+  Auc:               95.24 %
+  Auprc:             94.55 %
+  F1Score:           92.31 %
+  LogLoss:           0.35
+  LogLossReduction:  0.63
+  PositivePrecision: 1
+  PositiveRecall:    0.86
+  NegativePrecision: 0.92
+  NegativeRecall:    1
+
+
+
+> DateTime: 04/17/2021 12:01:29
+  Accuracy:          94.74 %
+  Auc:               95.24 %
+  Auprc:             94.55 %
+  F1Score:           92.31 %
+  LogLoss:           0.35
+  LogLossReduction:  0.63
+  PositivePrecision: 1
+  PositiveRecall:    0.86
+  NegativePrecision: 0.92
+  NegativeRecall:    1
+
+
+
+> DateTime: 04/17/2021 23:22:12
+  Accuracy:          94.74 %
+  Auc:               95.24 %
+  Auprc:             94.55 %
+  F1Score:           92.31 %
+  LogLoss:           0.35
+  LogLossReduction:  0.63
+  PositivePrecision: 1
+  PositiveRecall:    0.86
+  NegativePrecision: 0.92
+  NegativeRecall:    1
+
+
+
+> DateTime: 04/17/2021 23:32:21
+  Accuracy:          94.74 %
+  Auc:               95.24 %
+  Auprc:             94.55 %
+  F1Score:           92.31 %
+  LogLoss:           0.35
+  LogLossReduction:  0.63
+  PositivePrecision: 1
+  PositiveRecall:    0.86
+  NegativePrecision: 0.92
+  NegativeRecall:    1
+
+
+
+> DateTime: 04/17/2021 23:43:06
+  Accuracy:          94.74 %
+  Auc:               95.24 %
+  Auprc:             94.55 %
+  F1Score:           92.31 %
+  LogLoss:           0.35
+  LogLossReduction:  0.63
+  PositivePrecision: 1
+  PositiveRecall:    0.86
+  NegativePrecision: 0.92
+  NegativeRecall:    1
+
+
+
+> DateTime: 04/18/2021 18:36:34
+  Accuracy:          94.74 %
+  Auc:               95.24 %
+  Auprc:             94.55 %
+  F1Score:           92.31 %
+  LogLoss:           0.35
+  LogLossReduction:  0.63
+  PositivePrecision: 1
+  PositiveRecall:    0.86
+  NegativePrecision: 0.92
+  NegativeRecall:    1
+
+
+
+> DateTime: 04/27/2021 00:41:13
+  Accuracy:          94.74 %
+  Auc:               95.24 %
+  Auprc:             94.55 %
+  F1Score:           92.31 %
+  LogLoss:           0.35
+  LogLossReduction:  0.63
+  PositivePrecision: 1
+  PositiveRecall:    0.86
+  NegativePrecision: 0.92
+  NegativeRecall:    1
+
+
+
+> DateTime: 04/27/2021 00:44:12
+  Accuracy:          94.74 %
+  Auc:               95.24 %
+  Auprc:             94.55 %
+  F1Score:           92.31 %
+  LogLoss:           0.35
+  LogLossReduction:  0.63
+  PositivePrecision: 1
+  PositiveRecall:    0.86
+  NegativePrecision: 0.92
+  NegativeRecall:    1
+
+
+
+> DateTime: 04/27/2021 18:41:06
+  Accuracy:          94.74 %
+  Auc:               95.24 %
+  Auprc:             94.55 %
+  F1Score:           92.31 %
+  LogLoss:           0.35
+  LogLossReduction:  0.63
+  PositivePrecision: 1
+  PositiveRecall:    0.86
+  NegativePrecision: 0.92
+  NegativeRecall:    1
+
+
+
+> DateTime: 04/27/2021 20:08:24
+  Accuracy:          94.74 %
+  Auc:               95.24 %
+  Auprc:             94.55 %
+  F1Score:           92.31 %
+  LogLoss:           0.35
+  LogLossReduction:  0.63
+  PositivePrecision: 1
+  PositiveRecall:    0.86
+  NegativePrecision: 0.92
+  NegativeRecall:    1
+
+
+
+> DateTime: 04/27/2021 21:05:10
+  Accuracy:          94.74 %
+  Auc:               95.24 %
+  Auprc:             94.55 %
+  F1Score:           92.31 %
+  LogLoss:           0.35
+  LogLossReduction:  0.63
+  PositivePrecision: 1
+  PositiveRecall:    0.86
+  NegativePrecision: 0.92
+  NegativeRecall:    1
+
+
+
+> DateTime: 04/27/2021 21:37:15
+  Accuracy:          94.74 %
+  Auc:               95.24 %
+  Auprc:             94.55 %
+  F1Score:           92.31 %
+  LogLoss:           0.35
+  LogLossReduction:  0.63
+  PositivePrecision: 1
+  PositiveRecall:    0.86
+  NegativePrecision: 0.92
+  NegativeRecall:    1
+
+
+
+> DateTime: 04/28/2021 02:58:17
+  Accuracy:          94.74 %
+  Auc:               95.24 %
+  Auprc:             94.55 %
+  F1Score:           92.31 %
+  LogLoss:           0.35
+  LogLossReduction:  0.63
+  PositivePrecision: 1
+  PositiveRecall:    0.86
+  NegativePrecision: 0.92
+  NegativeRecall:    1
+
+
+

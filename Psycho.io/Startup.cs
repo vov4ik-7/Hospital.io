@@ -19,6 +19,8 @@ using Psycho.Logic.Facade.Interfaces;
 using Psycho.Logic.Facade;
 using Microsoft.AspNetCore.SignalR;
 using Psycho.io.ChatForUser;
+using Psycho.Logic.Services;
+using Psycho.Logic.Services.Interfaces;
 
 namespace Psycho.io
 {
@@ -40,6 +42,7 @@ namespace Psycho.io
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSingleton<IUserIdProvider, CustomUserIdProvider>();
+            services.AddSingleton<IHeartDiseasePredictionService, HeartDiseasePredictionService>();
 
             services.Configure<CookiePolicyOptions>(options =>
             {

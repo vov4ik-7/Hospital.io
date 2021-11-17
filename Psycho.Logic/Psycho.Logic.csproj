@@ -16,5 +16,10 @@
     <Folder Include="Facade\" />
     <Folder Include="Facade\Interfaces\" />
     <Folder Include="DataMappers\" />
+    <Folder Include="Models" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.ML" Version="1.5.5" />
+    <PackageReference Include="Microsoft.ML.FastTree" Version="1.5.5" />
   </ItemGroup>
 </Project>

@@ -21,6 +21,11 @@
     <!--<link href="https://mdbootstrap.com/wp-content/themes/mdbootstrap4/css/compiled-4.7.7.min.css?ver=4.7.7" rel="stylesheet">-->
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/css/tempusdominus-bootstrap-4.min.css" />
+    <style>
+        a .dropdown-item:hover {
+          /*background-color: ;*/
+        }
+    </style>
 
 
     @RenderSection("csss", required: false)
@@ -45,6 +50,16 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" asp-controller="Psychologist" asp-action="Index">Doctors</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarToolsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Tools
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarToolsDropdown">
+                            <a class="dropdown-item" asp-controller="HeartDiseasePrediction" asp-action="Index">Heart Disease Prediction</a>
+                            @*<div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Something else here</a>*@
+                        </div>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#about" data-offset="100">About</a>
