@@ -1,0 +1,140 @@
+> DateTime: 11/30/2021 19:50:18
+> Training data file: TempTrainingDataSet0.csv
+> Test data file: TempTestDataSet0.csv
+  Accuracy:          41.94 %
+  Auc:               73.93 %
+  Auprc:             67.59 %
+  F1Score:           59.09 %
+  PositivePrecision: 0.42
+  PositiveRecall:    1
+  NegativePrecision: 0
+  NegativeRecall:    0
+
+
+
+> DateTime: 11/30/2021 19:50:18
+> Training data file: TempTrainingDataSet1.csv
+> Test data file: TempTestDataSet1.csv
+  Accuracy:          64.52 %
+  Auc:               65.00 %
+  Auprc:             76.20 %
+  F1Score:           78.43 %
+  PositivePrecision: 0.65
+  PositiveRecall:    1
+  NegativePrecision: 0
+  NegativeRecall:    0
+
+
+
+> DateTime: 11/30/2021 19:50:18
+> Training data file: TempTrainingDataSet2.csv
+> Test data file: TempTestDataSet2.csv
+  Accuracy:          51.61 %
+  Auc:               77.08 %
+  Auprc:             79.86 %
+  F1Score:           66.67 %
+  PositivePrecision: 0.5
+  PositiveRecall:    1
+  NegativePrecision: 1
+  NegativeRecall:    0.06
+
+
+
+> DateTime: 11/30/2021 19:50:18
+> Training data file: TempTrainingDataSet3.csv
+> Test data file: TempTestDataSet3.csv
+  Accuracy:          58.06 %
+  Auc:               67.54 %
+  Auprc:             80.73 %
+  F1Score:           51.85 %
+  PositivePrecision: 0.88
+  PositiveRecall:    0.37
+  NegativePrecision: 0.48
+  NegativeRecall:    0.92
+
+
+
+> DateTime: 11/30/2021 19:50:18
+> Training data file: TempTrainingDataSet4.csv
+> Test data file: TempTestDataSet4.csv
+  Accuracy:          51.61 %
+  Auc:               82.50 %
+  Auprc:             87.57 %
+  F1Score:           68.09 %
+  PositivePrecision: 0.52
+  PositiveRecall:    1
+  NegativePrecision: 0
+  NegativeRecall:    0
+
+
+
+> DateTime: 11/30/2021 19:50:18
+> Training data file: TempTrainingDataSet5.csv
+> Test data file: TempTestDataSet5.csv
+  Accuracy:          54.84 %
+  Auc:               70.59 %
+  Auprc:             78.43 %
+  F1Score:           70.83 %
+  PositivePrecision: 0.55
+  PositiveRecall:    1
+  NegativePrecision: 0
+  NegativeRecall:    0
+
+
+
+> DateTime: 11/30/2021 19:50:18
+> Training data file: TempTrainingDataSet6.csv
+> Test data file: TempTestDataSet6.csv
+  Accuracy:          54.84 %
+  Auc:               87.82 %
+  Auprc:             91.17 %
+  F1Score:           70.83 %
+  PositivePrecision: 0.55
+  PositiveRecall:    1
+  NegativePrecision: 0
+  NegativeRecall:    0
+
+
+
+> DateTime: 11/30/2021 19:50:18
+> Training data file: TempTrainingDataSet7.csv
+> Test data file: TempTestDataSet7.csv
+  Accuracy:          58.06 %
+  Auc:               76.92 %
+  Auprc:             82.61 %
+  F1Score:           73.47 %
+  PositivePrecision: 0.58
+  PositiveRecall:    1
+  NegativePrecision: 0
+  NegativeRecall:    0
+
+
+
+> DateTime: 11/30/2021 19:50:18
+> Training data file: TempTrainingDataSet8.csv
+> Test data file: TempTestDataSet8.csv
+  Accuracy:          61.29 %
+  Auc:               71.05 %
+  Auprc:             80.69 %
+  F1Score:           76.00 %
+  PositivePrecision: 0.61
+  PositiveRecall:    1
+  NegativePrecision: 0
+  NegativeRecall:    0
+
+
+
+> DateTime: 11/30/2021 19:50:18
+> Training data file: TempTrainingDataSet9.csv
+> Test data file: TempTestDataSet9.csv
+  Accuracy:          54.17 %
+  Auc:               69.93 %
+  Auprc:             56.69 %
+  F1Score:           66.67 %
+  PositivePrecision: 0.5
+  PositiveRecall:    1
+  NegativePrecision: 1
+  NegativeRecall:    0.15
+
+
+

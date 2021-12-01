@@ -1,0 +1,14 @@
+> DateTime: 11/30/2021 19:47:33
+> Training data file: HeartTraining3.csv
+> Test data file: HeartTest.csv
+  Accuracy:          95.00 %
+  Auc:               98.90 %
+  Auprc:             98.09 %
+  F1Score:           92.31 %
+  PositivePrecision: 1
+  PositiveRecall:    0.86
+  NegativePrecision: 0.93
+  NegativeRecall:    1
+
+
+

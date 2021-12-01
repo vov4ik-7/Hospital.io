@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.ML" Version="1.7.0" />
+      <PackageReference Include="Microsoft.ML.FastTree" Version="1.7.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Data\AveragedPerceptron" />
+      <Folder Include="Data\FastForest" />
+      <Folder Include="Data\FastTree" />
+      <Folder Include="Data\LinearSvm" />
+      <Folder Include="Data\Prior" />
+      <Folder Include="Data\Sets" />
+      <Folder Include="Data\Sets\CrossValidation\DataSet1\Temp" />
+      <Folder Include="Data\Sets\CrossValidation\DataSet2-shuffled\Temp" />
+      <Folder Include="Data\Sets\CrossValidation\DataSet2\Temp" />
+      <Folder Include="Data\Sets\CrossValidation\DataSet3\Temp" />
+    </ItemGroup>
+
+</Project>
