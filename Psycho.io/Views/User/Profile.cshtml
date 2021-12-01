@@ -1,5 +1,6 @@
 ﻿@{
     ViewData["Title"] = "Profile";
+    var content = ((HospitalContent)ViewData["lang"])?.Users?.Profile;
 }
 
 @model Psycho.DTO.Core.UserDTO
@@ -32,9 +33,8 @@
                                 <i class="fas fa-users info-color py-4 mr-3 z-depth-2"></i>
                                 <div class="data">
                                     <h5 class="font-weight-bold dark-grey-text">
-                                        Edit Profile - <span class="text-muted">
-                                            Complete your
-                                            profile
+                                        @(content?.EditProfileTitle ?? "Edit Profile") - <span class="text-muted">
+                                            @(content?.CompleteYourProfile ?? "Complete your profile")
                                         </span>
                                     </h5>
                                 </div>
@@ -51,7 +51,7 @@
 
                                         <div class="md-form form-sm mb-0">
                                             <input type="text" id="form12" class="form-control form-control-sm" asp-for="Email" required>
-                                            <label for="form12" class="" asp-for="Email">Email</label>
+                                            <label for="form12" class="" asp-for="Email">@(content?.Email ?? "Email")</label>
                                         </div>
 
                                     </div>
@@ -61,7 +61,7 @@
 
                                         <div class="md-form form-sm mb-0">
                                             <input type="password" id="form3" class="form-control form-control-sm" asp-for="OldPassword">
-                                            <label for="form3" class="" asp-for="OldPassword">Old password</label>
+                                            <label for="form3" class="" asp-for="OldPassword">@(content?.OldPassword ?? "Old password")</label>
                                         </div>
 
                                     </div>
@@ -71,7 +71,7 @@
 
                                         <div class="md-form form-sm mb-0">
                                             <input type="password" id="form4" class="form-control form-control-sm" asp-for="Password">
-                                            <label for="form4" class="" asp-for="Password">New password</label>
+                                            <label for="form4" class="" asp-for="Password">@(content?.NewPassword ?? "New password")</label>
                                         </div>
 
                                     </div>
@@ -87,7 +87,7 @@
 
                                         <div class="md-form form-sm mb-0">
                                             <input type="text" id="form5" class="form-control form-control-sm" asp-for="FirstName" required>
-                                            <label for="form5" class="" asp-for="FirstName">First name</label>
+                                            <label for="form5" class="" asp-for="FirstName">@(content?.FirstName ?? "First name")</label>
                                         </div>
 
                                     </div>
@@ -97,7 +97,7 @@
 
                                         <div class="md-form form-sm mb-0">
                                             <input type="text" id="form5" class="form-control form-control-sm" asp-for="LastName" required>
-                                            <label for="form5" class="" asp-for="LastName">Last name</label>
+                                            <label for="form5" class="" asp-for="LastName">@(content?.LastName ?? "Last name")</label>
                                         </div>
 
                                     </div>
@@ -113,7 +113,7 @@
 
                                         <div class="md-form form-sm mb-0">
                                             <input type="text" id="form6" class="form-control form-control-sm" asp-for="Address" required>
-                                            <label for="form6" class="" asp-for="Address">Address</label>
+                                            <label for="form6" class="" asp-for="Address">@(content?.Address ?? "Address")</label>
                                         </div>
 
                                     </div>
@@ -131,9 +131,9 @@
 
                                             <div class="md-form form-sm mb-0">
                                                 <input type="tel" id="phone" class="form-control form-control-sm" aria-describedby="materialRegisterFormPhoneHelpBlock" asp-for="Phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
-                                                <label for="phone" class="" asp-for="Phone">Phone number</label>
+                                                <label for="phone" class="" asp-for="Phone">@(content?.PhoneNumber ?? "Phone number")</label>
                                                 <small id="materialRegisterFormPhoneHelpBlock" class="form-text text-muted mb-4">
-                                                    Format: 123-456-7890
+                                                    @(content?.PhoneNumberFormat ?? "Format: 123-456-7890")
                                                 </small>
                                             </div>
 
@@ -145,10 +145,10 @@
 
                                             <div class="md-form form-sm mb-0">
                                                 <select class="browser-default custom-select custom-select-md" asp-for="Gender" required>
-                                                    <option selected value="">Gender</option>
-                                                    <option value="Male">Male</option>
-                                                    <option value="Female">Female</option>
-                                                    <option value="Other">Other</option>
+                                                    <option selected value="">@(content?.Gender ?? "Gender")</option>
+                                                    <option value="Male">@(content?.Male ?? "Male")</option>
+                                                    <option value="Female">@(content?.Female ?? "Female")</option>
+                                                    <option value="Other">@(content?.Other ?? "Other")</option>
                                                 </select>
                                             </div>
 
@@ -159,7 +159,7 @@
 
                                             <div class="md-form form-sm mb-0">
                                                 <input type="text" id="form9" class="form-control form-control-sm" asp-for="HireDate" disabled>
-                                                <label for="form9" class="" asp-for="HireDate">Hire date</label>
+                                                <label for="form9" class="" asp-for="HireDate">@(content?.HireDate ?? "Hire date")</label>
                                             </div>
 
                                         </div>
@@ -172,9 +172,9 @@
 
                                             <div class="md-form form-sm mb-0">
                                                 <input type="tel" id="phone" class="form-control form-control-sm" aria-describedby="materialRegisterFormPhoneHelpBlock" asp-for="Phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
-                                                <label for="phone" class="" asp-for="Phone">Phone number</label>
+                                                <label for="phone" class="" asp-for="Phone">@(content?.PhoneNumber ?? "Phone number")</label>
                                                 <small id="materialRegisterFormPhoneHelpBlock" class="form-text text-muted mb-4">
-                                                    Format: 123-456-7890
+                                                    @(content?.PhoneNumberFormat ?? "Format: 123-456-7890")
                                                 </small>
                                             </div>
 
@@ -186,10 +186,10 @@
 
                                             <div class="md-form form-sm mb-0">
                                                 <select class="browser-default custom-select custom-select-md" asp-for="Gender" required>
-                                                    <option selected value="">Gender</option>
-                                                    <option value="Male">Male</option>
-                                                    <option value="Female">Female</option>
-                                                    <option value="Other">Other</option>
+                                                    <option selected value="">@(content?.Gender ?? "Gender")</option>
+                                                    <option value="Male">@(content?.Male ?? "Male")</option>
+                                                    <option value="Female">@(content?.Female ?? "Female")</option>
+                                                    <option value="Other">@(content?.Other ?? "Other")</option>
                                                 </select>
                                             </div>
 
@@ -211,7 +211,7 @@
 
                                             <div class="md-form form-sm mb-0">
                                                 <input type="text" id="position" class="form-control form-control-sm" asp-for="Position" disabled>
-                                                <label for="position" class="" asp-for="Position">Position</label>
+                                                <label for="position" class="" asp-for="Position">@(content?.Position ?? "Position")</label>
                                             </div>
 
 
@@ -225,7 +225,7 @@
 
                                             <div class="md-form form-sm mb-0">
                                                 <input type="text" id="age" class="form-control form-control-sm" asp-for="Age" required>
-                                                <label for="age" class="" asp-for="Age">Age</label>
+                                                <label for="age" class="" asp-for="Age">@(content?.Age ?? "Age")</label>
                                             </div>
 
 
@@ -236,7 +236,7 @@
 
                                             <div class="md-form form-sm mb-0">
                                                 <input type="text" id="height" class="form-control form-control-sm" asp-for="Height" required>
-                                                <label for="height" class="" asp-for="Height">Height</label>
+                                                <label for="height" class="" asp-for="Height">@(content?.Height ?? "Height")</label>
                                             </div>
 
 
@@ -247,7 +247,7 @@
 
                                             <div class="md-form form-sm mb-0">
                                                 <input type="text" id="weight" class="form-control form-control-sm" asp-for="Weight" required>
-                                                <label for="weight" class="" asp-for="Weight">Weight</label>
+                                                <label for="weight" class="" asp-for="Weight">@(content?.Weight ?? "Weight")</label>
                                             </div>
 
                                         </div>
@@ -263,7 +263,7 @@
                                     <div class="row">
                                         <div class="col-lg-12 col-md-12">
                                             <h5 class="font-weight-bold dark-grey-text text-left">
-                                                Work Schedule
+                                                @(content?.WorkSchedule ?? "Work Schedule")
                                             </h5>
                                         </div>
                                     </div>
@@ -272,13 +272,13 @@
                                         <div class="col-lg-6 col-md-6">
                                             <div class="md-form form-sm mb-0">
                                                 <input type="time" id="mondayStart" class="form-control form-control-sm" asp-for="MondayStart" required>
-                                                <label for="mondayStart" class="" asp-for="MondayStart">Monday Start</label>
+                                                <label for="mondayStart" class="" asp-for="MondayStart">@(content?.MondayStart ?? "Monday Start")</label>
                                             </div>
                                         </div>
                                         <div class="col-lg-6 col-md-6">
                                             <div class="md-form form-sm mb-0">
                                                 <input type="time" id="mondayEnd" class="form-control form-control-sm" asp-for="MondayEnd" required>
-                                                <label for="mondayEnd" class="" asp-for="MondayEnd">Monday End</label>
+                                                <label for="mondayEnd" class="" asp-for="MondayEnd">@(content?.MondayEnd ?? "Monday End")</label>
                                             </div>
                                         </div>
                                     </div>
@@ -287,13 +287,13 @@
                                         <div class="col-lg-6 col-md-6">
                                             <div class="md-form form-sm mb-0">
                                                 <input type="time" id="tuesdayStart" class="form-control form-control-sm" asp-for="TuesdayStart" required>
-                                                <label for="tuesdayStart" class="" asp-for="TuesdayStart">Tuesday Start</label>
+                                                <label for="tuesdayStart" class="" asp-for="TuesdayStart">@(content?.TuesdayStart ?? "Tuesday Start")</label>
                                             </div>
                                         </div>
                                         <div class="col-lg-6 col-md-6">
                                             <div class="md-form form-sm mb-0">
                                                 <input type="time" id="tuesdayEnd" class="form-control form-control-sm" asp-for="TuesdayEnd" required>
-                                                <label for="tuesdayEnd" class="" asp-for="TuesdayEnd">Tuesday End</label>
+                                                <label for="tuesdayEnd" class="" asp-for="TuesdayEnd">@(content?.TuesdayEnd ?? "Tuesday End")</label>
                                             </div>
                                         </div>
                                     </div>
@@ -302,13 +302,13 @@
                                         <div class="col-lg-6 col-md-6">
                                             <div class="md-form form-sm mb-0">
                                                 <input type="time" id="wednesdayStart" class="form-control form-control-sm" asp-for="WednesdayStart" required>
-                                                <label for="wednesdayStart" class="" asp-for="WednesdayStart">Wednesday Start</label>
+                                                <label for="wednesdayStart" class="" asp-for="WednesdayStart">@(content?.WednesdayStart ?? "Wednesday Start")</label>
                                             </div>
                                         </div>
                                         <div class="col-lg-6 col-md-6">
                                             <div class="md-form form-sm mb-0">
                                                 <input type="time" id="wednesdayEnd" class="form-control form-control-sm" asp-for="WednesdayEnd" required>
-                                                <label for="wednesdayEnd" class="" asp-for="WednesdayEnd">Wednesday End</label>
+                                                <label for="wednesdayEnd" class="" asp-for="WednesdayEnd">@(content?.WednesdayEnd ?? "Wednesday End")</label>
                                             </div>
                                         </div>
                                     </div>
@@ -317,13 +317,13 @@
                                         <div class="col-lg-6 col-md-6">
                                             <div class="md-form form-sm mb-0">
                                                 <input type="time" id="thursdayStart" class="form-control form-control-sm" asp-for="ThursdayStart" required>
-                                                <label for="thursdayStart" class="" asp-for="ThursdayStart">Thursday Start</label>
+                                                <label for="thursdayStart" class="" asp-for="ThursdayStart">@(content?.ThursdayStart ?? "Thursday Start")</label>
                                             </div>
                                         </div>
                                         <div class="col-lg-6 col-md-6">
                                             <div class="md-form form-sm mb-0">
                                                 <input type="time" id="thursdayEnd" class="form-control form-control-sm" asp-for="ThursdayEnd" required>
-                                                <label for="thursdayEnd" class="" asp-for="ThursdayEnd">Thursday End</label>
+                                                <label for="thursdayEnd" class="" asp-for="ThursdayEnd">@(content?.ThursdayEnd ?? "Thursday End")</label>
                                             </div>
                                         </div>
                                     </div>
@@ -332,13 +332,13 @@
                                         <div class="col-lg-6 col-md-6">
                                             <div class="md-form form-sm mb-0">
                                                 <input type="time" id="fridayStart" class="form-control form-control-sm" asp-for="FridayStart" required>
-                                                <label for="fridayStart" class="" asp-for="FridayStart">Friday Start</label>
+                                                <label for="fridayStart" class="" asp-for="FridayStart">@(content?.FridayStart ?? "Friday Start")</label>
                                             </div>
                                         </div>
                                         <div class="col-lg-6 col-md-6">
                                             <div class="md-form form-sm mb-0">
                                                 <input type="time" id="fridayEnd" class="form-control form-control-sm" asp-for="FridayEnd" required>
-                                                <label for="fridayEnd" class="" asp-for="FridayEnd">Friday End</label>
+                                                <label for="fridayEnd" class="" asp-for="FridayEnd">@(content?.FridayEnd ?? "Friday End")</label>
                                             </div>
                                         </div>
                                     </div>
@@ -352,7 +352,7 @@
                                     <div class="col-md-4 offset-md-7">
 
                                         <div class="text-center mb-3">
-                                            <button type="submit" class="btn blue-gradient btn-block btn-rounded z-depth-1a">Save</button>
+                                            <button type="submit" class="btn blue-gradient btn-block btn-rounded z-depth-1a">@(content?.SaveBtn ?? "Save")</button>
                                         </div>
 
                                     </div>
@@ -397,11 +397,11 @@
                             <h3 class="mb-3 font-weight-bold"><strong>@name</strong></h3>
                             @if (User.IsInRole("Psychologist"))
                             {
-                                <h6 class="font-weight-bold cyan-text mb-4">Doctor</h6>
+                                <h6 class="font-weight-bold cyan-text mb-4">@(content?.Doctor ?? "Doctor")</h6>
                             }
                             else if (User.IsInRole("AuthorizedUser"))
                             {
-                                <h6 class="font-weight-bold cyan-text mb-4">Patient</h6>
+                                <h6 class="font-weight-bold cyan-text mb-4">@(content?.Patient ?? "Patient")</h6>
                             }
 
                             <p class="mt-4 text-muted">
@@ -410,11 +410,11 @@
 
                             @if (User.IsInRole("Psychologist"))
                             {
-                                <a href="@Url.Action("DashboardPsychologist", "User", null)" class="btn btn-info btn-rounded">Schedule</a>
+                                <a href="@Url.Action("DashboardPsychologist", "User", null)" class="btn btn-info btn-rounded">@(content?.Schedule ?? "Schedule")</a>
                             }
                             else if (User.IsInRole("AuthorizedUser"))
                             {
-                                <a href="@Url.Action("DashboardAuthorizedUser", "User", null)" class="btn btn-info btn-rounded">Schedule</a>
+                                <a href="@Url.Action("DashboardAuthorizedUser", "User", null)" class="btn btn-info btn-rounded">@(content?.Schedule ?? "Schedule")</a>
                             }
 
                         </div>

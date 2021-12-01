@@ -19,6 +19,7 @@ using Psycho.Logic.Facade.Interfaces;
 using Psycho.Logic.Facade;
 using Microsoft.AspNetCore.SignalR;
 using Psycho.io.ChatForUser;
+using Psycho.io.Filters;
 using Psycho.Logic.Services;
 using Psycho.Logic.Services.Interfaces;
 
@@ -78,7 +79,10 @@ namespace Psycho.io
                     options.LoginPath = new PathString("/Account/Login");
                 });
 
-            services.AddMvc();
+            services.AddMvc(options =>
+            {
+                options.Filters.Add(new LangFilter());
+            });
             services.AddRazorPages().AddRazorRuntimeCompilation();
 
             services.AddSignalR();
@@ -96,7 +100,7 @@ namespace Psycho.io
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
-
+            
             app.UseRouting();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
@@ -105,7 +109,7 @@ namespace Psycho.io
             app.UseAuthorization();
 
             //IdentityDataInitializer.SeedData(userManager, roleManager).Wait();
-
+            
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapHub<ChatHub>("/chat");

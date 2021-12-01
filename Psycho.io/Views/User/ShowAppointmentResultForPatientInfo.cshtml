@@ -1,4 +1,7 @@
 ﻿@model Psycho.io.Models.User.FullAppointmentResultViewModel
+@{
+    var content = ((HospitalContent)ViewData["lang"])?.Users?.ShowAppointmentResult;
+}
 
 <style>
 
@@ -13,7 +16,7 @@
     <div class="col-md-12 mb-4">
         <div class="modal-content form-elegant">
             <div class="modal-header text-center">
-                <h3 class="modal-title w-100 dark-grey-text font-weight-bold" id="myModalLabel"><strong>Appointment</strong></h3>
+                <h3 class="modal-title w-100 dark-grey-text font-weight-bold" id="myModalLabel"><strong>@(content?.PageTitle ?? "Appointment")</strong></h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -23,7 +26,7 @@
                     <div class="col-md-4 mb-4">
                         <div class="row">
                             <div class="col-md-6">
-                                <p class="text-right">Patient:</p>
+                                <p class="text-right">@(content?.Patient ?? "Patient"):</p>
                             </div>
                             <div class="col-md-6">
                                 <p>@string.Format("{0} {1}", Model.Patient.FirstName, Model.Patient.LastName)</p>
@@ -31,7 +34,7 @@
                         </div>
                         <div class="row">
                             <div class="col-md-6">
-                                <p class="text-right">Age:</p>
+                                <p class="text-right">@(content?.Age ?? "Age"):</p>
                             </div>
                             <div class="col-md-6">
                                 <p>@Model.Patient.Age</p>
@@ -39,7 +42,7 @@
                         </div>
                         <div class="row">
                             <div class="col-md-6">
-                                <p class="text-right">Gender:</p>
+                                <p class="text-right">@(content?.Gender ?? "Gender"):</p>
                             </div>
                             <div class="col-md-6">
                                 <p>@Model.Patient.Gender.ToString()</p>
@@ -47,7 +50,7 @@
                         </div>
                         <div class="row">
                             <div class="col-md-6">
-                                <p class="text-right">Address:</p>
+                                <p class="text-right">@(content?.Address ?? "Address"):</p>
                             </div>
                             <div class="col-md-6">
                                 <p>@Model.Patient.Address</p>
@@ -58,7 +61,7 @@
                     <div class="col-md-4 offset-md-3 mb-4">
                         <div class="row">
                             <div class="col-md-6">
-                                <p class="text-right">Doctor:</p>
+                                <p class="text-right">@(content?.Doctor ?? "Doctor"):</p>
                             </div>
                             <div class="col-md-6">
                                 <p>@string.Format("{0} {1}", Model.Doctor.FirstName, Model.Doctor.LastName)</p>
@@ -66,7 +69,7 @@
                         </div>
                         <div class="row">
                             <div class="col-md-6">
-                                <p class="text-right">Date:</p>
+                                <p class="text-right">@(content?.Date ?? "Date"):</p>
                             </div>
                             <div class="col-md-6">
                                 <p>@string.Format("{0}/{1}/{2}", Model.Date?.Month, Model.Date?.Day, Model.Date?.Year)</p>
@@ -74,19 +77,19 @@
                         </div>
                         <div class="row">
                             <div class="col-md-6">
-                                <p class="text-right">Status:</p>
+                                <p class="text-right">@(content?.Status ?? "Status"):</p>
                             </div>
                             <div class="col-md-6">
                                 @switch (Model.Status)
                                 {
                                     case "Finished":
-                                        <span class="badge badge-danger">@Model.Status</span>
+                                        <span class="badge badge-danger">@(content?.FinishedStatus ?? Model.Status)</span>
                                         break;
                                     case "Planned":
-                                        <span class="badge badge-secondary">@Model.Status</span>
+                                        <span class="badge badge-secondary">@(content?.PlannedStatus ?? Model.Status)</span>
                                         break;
                                     default:
-                                        <span class="badge badge-success">@Model.Status</span>
+                                        <span class="badge badge-success">@(content?.СontinuesStatus ?? Model.Status)</span>
                                         break;
                                 }
                             </div>
@@ -98,7 +101,7 @@
                 {
                     <div class="row">
                         <div class="col-md-12">
-                            <h5>Analyzes</h5>
+                            <h5>@(content?.Analyzes ?? "Analyzes")</h5>
                         </div>
                     </div>
 
@@ -108,10 +111,10 @@
                                 <table class="table table-bordered table-responsive-md table-striped text-center">
                                     <thead>
                                         <tr>
-                                            <th class="text-center">Name</th>
-                                            <th class="text-center">Result</th>
-                                            <th class="text-center">Doctor conclusion</th>
-                                            <th class="text-center">File</th>
+                                            <th class="text-center">@(content?.Name ?? "Name")</th>
+                                            <th class="text-center">@(content?.Result ?? "Result")</th>
+                                            <th class="text-center">@(content?.DoctorConclusion ?? "Doctor conclusion")</th>
+                                            <th class="text-center">@(content?.File ?? "File")</th>
                                         </tr>
                                     </thead>
                                     <tbody id="analyses-content">
@@ -122,7 +125,7 @@
                                                 <td>@analysis.AnalysisResult</td>
                                                 <td>@analysis.DoctorConclusion</td>
                                                 <td>
-                                                    <a onclick="downloadAnalysis('@analysis.Id')" class="btn btn-info btn-rounded btn-sm my-0">Download</a>
+                                                    <a onclick="downloadAnalysis('@analysis.Id')" class="btn btn-info btn-rounded btn-sm my-0">@(content?.DownloadBtn ?? "Download")</a>
                                                 </td>
                                             </tr>
                                         }
@@ -131,7 +134,7 @@
                                 @if (Model.Analyses.Count == 0)
                                 {
                                     <div class="alert alert-info text-center" role="alert">
-                                        The results of the analyzes are not yet available.
+                                        @(content?.ResultNotAvailable ?? "The results of the analyzes are not yet available.")
                                     </div>
                                 }
                             </div>

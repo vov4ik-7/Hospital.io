@@ -1,5 +1,7 @@
 ﻿@model Psycho.DTO.Persistence.PsychologistWithAppointmentsDTO
-
+@{
+    var content = ((HospitalContent)ViewData["lang"])?.Doctors?.Schedule;
+}
 
 <form>
     <div class="col-md-12 mb-4">
@@ -7,7 +9,7 @@
         <div class="modal-content form-elegant">
             <!--Header-->
             <div class="modal-header text-center">
-                <h3 class="modal-title w-100 dark-grey-text font-weight-bold my-3" id="myModalLabel"><strong>@Model.Name schedule</strong></h3>
+                <h3 class="modal-title w-100 dark-grey-text font-weight-bold my-3" id="myModalLabel"><strong>@Model.Name @(content?.PageTitle ?? "schedule")</strong></h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>

@@ -271,3 +271,101 @@
 
 
 
+> DateTime: 11/25/2021 00:45:15
+  Accuracy:          94.74 %
+  Auc:               95.24 %
+  Auprc:             94.55 %
+  F1Score:           92.31 %
+  LogLoss:           0.35
+  LogLossReduction:  0.63
+  PositivePrecision: 1
+  PositiveRecall:    0.86
+  NegativePrecision: 0.92
+  NegativeRecall:    1
+
+
+
+> DateTime: 11/25/2021 00:51:18
+  Accuracy:          94.74 %
+  Auc:               95.24 %
+  Auprc:             94.55 %
+  F1Score:           92.31 %
+  LogLoss:           0.35
+  LogLossReduction:  0.63
+  PositivePrecision: 1
+  PositiveRecall:    0.86
+  NegativePrecision: 0.92
+  NegativeRecall:    1
+
+
+
+> DateTime: 11/27/2021 23:30:25
+  Accuracy:          94.74 %
+  Auc:               95.24 %
+  Auprc:             94.55 %
+  F1Score:           92.31 %
+  LogLoss:           0.35
+  LogLossReduction:  0.63
+  PositivePrecision: 1
+  PositiveRecall:    0.86
+  NegativePrecision: 0.92
+  NegativeRecall:    1
+
+
+
+> DateTime: 11/27/2021 23:39:52
+  Accuracy:          94.74 %
+  Auc:               95.24 %
+  Auprc:             94.55 %
+  F1Score:           92.31 %
+  LogLoss:           0.35
+  LogLossReduction:  0.63
+  PositivePrecision: 1
+  PositiveRecall:    0.86
+  NegativePrecision: 0.92
+  NegativeRecall:    1
+
+
+
+> DateTime: 11/30/2021 22:11:40
+  Accuracy:          94.74 %
+  Auc:               95.24 %
+  Auprc:             94.55 %
+  F1Score:           92.31 %
+  LogLoss:           0.35
+  LogLossReduction:  0.63
+  PositivePrecision: 1
+  PositiveRecall:    0.86
+  NegativePrecision: 0.92
+  NegativeRecall:    1
+
+
+
+> DateTime: 11/30/2021 22:19:32
+  Accuracy:          94.74 %
+  Auc:               95.24 %
+  Auprc:             94.55 %
+  F1Score:           92.31 %
+  LogLoss:           0.35
+  LogLossReduction:  0.63
+  PositivePrecision: 1
+  PositiveRecall:    0.86
+  NegativePrecision: 0.92
+  NegativeRecall:    1
+
+
+
+> DateTime: 11/30/2021 22:58:37
+  Accuracy:          94.74 %
+  Auc:               95.24 %
+  Auprc:             94.55 %
+  F1Score:           92.31 %
+  LogLoss:           0.35
+  LogLossReduction:  0.63
+  PositivePrecision: 1
+  PositiveRecall:    0.86
+  NegativePrecision: 0.92
+  NegativeRecall:    1
+
+
+

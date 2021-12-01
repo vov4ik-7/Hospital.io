@@ -1,5 +1,6 @@
 ﻿@{
     ViewData["Title"] = "Health Diary";
+    var content = ((HospitalContent)ViewData["lang"])?.Diary?.Nav;
 }
 
 @section csss{
@@ -35,13 +36,13 @@
                             <a class="nav-link active nav-btn" data-toggle="tab" href="#Diary" role="tab"
                                data-url="@Url.Action("Diary", "Diary")"
                                data-content-id="Diary"
-                               id="healthDiaryNav">Health Diary</a>
+                               id="healthDiaryNav">@(content?.HealthDiary ?? "Health Diary")</a>
                         </li>
                         <li class="nav-item waves-effect waves-light">
                             <a class="nav-link nav-btn" data-toggle="tab" href="#Statistics" role="tab"
                                data-url="@Url.Action("Statistics", "Diary")"
                                data-content-id="Statistics"
-                               id="statisticsNav">Statistics</a>
+                               id="statisticsNav">@(content?.Statistics ?? "Statistics")</a>
                         </li>
                     </ul>
 

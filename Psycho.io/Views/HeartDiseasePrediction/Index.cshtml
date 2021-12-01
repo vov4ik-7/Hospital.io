@@ -1,5 +1,6 @@
 @{
     ViewData["Title"] = "Heart Disease Prediction";
+    var content = ((HospitalContent)ViewData["lang"])?.HeartDiseasePrediction?.Index;
 }
 
 @model Psycho.io.Models.HeartDiseasePrediction.HeartDataViewModel
@@ -34,7 +35,7 @@
                                     <i class="far fa-heart info-color py-4 mr-3 z-depth-2"></i>
                                     <div class="data">
                                         <h5 class="font-weight-bold dark-grey-text">
-                                            Heart Disease Prediction
+                                            @(content?.PageTitle ?? "Heart Disease Prediction")
                                         </h5>
                                     </div>
                                 </div>
@@ -55,33 +56,33 @@
                                     <div class="col-md-2">
                                         <div class="md-form form-sm mb-0">
                                             <input type="number" id="age" class="form-control form-control-sm" asp-for="Age" required>
-                                            <label for="age" class="" asp-for="Age">Age</label>
+                                            <label for="age" class="" asp-for="Age">@(content?.Age ?? "Age")</label>
                                         </div>
                                     </div>
                                     <div class="col-md-2">
                                         <div class="md-form form-sm mb-0">
                                             <select class="browser-default custom-select custom-select-md" asp-for="Sex" required>
-                                                <option selected value="">Gender</option>
-                                                <option value="1">Male</option>
-                                                <option value="0">Female</option>
+                                                <option selected value="">@(content?.Gender ?? "Gender")</option>
+                                                <option value="1">@(content?.Male ?? "Male")</option>
+                                                <option value="0">@(content?.Female ?? "Female")</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="md-form form-sm mb-0">
                                             <select class="browser-default custom-select custom-select-md" asp-for="Cp" required>
-                                                <option selected value="">Chest-pain type</option>
-                                                <option value="1">typical angina</option>
-                                                <option value="2">atypical angina</option>
-                                                <option value="3">non-anginal pain</option>
-                                                <option value="4">asymptomatic</option>
+                                                <option selected value="">@(content?.ChestPainType ?? "Chest-pain type")</option>
+                                                <option value="1">@(content?.TypicalAngina ?? "typical angina")</option>
+                                                <option value="2">@(content?.AtypicalAngina ?? "atypical angina")</option>
+                                                <option value="3">@(content?.NonAnginalPain ?? "non-anginal pain")</option>
+                                                <option value="4">@(content?.Asymptomatic ?? "asymptomatic")</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="md-form form-sm mb-0">
                                             <input type="number" id="trestbps" class="form-control form-control-sm" asp-for="TrestBps">
-                                            <label for="trestbps" class="" asp-for="TrestBps">Resting Blood Pressure (mmHg)</label>
+                                            <label for="trestbps" class="" asp-for="TrestBps">@(content?.RestingBloodPressure ?? "Resting Blood Pressure (mmHg)")</label>
                                         </div>
                                     </div>
                                 </div>
@@ -90,22 +91,22 @@
                                     <div class="col-md-4">
                                         <div class="md-form form-sm mb-0">
                                             <input type="number" id="chol" class="form-control form-control-sm" asp-for="Chol">
-                                            <label for="chol" class="" asp-for="Chol">Serum Cholestrol (mg/dl)</label>
+                                            <label for="chol" class="" asp-for="Chol">@(content?.SerumCholestrol ?? "Serum Cholestrol (mg/dl)")</label>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="md-form form-sm mb-0">
                                             <input type="number" id="fbs" class="form-control form-control-sm" asp-for="Fbs">
-                                            <label for="fbs" class="" asp-for="Fbs">Fasting Blood Sugar (mg/dl)</label>
+                                            <label for="fbs" class="" asp-for="Fbs">@(content?.FastingBloodSugar ?? "Fasting Blood Sugar (mg/dl)")</label>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="md-form form-sm mb-0">
                                             <select class="browser-default custom-select custom-select-md" asp-for="RestEcg" required>
-                                                <option selected value="">Resting ECG</option>
-                                                <option value="0">normal</option>
-                                                <option value="1">having ST-T wave abnormality</option>
-                                                <option value="2">showing probable or definite left ventricular hypertrophy by Estes' criteria</option>
+                                                <option selected value="">@(content?.RestingEcg ?? "Resting ECG")</option>
+                                                <option value="0">@(content?.Normal ?? "normal")</option>
+                                                <option value="1">@(content?.HavingSTTWaveAbnormality ?? "having ST-T wave abnormality")</option>
+                                                <option value="2">@(content?.ShowingProbableOrDefiniteLeftVentricularHypertrophyByEstesCriteria ?? "showing probable or definite left ventricular hypertrophy by Estes' criteria")</option>
                                             </select>
                                         </div>
                                     </div>
@@ -115,22 +116,22 @@
                                     <div class="col-md-4">
                                         <div class="md-form form-sm mb-0">
                                             <input type="number" id="thal" class="form-control form-control-sm" asp-for="Thalac">
-                                            <label for="thal" class="" asp-for="Thalac">Max heart rate achieved</label>
+                                            <label for="thal" class="" asp-for="Thalac">@(content?.MaxHeartRateAchieved ?? "Max heart rate achieved")</label>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="md-form form-sm mb-0">
                                             <select class="browser-default custom-select custom-select-md" asp-for="Exang" required>
-                                                <option selected value="">Exercise induced angina</option>
-                                                <option value="1">yes</option>
-                                                <option value="0">no</option>
+                                                <option selected value="">@(content?.ExerciseInducedAngina ?? "Exercise induced angina")</option>
+                                                <option value="1">@(content?.Yes ?? "yes")</option>
+                                                <option value="0">@(content?.No ?? "no")</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="md-form form-sm mb-0">
                                             <input type="number" id="oldpeak" class="form-control form-control-sm" asp-for="OldPeak">
-                                            <label for="oldpeak" class="" asp-for="OldPeak">ST depression induced by exercise relative to rest (mm)</label>
+                                            <label for="oldpeak" class="" asp-for="OldPeak">@(content?.StDepressionInducedByExercise ?? "ST depression induced by exercise relative to rest (mm)")</label>
                                         </div>
                                     </div>
                                 </div>
@@ -139,26 +140,26 @@
                                     <div class="col-md-4">
                                         <div class="md-form form-sm mb-0">
                                             <select class="browser-default custom-select custom-select-md" asp-for="Slope" required>
-                                                <option selected value="">Peak exercise ST segment</option>
-                                                <option value="1">upsloping</option>
-                                                <option value="2">flat</option>
-                                                <option value="3">downsloping</option>
+                                                <option selected value="">@(content?.PeakExerciseStSegment ?? "Peak exercise ST segment")</option>
+                                                <option value="1">@(content?.Upsloping ?? "upsloping")</option>
+                                                <option value="2">@(content?.Flat ?? "flat")</option>
+                                                <option value="3">@(content?.Downsloping ?? "downsloping")</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="md-form form-sm mb-0">
                                             <input type="number" id="ca" class="form-control form-control-sm" asp-for="Ca">
-                                            <label for="ca" class="" asp-for="Ca">Number of major vessels (0–3) colored by flourosopy</label>
+                                            <label for="ca" class="" asp-for="Ca">@(content?.NumberOfMajorVessels ?? "Number of major vessels (0–3) colored by flourosopy")</label>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="md-form form-sm mb-0">
                                             <select class="browser-default custom-select custom-select-md" asp-for="Thal" required>
-                                                <option selected value="">Thalassemia</option>
-                                                <option value="3">normal</option>
-                                                <option value="6">fixed defect</option>
-                                                <option value="7">reversible defect</option>
+                                                <option selected value="">@(content?.Thalassemia ?? "Thalassemia")</option>
+                                                <option value="3">@(content?.NormalTh ?? "normal")</option>
+                                                <option value="6">@(content?.FixedDefect ?? "fixed defect")</option>
+                                                <option value="7">@(content?.ReversibleDefect ?? "reversible defect")</option>
                                             </select>
                                         </div>
                                     </div>
@@ -170,7 +171,7 @@
                             <div class="row">
                                 <div class="col-md-3 offset-md-8">
                                     <div class="text-center mb-3">
-                                        <button type="button" onclick="onPredictClick()" class="btn blue-gradient btn-block btn-rounded z-depth-1a">Predict</button>
+                                        <button type="button" onclick="onPredictClick()" class="btn blue-gradient btn-block btn-rounded z-depth-1a">@(content?.Predict ?? "Predict")</button>
                                     </div>
                                 </div>
                             </div>
@@ -190,18 +191,18 @@
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="successPredictionModalLabel">Heart Disease Prediction Result</h5>
+                            <h5 class="modal-title" id="successPredictionModalLabel">@(content?.HeartDiseasePredictionResult ?? "Heart Disease Prediction Result")</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div class="modal-body">
                             <div class="alert alert-success" style="margin-bottom: 0" role="alert">
-                                It seems that your heart is fine.
+                                @(content?.SuccessPredictionResult ?? "It seems that your heart is fine.")
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-info btn-rounded btn-sm" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-info btn-rounded btn-sm" data-dismiss="modal">@(content?.Close ?? "Close")</button>
                             @*<button type="button" class="btn btn-success btn-rounded btn-sm">Save changes</button>*@
                         </div>
                     </div>
@@ -213,7 +214,7 @@
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="warningPredictionModalLabel">Heart Disease Prediction Result</h5>
+                            <h5 class="modal-title" id="warningPredictionModalLabel">@(content?.HeartDiseasePredictionResult ?? "Heart Disease Prediction Result")</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -222,21 +223,21 @@
                             <div class="alert alert-warning" style="margin-bottom: 0" role="alert">
                                 @{
                                     var message = User.IsInRole("AuthorizedUser") || User.IsInRole("AnonymousUser")
-                                        ? "Identified possible risks of heart disease, please make an appointment with a doctor!"
-                                        : "Identified possible risks of heart disease, please create a free account and make an appointment with a doctor!";
+                                        ? (content?.WarningPredictionResult1 ?? "Identified possible risks of heart disease, please make an appointment with a doctor!")
+                                        : (content?.WarningPredictionResult2 ?? "Identified possible risks of heart disease, please create a free account and make an appointment with a doctor!");
                                 }
                                 @message
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-info btn-rounded btn-sm" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-info btn-rounded btn-sm" data-dismiss="modal">@(content?.Close ?? "Close")</button>
                             @if (User.IsInRole("AuthorizedUser") || User.IsInRole("AnonymousUser"))
                             {
-                                <a type="button" asp-controller="Psychologist" asp-action="Index" class="btn btn-warning btn-rounded btn-sm">View doctors</a>
+                                <a type="button" asp-controller="Psychologist" asp-action="Index" class="btn btn-warning btn-rounded btn-sm">@(content?.ViewDoctorsBtn ?? "View doctors")</a>
                             }
                             else
                             {
-                                <a type="button" asp-controller="Account" asp-action="Signup" class="btn btn-warning btn-rounded btn-sm">Create account</a>
+                                <a type="button" asp-controller="Account" asp-action="Signup" class="btn btn-warning btn-rounded btn-sm">@(content?.CreateAccountBtn ?? "Create account")</a>
                             }
                         </div>
                     </div>
@@ -247,21 +248,21 @@
                 <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="parametersInfoModalLabel">Parameters description</h5>
+                            <h5 class="modal-title" id="parametersInfoModalLabel">@(content?.ParametersDescription ?? "Parameters description")</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div class="modal-body">
-                            <div><strong>Chest pain (Angina):</strong> pain or discomfort caused when your heart muscle doesn’t get enough oxygen-rich blood.</div>
-                            <div><strong>Resting Blood Pressure:</strong> Over time, high blood pressure can damage arteries that feed your heart.</div>
-                            <div><strong>Serum Cholesterol:</strong> A high level of low-density lipoprotein (LDL) cholesterol (the “bad” cholesterol) is most likely to narrow arteries. A high level of triglycerides, a type of blood fat related to your diet, also ups your risk of a heart attack. However, a high level of high-density lipoprotein (HDL) cholesterol (the “good” cholesterol) lowers your risk of a heart attack.</div>
-                            <div><strong>Fasting Blood Sugar:</strong> Not producing enough of a hormone secreted by your pancreas (insulin) or not responding to insulin properly causes your body’s blood sugar levels to rise, increasing your risk of a heart attack.</div>
-                            <div><strong>Max heart rate achieved:</strong> The increase in cardiovascular risk, associated with the acceleration of heart rate, was comparable to the increase in risk observed with high blood pressure. It has been shown that an increase in heart rate by 10 beats per minute was associated with an increase in the risk of cardiac death by at least 20%, and this increase in the risk is similar to the one observed with an increase in systolic blood pressure by 10 mm Hg.</div>
-                            <div><strong>Exercise induced angina:</strong> The pain or discomfort associated with angina usually feels tight, gripping or squeezing, and can vary from mild to severe. Angina is usually felt in the center of your chest but may spread to either or both of your shoulders, or your back, neck, jaw or arm. It can even be felt in your hands.</div>
+                            <div><strong>@(content?.ChestPainTitle ?? "Chest pain (Angina)"):</strong> @(content?.ChestPainDescription ?? "pain or discomfort caused when your heart muscle doesn’t get enough oxygen-rich blood.")</div>
+                            <div><strong>@(content?.RestingBloodPressureTitle ?? "Resting Blood Pressure"):</strong> @(content?.RestingBloodPressureDescription ?? "Over time, high blood pressure can damage arteries that feed your heart.")</div>
+                            <div><strong>@(content?.SerumCholesterolTitle ?? "Serum Cholesterol"):</strong> @(content?.SerumCholesterolDescription ?? "A high level of low-density lipoprotein (LDL) cholesterol (the “bad” cholesterol) is most likely to narrow arteries. A high level of triglycerides, a type of blood fat related to your diet, also ups your risk of a heart attack. However, a high level of high-density lipoprotein (HDL) cholesterol (the “good” cholesterol) lowers your risk of a heart attack.")</div>
+                            <div><strong>@(content?.FastingBloodSugarTitle ?? "Fasting Blood Sugar"):</strong> @(content?.FastingBloodSugarDescription ?? "Not producing enough of a hormone secreted by your pancreas (insulin) or not responding to insulin properly causes your body’s blood sugar levels to rise, increasing your risk of a heart attack.")</div>
+                            <div><strong>@(content?.MaxHeartRateAchievedTitle ?? "Max heart rate achieved"):</strong> @(content?.MaxHeartRateAchievedDescription ?? "The increase in cardiovascular risk, associated with the acceleration of heart rate, was comparable to the increase in risk observed with high blood pressure. It has been shown that an increase in heart rate by 10 beats per minute was associated with an increase in the risk of cardiac death by at least 20%, and this increase in the risk is similar to the one observed with an increase in systolic blood pressure by 10 mm Hg.")</div>
+                            <div><strong>@(content?.ExerciseInducedAnginaTitle ?? "Exercise induced angina"):</strong> @(content?.ExerciseInducedAnginaDescription ?? "The pain or discomfort associated with angina usually feels tight, gripping or squeezing, and can vary from mild to severe. Angina is usually felt in the center of your chest but may spread to either or both of your shoulders, or your back, neck, jaw or arm. It can even be felt in your hands.")</div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-info btn-rounded btn-sm" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-info btn-rounded btn-sm" data-dismiss="modal">@(content?.Close ?? "Close")</button>
                             @*<button type="button" class="btn btn-success btn-rounded btn-sm">Save changes</button>*@
                         </div>
                     </div>

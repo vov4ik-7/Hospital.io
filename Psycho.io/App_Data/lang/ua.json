@@ -1,0 +1,312 @@
+{
+  "lang": "ua",
+  "layout": {
+    "home": "Головна",
+    "doctorsNav": "Лікарі",
+    "toolsNav": "Інструменти",
+    "heartDiseasePredictionNav": "Прогноз серцевих захворювань",
+    "aboutNav": "Про нас",
+    "signIn": "Увійти",
+    "signUp": "Зареєструватися"
+  },
+  "account": {
+    "signIn": {
+      "title": "Вхід",
+      "email": "E-mail",
+      "password": "Пароль",
+      "rememberMe": "Запам'ятати мене",
+      "signInBtn": "Увійти",
+      "alternative": "або увійти за допомогою:",
+      "notAMember": "Ще не зараєстровані?",
+      "signUp": "Зареєструватися"
+    },
+    "signUp": {
+      "title": "Реєстрація",
+      "firstName": "Ім'я",
+      "lastName": "Прізвище",
+      "email": "E-mail",
+      "password": "Пароль",
+      "phoneNumber": "Моб. номер",
+      "phoneNumberFormat": "Формат: 123-456-7890",
+      "gender": "Стать",
+      "male": "Чоловік",
+      "female": "Жінка",
+      "other": "Не хочу вказувати",
+      "age": "Вік",
+      "height": "Зріст",
+      "weight": "Вага",
+      "signUp": "Зареєструватися"
+    }
+  },
+  "home": {
+    "index": {
+      "enjoyLife": "Насалоджуйся життям",
+      "description": "Медицина - це наука, яка вкрай необхідна людині в будь-який час, у будь-якому місці, і не тільки тоді, коли вона хвора, але навіть коли вона здорова.",
+      "getAdvice": "Отримати пораду",
+      "learnMore": "Дізнатися більше"
+    }
+  },
+  "admin": {
+    "index": {
+      "pageTitle": "Сторінка адміністратора",
+      "ColumnHeaders": ["Ім'я", "E-mail", "Телефон", "Посада", "Дата", "Дії"],
+      "reportsForReviewBtn": "Відгуки для огляду",
+      "addDoctorBtn": "Додати лікаря",
+      "editDoctorBtn": "Редагувати",
+      "deleteDoctorBtn": "Вилучити"
+    },
+    "reportsForReview": {
+      "pageTitle": "Відгуки для огляду",
+      "approveReportBtn": "Підтвердити",
+      "removeReportBtn": "Вилучити"
+    },
+    "createDoctor": {
+      "pageTitle": "Додати лікаря",
+      "position": "Посада",
+      "email": "E-mail",
+      "password": "Пароль",
+      "firstName": "Ім'я",
+      "lastName": "Прізвище",
+      "address": "Адреса",
+      "phoneNumber": "Моб. номер",
+      "phoneNumberFormat": "Формат: 123-456-7890",
+      "gender": "Стать",
+      "male": "Чоловік",
+      "female": "Жінка",
+      "other": "Не хочу вказувати",
+      "hireDate": "Дата прийняття на роботу",
+      "createBtn": "Створити"
+    },
+    "deleteDoctor": {
+      "pageTitle": "Вилучення лікаря",
+      "confirmation": "Чи впевнені ви, що хочете вилучити лікаря: ",
+      "cancelBtn": "Відмінити",
+      "deleteBtn": "Вилучити"
+    },
+    "editDoctor": {
+      "pageTitle": "Редагувати дані лікаря",
+      "position": "Посада",
+      "email": "E-mail",
+      "password": "Пароль",
+      "firstName": "Ім'я",
+      "lastName": "Прізвише",
+      "address": "Адреса",
+      "phoneNumber": "Моб. номер",
+      "phoneNumberFormat": "Формат: 123-456-7890",
+      "gender": "Стать",
+      "male": "Чоловік",
+      "female": "Жінка",
+      "other": "Не хочу вказувати",
+      "hireDate": "Дата прийняття на роботу",
+      "updateBtn": "Оновити"
+    }
+  },
+  "diary": {
+    "nav": {
+      "HealthDiary": "Щоденник здоров'я",
+      "Statistics": "Статистика"
+    },
+    "healthDiary": {
+      "lifestyle": "Стиль життя",
+      "symptoms": "Симптоми",
+      "mood": "Настрій"
+    },
+    "statistics": {
+      "water": "Вода",
+      "sleep": "Сон",
+      "weight": "Вага",
+      "temperature": "Температура"
+    }
+  },
+  "heartDiseasePrediction": {
+    "index": {
+      "PageTitle": "Прогноз серцевих захворювань",
+      "Age": "Вік",
+      "Gender": "Стать",
+      "Male": "Чоловік",
+      "Female": "Жінка",
+      "ChestPainType": "Біль у грудях",
+      "TypicalAngina": "типова стенокардія",
+      "AtypicalAngina": "атипова стенокардія",
+      "NonAnginalPain": "неангінальний біль",
+      "Asymptomatic": "безсимптомний",
+      "RestingBloodPressure": "Кров'яний тиск у спокої (mmHg)",
+      "SerumCholestrol": "Сироватковий холестерин (mg/dl)",
+      "FastingBloodSugar": "Цукор в крові натще (mg/dl)",
+      "RestingEcg": "ЕКГ у стані спокою",
+      "Normal": "нормальний",
+      "HavingSTTWaveAbnormality": "наявність аномалій зубця ST-T",
+      "ShowingProbableOrDefiniteLeftVentricularHypertrophyByEstesCriteria": "показує ймовірну або визначену гіпертрофію лівого шлуночка за критеріями Естеса",
+      "MaxHeartRateAchieved": "Максимальна частота серцевих скорочень",
+      "ExerciseInducedAngina": "Стенокардія, викликана фізичними вправами",
+      "Yes": "так",
+      "No": "ні",
+      "StDepressionInducedByExercise": "Депресія ST, спричинена фіз. навантаженнями (mm)",
+      "PeakExerciseStSegment": "Пік навантаження на сегмент ST",
+      "Upsloping": "висхідний",
+      "Flat": "рівний",
+      "Downsloping": "низхідний",
+      "NumberOfMajorVessels": "К-сть магістральних судин (0–3)",
+      "Thalassemia": "Таласемія",
+      "NormalTh": "нормальна",
+      "FixedDefect": "виправлений дефект",
+      "ReversibleDefect": "оборотний дефект",
+      "Predict": "Підтвердити",
+      "HeartDiseasePredictionResult": "Результат прогнозу серцевих захворювань",
+      "SuccessPredictionResult": "Здається, що з серцем все добре.",
+      "Close": "Закрити",
+      "WarningPredictionResult1": "Виявлені можливі ризики серцево-судинних захворювань, будь ласка, запишіться на прийом до лікаря!",
+      "WarningPredictionResult2": "Виявлено можливі ризики серцево-судинних захворювань, будь ласка, створіть безкоштовний обліковий запис та запишіться на прийом до лікаря!",
+      "ViewDoctorsBtn": "Переглянути лікарів",
+      "CreateAccountBtn": "Створити аккаунт",
+      "ParametersDescription": "Опис параметрів",
+      "ChestPainTitle": "Біль у грудях (стенокардія)",
+      "ChestPainDescription": "біль або дискомфорт, викликані тим, що ваш серцевий м’яз не отримує достатньої кількості крові багатої киснем.",
+      "RestingBloodPressureTitle": "Артеріальний тиск у стані спокою",
+      "RestingBloodPressureDescription": "З часом високий кров’яний тиск може пошкодити артерії, які живлять ваше серце.",
+      "SerumCholesterolTitle": "Сироватковий холестерин",
+      "SerumCholesterolDescription": "Високий рівень холестерину ліпопротеїдів низької щільності (ЛПНЩ) («поганого» холестерину) швидше за все звужує артерії. Високий рівень тригліцеридів, типу жиру в крові, пов’язаного з вашою дієтою, також підвищує ризик серцевого нападу. Однак високий рівень холестерину ліпопротеїнів високої щільності (ЛПВЩ) («хорошого» холестерину) знижує ризик серцевого нападу.",
+      "FastingBloodSugarTitle": "Цукор в крові натще",
+      "FastingBloodSugarDescription": "Недостатня кількість гормону, що виділяється підшлунковою залозою (інсуліну), або недостатня реакція на інсулін спричиняє підвищення рівня цукру в крові в організмі, збільшуючи ризик серцевого нападу.",
+      "MaxHeartRateAchievedTitle": "Максимальна частота серцевих скорочень",
+      "MaxHeartRateAchievedDescription": "Підвищення серцево-судинного ризику, пов’язане з прискоренням серцевого ритму, було порівнянно зі збільшенням ризику, що спостерігається при високому кров’яному тиску. Було показано, що збільшення частоти серцевих скорочень на 10 ударів за хвилину було пов’язано зі збільшенням ризику серцевої смерті щонайменше на 20%, і це збільшення ризику подібне до того, що спостерігається при збільшенні тиск систолічної крові на 10 мм рт.",
+      "ExerciseInducedAnginaTitle": "Стенокардія, викликана фізичними вправами",
+      "ExerciseInducedAnginaDescription": "Біль або дискомфорт, пов’язані зі стенокардією, зазвичай супроводжуються стисненням і може варіюватися від легкого до сильного. Стенокардія зазвичай відчувається в центрі грудної клітки, але може поширюватися на одне або обидва плеча, спину, шию, щелепу або руку. Це навіть можна відчути в руках."
+    }
+  },
+  "doctors": {
+    "index": {
+      "pageTitle": "Лікарі",
+      "generalColumnHeaders": ["Фото", "Ім'я", "E-mail", "Моб. номер", "Посада", "Робочі години", "Дії", "Відгуки"],
+      "ScheduleBtn": "Розклад",
+      "SignBtn": "Записатися",
+      "ChatBtn": "Чат",
+      "ViewAllReportsBtn": "Переглянути",
+      "AddReportBtn": "Додати",
+      "PreviousBtn": "Попередня",
+      "NextBtn": "Наступна"
+    },
+    "addReport": {
+      "AddReportFor": "Додати відгук для",
+      "YourReport": "Ваш відгук",
+      "Anonymous": "Анонімно",
+      "AddBtn": "Додати"
+    },
+    "createAppointment": {
+      "PageTitle": "Створити запис",
+      "AdditionalInfo": "Додаткова інфрмація",
+      "CreateBtn": "Створити"
+    },
+    "reports": {
+      "PageTitle": "відгуки",
+      "NoReportsMessage": "Поки немає відгуків."
+    },
+    "schedule": {
+      "PageTitle": "розклад"
+    }
+  },
+  "users": {
+    "addAnalysis": {
+      "PageTitle": "Додати аналізи",
+      "Name": "Назва",
+      "AnalysisResult": "Результати аналізів",
+      "DoctorConclusion": "Висновок лікаря",
+      "ChooseFile": "Обрати файл",
+      "SaveChanges": "Зберегти зміни"
+    },
+    "chat": {
+      "Members": "Учасники",
+      "NoMessages": "У вас ще немає активних чатів.",
+      "SelectChat": "Будь ласка, оберіть чат, щоб почати спідкування",
+      "TypeMessageHere": "Ваше повідомлення...",
+      "SendBtn": "Надіслати"
+    },
+    "createAppointment": {
+      "PageTitle": "Створити запис",
+      "Doctors": "Лікар",
+      "Patient": "Пацієнт",
+      "AdditionalInfo": "Додаткова інформація",
+      "CreateBtn": "Створити"
+    },
+    "dashboardAuthorizedUser": {
+      "TitlePart1": "Записи",
+      "TitlePart2": "розклад",
+      "NoActiveAppointments": "У вас немає активних записів.",
+      "Patient": "Пацієнт",
+      "Profile": "Профіль"
+    },
+    "dashboardDoctor": {
+      "TitlePart1": "Записи",
+      "TitlePart2": "розклад",
+      "NoActiveAppointments": "У вас немає активних записів.",
+      "Doctor": "Лікар",
+      "Profile": "Профіль"
+    },
+    "finishAppointment": {
+      "PageTitle": "Завершити зустріч",
+      "Services": "Послуги",
+      "AddServices": "Додати послуги",
+      "SaveChangesBtn": "Зберегти зміни"
+    },
+    "profile": {
+      "EditProfileTitle": "Редагувати профіль",
+      "CompleteYourProfile": "Заповнити ваш профіль",
+      "Email": "E-mail",
+      "OldPassword": "Старий пароль",
+      "NewPassword": "Новий пароль",
+      "FirstName": "Ім'я",
+      "LastName": "Прізвише",
+      "Address": "Адреса",
+      "PhoneNumber": "Моб. номер",
+      "PhoneNumberFormat": "Формат: 123-456-7890",
+      "Gender": "Стать",
+      "Male": "Чоловік",
+      "Female": "Жінка",
+      "Other": "Не хочу вказувати",
+      "HireDate": "Дата прийняття на роботу",
+      "Position": "Посада",
+      "Age": "Вік",
+      "Height": "Зріст",
+      "Weight": "Вага",
+      "WorkSchedule": "Розклад роботи",
+      "MondayStart": "Monday Start",
+      "MondayEnd": "Monday End",
+      "TuesdayStart": "Tuesday Start",
+      "TuesdayEnd": "Tuesday End",
+      "WednesdayStart": "Wednesday Start",
+      "WednesdayEnd": "Wednesday End",
+      "ThursdayStart": "Thursday Start",
+      "ThursdayEnd": "Thursday End",
+      "FridayStart": "Friday Start",
+      "FridayEnd": "Friday End",
+      "SaveBtn": "Зберегти",
+      "Doctor": "Лікар",
+      "Patient": "Пацієнт",
+      "Schedule": "Розклад"
+    },
+    "showAppointmentResult": {
+      "PageTitle": "Прийом у лікаря",
+      "Patient": "Пацієнт",
+      "Age": "Вік",
+      "Gender": "Стать",
+      "Address": "Адреса",
+      "Doctor": "Лікар",
+      "Date": "Дата",
+      "Status": "Статус",
+      "FinishedStatus": "Завершено",
+      "PendingStatus": "Очікується",
+      "PlannedStatus": "Заплоновано",
+      "СontinuesStatus": "Триває",
+      "FinishBtn": "Завершити",
+      "Analyzes": "Аналізи",
+      "AddAnalyzesBtn": "Додати",
+      "Name": "Назва",
+      "Result": "Результат",
+      "DoctorConclusion": "Висновок лікаря",
+      "File": "Файл",
+      "Remove": "Вилучити",
+      "DownloadBtn": "Завантажити",
+      "resultNotAvailable": "Результати аналізів ще не готові."
+    }
+  }
+}

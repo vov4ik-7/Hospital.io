@@ -1,5 +1,6 @@
 ﻿@{
     ViewData["Title"] = "Chat";
+    var content = ((HospitalContent)ViewData["lang"])?.Users?.Chat;
 }
 
 @model Psycho.io.Models.User.ChatViewModel
@@ -38,13 +39,13 @@
         <div class="card-body">
             <div class="row px-lg-2 px-2" style="height: 600px;">
                 <div class="col-md-6 col-xl-4 px-0">
-                    <h6 class="font-weight-bold mb-3 text-center text-lg-left">Members</h6>
+                    <h6 class="font-weight-bold mb-3 text-center text-lg-left">@(content?.Members ?? "Members")</h6>
                     <div class="white z-depth-1 px-3 pt-3 pb-3" style="height: 95%; overflow: auto;">
                         <ul class="list-unstyled friend-list">
                             @if (Model.Chats.Count == 0)
                             {
                                 <li class="alert alert-info text-center no-active-chat-yet" role="alert">
-                                    You have no active chats yet.
+                                    @(content?.NoMessages ?? "You have no active chats yet.")
                                 </li>
                             }
                             @foreach (var elem in Model.Chats)
@@ -83,7 +84,7 @@
                 <div class="col-md-6 col-xl-8 pl-md-3 px-lg-auto px-0 main-chat-container">
                     <div class="chat-message chat-content center">
                         <div class="alert alert-success text-center" role="alert">
-                            Please select a chat to start messaging
+                            @(content?.SelectChat ?? "Please select a chat to start messaging")
                         </div>
                     </div>
                     @foreach (var elem in Model.Chats)
@@ -127,10 +128,10 @@
                             <div>
                                 <div class="white">
                                     <div class="form-group basic-textarea">
-                                        <textarea class="form-control pl-2 my-0" id="@string.Format("message-{0}", elem.User.Id)" rows="3" placeholder="Type your message here..."></textarea>
+                                        <textarea class="form-control pl-2 my-0" id="@string.Format("message-{0}", elem.User.Id)" rows="3" placeholder="@(content?.TypeMessageHere ?? "Type your message here...")"></textarea>
                                     </div>
                                 </div>
-                                <button onclick="sendMessageButtonClick('@elem.User.Id', '@elem.User.Email')" type="button" class="btn btn-info btn-rounded btn-sm waves-effect waves-light float-right">Send</button>
+                                <button onclick="sendMessageButtonClick('@elem.User.Id', '@elem.User.Email')" type="button" class="btn btn-info btn-rounded btn-sm waves-effect waves-light float-right">@(content?.SendBtn ?? "Send")</button>
                             </div>
                         </div>
                     }

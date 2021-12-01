@@ -1,5 +1,7 @@
 ﻿@model Psycho.DTO.Core.CreateAppointmentDTO
-
+@{
+    var content = ((HospitalContent)ViewData["lang"])?.Doctors?.CreateAppointment;
+}
 
 <form asp-controller="Psychologist" asp-action="CreateAppointment"
       data-ajax="true"
@@ -12,7 +14,7 @@
         <div class="modal-content form-elegant">
             <!--Header-->
             <div class="modal-header text-center">
-                <h3 class="modal-title w-100 dark-grey-text font-weight-bold my-3" id="myModalLabel"><strong>Create appointment</strong></h3>
+                <h3 class="modal-title w-100 dark-grey-text font-weight-bold my-3" id="myModalLabel"><strong>@(content?.PageTitle ?? "Create appointment")</strong></h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -103,7 +105,7 @@
                         <!-- Basic textarea -->
                         <div class="md-form mb-0">
                             <textarea type="text" id="app_info" class="md-textarea form-control" rows="2" asp-for="Info"></textarea>
-                            <label for="app_info">Additional info</label>
+                            <label for="app_info">@(content?.AdditionalInfo ?? "Additional info")</label>
                         </div>
 
                     </div>
@@ -120,7 +122,7 @@
 
 
                         <div class="text-center mb-3">
-                            <button type="submit" class="btn blue-gradient btn-block btn-rounded z-depth-1a">Create</button>
+                            <button type="submit" class="btn blue-gradient btn-block btn-rounded z-depth-1a">@(content?.CreateBtn ?? "Create")</button>
                         </div>
 
                     </div>

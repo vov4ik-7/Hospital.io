@@ -1,5 +1,7 @@
 ﻿@model Psycho.DTO.Core.CreateAppointmentDTO
-
+@{
+    var content = ((HospitalContent)ViewData["lang"])?.Users?.CreateAppointment;
+}
 
 <form asp-controller="User" asp-action="CreateAppointment"
       data-ajax="true"
@@ -12,7 +14,7 @@
         <div class="modal-content form-elegant">
             <!--Header-->
             <div class="modal-header text-center">
-                <h3 class="modal-title w-100 dark-grey-text font-weight-bold my-3" id="myModalLabel"><strong>Create appointment</strong></h3>
+                <h3 class="modal-title w-100 dark-grey-text font-weight-bold my-3" id="myModalLabel"><strong>@(content?.PageTitle ?? "Create appointment")</strong></h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -32,7 +34,7 @@
                                     @name</option>
                                 }
                                 else if(User.IsInRole("AuthorizedUser")){
-                                    <option selected value="">-Doctors-</option>
+                                    <option selected value="">-@(content?.Doctors ?? "Doctors")-</option>
                                     foreach(var elem in Model.Psychologists){
                                         <option value="@elem.Id">@{
                                             string name = $"{elem.FirstName} {elem.LastName}";
@@ -57,7 +59,7 @@
                                     @name</option>
                                 }
                                 else if(User.IsInRole("Psychologist")){
-                                    <option selected value="">-Patient-</option>
+                                    <option selected value="">-@(content?.Patient ?? "Patient")-</option>
                                     foreach(var elem in Model.AuthorizedUsers){
                                         <option value="@elem.Id">@{
                                             string name = $"{elem.FirstName} {elem.LastName}";
@@ -124,7 +126,7 @@
                         <!-- Basic textarea -->
                         <div class="md-form mb-0">
                             <textarea type="text" id="app_info" class="md-textarea form-control" rows="2" asp-for="Info"></textarea>
-                            <label for="app_info">Additional info</label>
+                            <label for="app_info">@(content?.AdditionalInfo ?? "Additional info")</label>
                         </div>
 
                     </div>
@@ -141,7 +143,7 @@
 
 
                         <div class="text-center mb-3">
-                            <button type="submit" class="btn blue-gradient btn-block btn-rounded z-depth-1a">Create</button>
+                            <button type="submit" class="btn blue-gradient btn-block btn-rounded z-depth-1a">@(content?.CreateBtn ?? "Create")</button>
                         </div>
 
                     </div>

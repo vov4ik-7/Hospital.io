@@ -1,6 +1,7 @@
 ﻿@{
     Layout = "_AdminPageLayout";
     ViewData["Title"] = "Admin page";
+    var content = ((HospitalContent)ViewData["lang"])?.Admin?.ReportsForReview;
 }
 
 @using Psycho.DTO.Core
@@ -22,7 +23,7 @@
             <div class="col-md-12">
 
                 <div class="d-flex justify-content-between">
-                    <h5 class="my-4 dark-grey-text font-weight-bold">Reports for review</h5>
+                    <h5 class="my-4 dark-grey-text font-weight-bold">@(content?.PageTitle ?? "Reports for review")</h5>
                 </div>
 
                 <div class="card">
@@ -46,7 +47,7 @@
                                             <td>@elem</td>
                                         }
                                         <td>
-                                            @Html.ActionLink("Approve", "ReportsForReview", "Admin", new { id = reports.Id, kek = true }, new
+                                            @Html.ActionLink(content?.ApproveReportBtn ?? "Approve", "ReportsForReview", "Admin", new { id = reports.Id, kek = true }, new
                                                 {
                                                     data_ajax = "true",
                                                     data_ajax_method = "GET",
@@ -57,7 +58,7 @@
                                                    
                                                 })
 
-                                            @Html.ActionLink("Remove", "ReportsForReview", "Admin", new { id = reports.Id, kek = false }, new
+                                            @Html.ActionLink(content?.RemoveReportBtn ?? "Remove", "ReportsForReview", "Admin", new { id = reports.Id, kek = false }, new
                                                 {
                                                     data_ajax = "true",
                                                     data_ajax_method = "GET",

@@ -1,5 +1,8 @@
 ﻿@model Psycho.DTO.Core.CreatePsychologistDTO
 
+@{
+    var content = ((HospitalContent)ViewData["lang"])?.Admin?.CreateDoctor;
+}
 
 <form asp-controller="Admin" asp-action="CreatePsychologist"
       data-ajax="true"
@@ -12,7 +15,7 @@
         <div class="modal-content form-elegant">
             <!--Header-->
             <div class="modal-header text-center">
-                <h3 class="modal-title w-100 dark-grey-text font-weight-bold my-3" id="myModalLabel"><strong>Create doctor</strong></h3>
+                <h3 class="modal-title w-100 dark-grey-text font-weight-bold my-3" id="myModalLabel"><strong>@(content?.PageTitle ?? "Create doctor")</strong></h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -25,7 +28,7 @@
 
                         <div class="md-form form-sm mb-0">
                             <input type="text" id="form12" class="form-control form-control-sm" asp-for="Position" required>
-                            <label for="form12" class="" asp-for="Position">Position</label>
+                            <label for="form12" class="" asp-for="Position">@(content?.Position ?? "Position")</label>
                         </div>
 
                     </div>
@@ -35,7 +38,7 @@
 
                         <div class="md-form form-sm mb-0">
                             <input type="email" id="form3" class="form-control form-control-sm" asp-for="Email" required>
-                            <label for="form3" class="" asp-for="Email">Email address</label>
+                            <label for="form3" class="" asp-for="Email">@(content?.Email ?? "Email address")</label>
                         </div>
 
                     </div>
@@ -45,7 +48,7 @@
 
                         <div class="md-form form-sm mb-0">
                             <input type="password" id="form4" class="form-control form-control-sm" asp-for="Password" required>
-                            <label for="form4" class="disabled" asp-for="Password">Password</label>
+                            <label for="form4" class="disabled" asp-for="Password">@(content?.Password ?? "Password")</label>
                         </div>
 
                     </div>
@@ -61,7 +64,7 @@
 
                         <div class="md-form form-sm mb-0">
                             <input type="text" id="firstName" class="form-control form-control-sm" asp-for="FirstName" required>
-                            <label for="form5" class="" asp-for="FirstName">First name</label>
+                            <label for="form5" class="" asp-for="FirstName">@(content?.FirstName ?? "First name")</label>
                         </div>
 
                     </div>
@@ -71,7 +74,7 @@
 
                         <div class="md-form form-sm mb-0">
                             <input type="text" id="lastName" class="form-control form-control-sm" asp-for="LastName" required>
-                            <label for="lastName" class="" asp-for="LastName">Last name</label>
+                            <label for="lastName" class="" asp-for="LastName">@(content?.LastName ?? "Last name")</label>
                         </div>
 
                     </div>
@@ -87,7 +90,7 @@
 
                         <div class="md-form form-sm mb-0">
                             <input type="text" id="form6" class="form-control form-control-sm" asp-for="Address" required>
-                            <label for="form6" class="" asp-for="Address">Address</label>
+                            <label for="form6" class="" asp-for="Address">@(content?.Address ?? "Address")</label>
                         </div>
 
                     </div>
@@ -103,9 +106,9 @@
 
                         <div class="md-form form-sm mb-0">
                             <input type="tel" id="form7" class="form-control form-control-sm" aria-describedby="materialRegisterFormPhoneHelpBlock" asp-for="Phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
-                            <label for="form7" class="" asp-for="Phone">Phone number</label>
+                            <label for="form7" class="" asp-for="Phone">@(content?.PhoneNumber ?? "Phone number")</label>
                             <small id="materialRegisterFormPhoneHelpBlock" class="form-text text-muted mb-4">
-                                Format: 123-456-7890
+                                @(content?.PhoneNumberFormat ?? "Format: 123-456-7890")
                             </small>
                         </div>
 
@@ -116,10 +119,10 @@
 
                         <div class="md-form form-sm mb-0">
                             <select class="browser-default custom-select custom-select-md" asp-for="Gender" required>
-                                <option selected value="">Gender</option>
-                                <option value="Male">Male</option>
-                                <option value="Female">Female</option>
-                                <option value="Other">Other</option>
+                                <option selected value="">@(content?.Gender ?? "Gender")</option>
+                                <option value="Male">@(content?.Male ?? "Male")</option>
+                                <option value="Female">@(content?.Female ?? "Female")</option>
+                                <option value="Other">@(content?.Other ?? "Other")</option>
                             </select>
                         </div>
 
@@ -133,7 +136,7 @@
     <label for="date">Hire Date</label>-->
 
                             @Html.EditorFor(model => model.HireDate, new { htmlAttributes = new { @class = "form-control datepicker", @required = "required"} })
-                            <label for="HireDate">Hire Date</label>
+                            <label for="HireDate">@(content?.HireDate ?? "Hire Date")</label>
                         </div>
 
                     </div>
@@ -150,7 +153,7 @@
 
 
                         <div class="text-center mb-3">
-                            <button type="submit" class="btn blue-gradient btn-block btn-rounded z-depth-1a">Create</button>
+                            <button type="submit" class="btn blue-gradient btn-block btn-rounded z-depth-1a">@(content?.CreateBtn ?? "Create")</button>
                         </div>
 
                     </div>

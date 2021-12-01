@@ -1,9 +1,12 @@
 ﻿@model Psycho.io.Models.User.FinishAppointmentViewModel
+@{
+    var content = ((HospitalContent)ViewData["lang"])?.Users?.FinishAppointment;
+}
 
 <div class="col-md-12 mb-4">
     <div class="modal-content form-elegant">
         <div class="modal-header text-center">
-            <h3 class="modal-title w-100 dark-grey-text font-weight-bold" id="myModalLabel"><strong>Finish appointment</strong></h3>
+            <h3 class="modal-title w-100 dark-grey-text font-weight-bold" id="myModalLabel"><strong>@(content?.PageTitle ?? "Finish appointment")</strong></h3>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
@@ -13,7 +16,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="md-form mb-0">
-                        Services
+                        @(content?.Services ?? "Services")
                         <div id="selectedServices" class="col-md-12" style="border: 1px solid #ccc; padding: 0.5em 16px; border-radius: 16px; min-height: 40px">
                         </div>
                     </div>
@@ -23,7 +26,7 @@
             <div class="row" style="margin-top:20px;">
                 <div class="col-md-12">
                     <button class="btn btn-primary dropdown-toggle btn-sm" type="button" id="addServicesBtn" data-toggle="dropdown">
-                        Add services
+                        @(content?.AddServices ?? "Add services")
                     </button>
 
                     <div class="dropdown-menu dropdown-primary" id="servicesSearch" style="padding: 8px; max-height: 300px; overflow-y:auto;">
@@ -42,7 +45,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="text-center mb-3">
-                        <button onclick="finishAppointment()" class="btn blue-gradient btn-block btn-rounded z-depth-1a">Save changes</button>
+                        <button onclick="finishAppointment()" class="btn blue-gradient btn-block btn-rounded z-depth-1a">@(content?.SaveChangesBtn ?? "Save changes")</button>
                     </div>
                 </div>
             </div>

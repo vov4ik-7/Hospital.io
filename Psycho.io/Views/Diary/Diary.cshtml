@@ -1,5 +1,9 @@
 ﻿@model Psycho.io.Models.Diary.DiaryViewModel
 
+@{
+    var content = ((HospitalContent)ViewData["lang"])?.Diary?.HealthDiary;
+}
+
 <link href="~/css/diary/diary.css" rel="stylesheet">
 
 <div id="diaryUtils"
@@ -18,7 +22,7 @@
                 <i class="fas fa-running light-green py-4 mr-3 z-depth-2"></i>
                 <div class="data">
                     <h5 class="font-weight-bold dark-grey-text">
-                        Lifestyle
+                        @(content?.Lifestyle ?? "Lifestyle")
                     </h5>
                 </div>
             </div>
@@ -94,7 +98,7 @@
                 <i class="fas fa-thermometer-half light-blue lighten-2 py-4 mr-3 z-depth-2"></i>
                 <div class="data">
                     <h5 class="font-weight-bold dark-grey-text">
-                        Symptoms
+                        @(content?.Symptoms ?? "Symptoms")
                     </h5>
                 </div>
             </div>
@@ -118,7 +122,7 @@
                 <i class="far fa-laugh-wink amber lighten-1 py-4 mr-3 z-depth-2"></i>
                 <div class="data">
                     <h5 class="font-weight-bold dark-grey-text">
-                        Mood
+                        @(content?.Mood ?? "Mood")
                     </h5>
                 </div>
             </div>

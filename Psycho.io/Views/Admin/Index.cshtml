@@ -1,6 +1,7 @@
 ﻿@{
     Layout = "_AdminPageLayout";
     ViewData["Title"] = "Admin page";
+    var content = ((HospitalContent)ViewData["lang"])?.Admin?.Index;
 }
 
 @using Psycho.DTO.Core
@@ -33,9 +34,9 @@
             <div class="col-md-12">
 
                 <div class="d-flex justify-content-between">
-                    <h5 class="my-4 dark-grey-text font-weight-bold">Admin page</h5>
-                    <button class="btn btn-rounded btn-outline-default btn-md" onclick="location.href='@Url.Action("ReportsForReview", "Admin")'">Reports for review</button>
-                    <button id="create-psychologist" class="btn btn-rounded btn-outline-default btn-md">Add psychologist<i class="fas fa-user-plus pl-1"></i></button>
+                    <h5 class="my-4 dark-grey-text font-weight-bold">@(content?.PageTitle ?? "Admin page")</h5>
+                    <button class="btn btn-rounded btn-outline-default btn-md" onclick="location.href='@Url.Action("ReportsForReview", "Admin")'">@(content?.ReportsForReviewBtn ?? "Reports for review")</button>
+                    <button id="create-psychologist" class="btn btn-rounded btn-outline-default btn-md">@(content?.AddDoctorBtn ?? "Add psychologist")<i class="fas fa-user-plus pl-1"></i></button>
                 </div>
 
                 <div class="card">
@@ -43,7 +44,7 @@
                         <table id="dtMaterialDesignExample" class="table table-striped" cellspacing="0" width="100%">
                             <thead>
                                 <tr>
-                                    @foreach (var header in Model.ColumnHeaders)
+                                    @foreach (var header in content?.ColumnHeaders ?? Model.ColumnHeaders)
                                     {
                                         <th>@header</th>
                                     }
@@ -64,7 +65,7 @@
                                                 <!--<button id="create-psychologist" class="btn btn-outline-default btn-rounded waves-effect">Edit</button>
                                                 <button id="delete-psychologist" class="btn btn-outline-danger btn-rounded waves-effect">Delete</button>-->
 
-                                                @Html.ActionLink("Edit", "EditPsychologist", "Admin", new { id = psychologist.Id }, new
+                                                @Html.ActionLink(content?.EditDoctorBtn ?? "Edit", "EditPsychologist", "Admin", new { id = psychologist.Id }, new
                                                 {
                                                     data_ajax = "true",
                                                     data_ajax_method = "GET",
@@ -74,7 +75,7 @@
                                                     @class = "btn btn-outline-default btn-rounded waves-effect",
                                                     @id = "edit-psychologist"
                                                 })
-                                                @Html.ActionLink("Delete", "DeletePsychologistModal", "Admin", new { id = psychologist.Id }, new {
+                                                @Html.ActionLink(content?.DeleteDoctorBtn ?? "Delete", "DeletePsychologistModal", "Admin", new { id = psychologist.Id }, new {
                                                     data_ajax = "true",
                                                     data_ajax_method = "GET",
                                                     data_ajax_mode = "replace",
